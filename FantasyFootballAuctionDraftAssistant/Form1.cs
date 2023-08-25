@@ -13,12 +13,13 @@ namespace FantasyFootballAuctionDraftAssistant
         public Form1()
         {
             InitializeComponent();
+
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private async void Form1_Load(object sender, EventArgs e)
         {
             playerList = SQLiteDataAccess.LoadPlayers();
-
+            await webView.EnsureCoreWebView2Async();
             FreeAgents = playerList.Where(player => !player.Drafted).ToList();
             cbAllPositions.Checked = true;
 
@@ -221,6 +222,30 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnOpenOnlineInfo_Click(object sender, EventArgs e)
         {
+            webView.Visible = true;
+            webView.Enabled = true;
+            rdoDrafted.Visible = false;
+            rdoFreeAgents.Visible = false;
+            btnDraftHistory.Visible = false;
+            btnCloseBrowser.Visible = true;
+            btnCloseBrowser.Enabled = true;
+
+            //string url = GetYahooURL();
+            //string url = GetFantasyProsURL();
+            string url = GetFantasyDataSearchURL();
+            if (webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.Navigate(url);
+            }
+            else
+            {
+                MessageBox.Show("WebView2 is not ready. Please try again later.");
+            }
+            //webView.CoreWebView2.Navigate(url);
+            //OpenUrl(url);
+        }
+        private string GetYahooURL()
+        {
             string playerName = playerOnClock.Name;
             string escapedPlayerName = Uri.EscapeDataString(playerName);
 
@@ -229,9 +254,22 @@ namespace FantasyFootballAuctionDraftAssistant
             //string query = $"NFL {playerName} {lastYear} season stats";
             //string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
             string url = $"https://football.fantasysports.yahoo.com/f1/58184/playersearch?&search={escapedPlayerName}";
+            return url;
+        }
+        private string GetFantasyProsURL()  // Consider renaming this method since it doesn't return a Yahoo URL anymore
+        {
+            string playerName = playerOnClock.Name;
+            string escapedPlayerName = Uri.EscapeDataString(playerName);
 
-            // Open the URL in the default browser
-            OpenUrl(url);
+            string url = $"https://www.fantasypros.com/nfl/players/{escapedPlayerName.ToLower().Replace(" ", "-")}.php";
+            return url;
+        }
+        private string GetFantasyDataSearchURL()
+        {
+            string playerName = playerOnClock.Name;
+            string query = $"site:fantasydata.com {playerName}";
+            string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
+            return url;
         }
         private void OpenUrl(string url)
         {
@@ -249,6 +287,16 @@ namespace FantasyFootballAuctionDraftAssistant
                 // Handle exception if needed
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        private void btnCloseBrowser_Click(object sender, EventArgs e)
+        {
+            webView.Visible = false;
+            webView.Enabled = false;
+            rdoDrafted.Visible = true;
+            rdoFreeAgents.Visible = true;
+            btnDraftHistory.Visible = true;
+            btnCloseBrowser.Visible = false;
         }
     }
 }

@@ -76,6 +76,8 @@
             rdoDrafted = new RadioButton();
             rdoFreeAgents = new RadioButton();
             btnDraftHistory = new Button();
+            webView = new Microsoft.Web.WebView2.WinForms.WebView2();
+            btnCloseBrowser = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -83,6 +85,7 @@
             panel6.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)webView).BeginInit();
             SuspendLayout();
             // 
             // lvUndraftedPlayers
@@ -600,11 +603,38 @@
             btnDraftHistory.Text = "View Draft History";
             btnDraftHistory.UseVisualStyleBackColor = true;
             // 
+            // webView
+            // 
+            webView.AllowExternalDrop = true;
+            webView.CreationProperties = null;
+            webView.DefaultBackgroundColor = Color.White;
+            webView.Enabled = false;
+            webView.Location = new Point(299, 30);
+            webView.Name = "webView";
+            webView.Size = new Size(1032, 716);
+            webView.TabIndex = 8;
+            webView.Visible = false;
+            webView.ZoomFactor = 1D;
+            // 
+            // btnCloseBrowser
+            // 
+            btnCloseBrowser.Enabled = false;
+            btnCloseBrowser.Location = new Point(1129, 7);
+            btnCloseBrowser.Name = "btnCloseBrowser";
+            btnCloseBrowser.Size = new Size(207, 23);
+            btnCloseBrowser.TabIndex = 9;
+            btnCloseBrowser.Text = "Close Window";
+            btnCloseBrowser.UseVisualStyleBackColor = true;
+            btnCloseBrowser.Visible = false;
+            btnCloseBrowser.Click += btnCloseBrowser_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1337, 758);
+            Controls.Add(btnCloseBrowser);
+            Controls.Add(webView);
             Controls.Add(btnDraftHistory);
             Controls.Add(panel5);
             Controls.Add(panel3);
@@ -626,6 +656,7 @@
             panel4.ResumeLayout(false);
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)webView).EndInit();
             ResumeLayout(false);
         }
 
@@ -679,5 +710,7 @@
         private Label label4;
         private Button btnOpenOnlineInfo;
         private Button btnDraftHistory;
+        private Microsoft.Web.WebView2.WinForms.WebView2 webView;
+        private Button btnCloseBrowser;
     }
 }
