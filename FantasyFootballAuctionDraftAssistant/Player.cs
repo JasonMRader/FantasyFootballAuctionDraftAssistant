@@ -19,6 +19,10 @@ namespace FantasyFootballAuctionDraftAssistant
         public string FantasyTeam { get; set; }
         public int Cost { get; set; }
         public string PositionString { get; set; }
+        public int ValueDifference
+        {
+            get { return EstimatedValue - Cost; }
+        }
 
         public PlayerPosition Position
         {

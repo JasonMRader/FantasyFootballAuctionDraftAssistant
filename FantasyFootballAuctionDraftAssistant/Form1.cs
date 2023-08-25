@@ -5,6 +5,9 @@ namespace FantasyFootballAuctionDraftAssistant
     public partial class Form1 : Form
     {
         List<Player> playerList;
+        List<Player> FreeAgents;
+        FantasyTeam DisplayedTeam = new FantasyTeam();
+
         Player playerOnClock = new Player();
         public Form1()
         {
@@ -14,8 +17,18 @@ namespace FantasyFootballAuctionDraftAssistant
         private void Form1_Load(object sender, EventArgs e)
         {
             playerList = SQLiteDataAccess.LoadPlayers();
+
+            FreeAgents = playerList.Where(player => !player.Drafted).ToList();
+            cbAllPositions.Checked = true;
+
+
             SetupListViewColumns();
             UpdateListView();
+        }
+        private void AddPlayerToMyTeam()
+        {
+            DisplayedTeam.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
+            FreeAgents = playerList.Where(player => !player.Drafted).ToList();
         }
         private void SetupListViewColumns()
         {
@@ -25,12 +38,18 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Team", 120, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
+            lvTeamRoster.View = View.Details; // Ensure the view is set to details
+            lvTeamRoster.Columns.Add("Name", 125, HorizontalAlignment.Left);
+            lvTeamRoster.Columns.Add("Value", 50, HorizontalAlignment.Left);
+            lvTeamRoster.Columns.Add("Position", 65, HorizontalAlignment.Left);
+            lvTeamRoster.Columns.Add("Team", 120, HorizontalAlignment.Left);
+            lvTeamRoster.Columns.Add("Bye", 50, HorizontalAlignment.Left);
         }
         private void UpdateListView()
         {
             lvUndraftedPlayers.Items.Clear(); // Clear existing items first
-
-            IEnumerable<Player> filteredPlayers = playerList.Where(player => IsPositionChecked(player.Position));
+            lvTeamRoster.Items.Clear();
+            IEnumerable<Player> filteredPlayers = FreeAgents.Where(player => IsPositionChecked(player.Position));
 
             foreach (Player player in filteredPlayers)
             {
@@ -42,11 +61,27 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
+            
         }
         private void SetPlayerOnClockUI()
         {
             lblPlayerOnClock.Text = playerOnClock.Name;
             lblPlayerOnClockValue.Text = playerOnClock.EstimatedValue.ToString();
+        }
+        private void UpdateDisplayTeam()
+        {
+            foreach (Player player in DisplayedTeam.Players)
+            {
+                ListViewItem lvi = new ListViewItem(player.Name); // First column
+                lvi.SubItems.Add(player.EstimatedValue.ToString()); // Second column
+                lvi.SubItems.Add(player.Position.ToString());
+                lvi.SubItems.Add(player.NflTeam);
+                lvi.SubItems.Add(player.ByeWeek.ToString());
+
+                lvTeamRoster.Items.Add(lvi);
+            }
+            lblDisplayTeamBudget.Text = DisplayedTeam.Budget.ToString();
+            lblQBs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.QB).ToString();
         }
 
         private void lvUndraftedPlayers_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,6 +175,32 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             //if (cbK.Checked) { UpdateListView(); }
             UpdateListView();
+        }
+
+        private void btnWeDraftOnClock_Click(object sender, EventArgs e)
+        {
+            AddPlayerToMyTeam();
+            UpdateListView();
+            UpdateDisplayTeam();
+        }
+
+        private void btnOtherDraftsOnClock_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnCancelOnClock_Click(object sender, EventArgs e)
+        {
+
+        }
+        private bool IsValidNumber(string text)
+        {
+            int number;
+            if (int.TryParse(text, out number) && number >= 1 && number <= 200)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
