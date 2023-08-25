@@ -78,6 +78,7 @@
             btnDraftHistory = new Button();
             webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             btnCloseBrowser = new Button();
+            btnOpenSettings = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -628,11 +629,22 @@
             btnCloseBrowser.Visible = false;
             btnCloseBrowser.Click += btnCloseBrowser_Click;
             // 
+            // btnOpenSettings
+            // 
+            btnOpenSettings.Location = new Point(1000, 9);
+            btnOpenSettings.Name = "btnOpenSettings";
+            btnOpenSettings.Size = new Size(103, 23);
+            btnOpenSettings.TabIndex = 10;
+            btnOpenSettings.Text = "Settings";
+            btnOpenSettings.UseVisualStyleBackColor = true;
+            btnOpenSettings.Click += btnOpenSettings_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1337, 758);
+            Controls.Add(btnOpenSettings);
             Controls.Add(btnCloseBrowser);
             Controls.Add(webView);
             Controls.Add(btnDraftHistory);
@@ -712,5 +724,6 @@
         private Button btnDraftHistory;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private Button btnCloseBrowser;
+        private Button btnOpenSettings;
     }
 }

@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.151" />
+    <PackageReference Include="EPPlus" Version="6.2.8" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.1901.177" />
     <PackageReference Include="Stub.System.Data.SQLite.Core.NetStandard" Version="1.0.118" />
     <PackageReference Include="System.Data.SQLite.Core" Version="1.0.118" />

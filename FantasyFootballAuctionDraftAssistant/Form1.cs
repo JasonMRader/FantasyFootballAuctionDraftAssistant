@@ -298,5 +298,11 @@ namespace FantasyFootballAuctionDraftAssistant
             btnDraftHistory.Visible = true;
             btnCloseBrowser.Visible = false;
         }
+
+        private void btnOpenSettings_Click(object sender, EventArgs e)
+        {
+            Form form = new frmSettings();
+            form.ShowDialog();
+        }
     }
 }
