@@ -5,6 +5,7 @@ using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +25,22 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Player (Name, EstimatedValue) values (@Name, @EstimatedValue", player);
+                cnn.Execute("insert into Players (Name, EstimatedValue) values (@Name, @EstimatedValue)", player);
+            }
+        }
+        public static void SaveFantasyTeam(FantasyTeam team)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into FantasyTeams (Name, Owner) values (@Name, @Owner)", team);
+            }
+        }
+        public static List<FantasyTeam> LoadFantasyTeams()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters());
+                return output.ToList();
             }
         }
         private static string LoadConnectionString(string id = "Default")

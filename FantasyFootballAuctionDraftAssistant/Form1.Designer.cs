@@ -71,7 +71,7 @@
             label6 = new Label();
             label7 = new Label();
             lvTeamRoster = new ListView();
-            label2 = new Label();
+            lblDisplayTeamName = new Label();
             panel5 = new Panel();
             rdoDrafted = new RadioButton();
             rdoFreeAgents = new RadioButton();
@@ -79,6 +79,23 @@
             webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             btnCloseBrowser = new Button();
             btnOpenSettings = new Button();
+            pnlTeamsToView = new Panel();
+            radioButton16 = new RadioButton();
+            radioButton15 = new RadioButton();
+            radioButton12 = new RadioButton();
+            radioButton11 = new RadioButton();
+            radioButton8 = new RadioButton();
+            radioButton14 = new RadioButton();
+            radioButton7 = new RadioButton();
+            radioButton10 = new RadioButton();
+            radioButton4 = new RadioButton();
+            radioButton13 = new RadioButton();
+            radioButton6 = new RadioButton();
+            radioButton9 = new RadioButton();
+            radioButton3 = new RadioButton();
+            radioButton5 = new RadioButton();
+            radioButton2 = new RadioButton();
+            radioButton1 = new RadioButton();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
@@ -87,6 +104,7 @@
             panel4.SuspendLayout();
             panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)webView).BeginInit();
+            pnlTeamsToView.SuspendLayout();
             SuspendLayout();
             // 
             // lvUndraftedPlayers
@@ -304,10 +322,10 @@
             panel3.Controls.Add(panel6);
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(lvTeamRoster);
-            panel3.Controls.Add(label2);
-            panel3.Location = new Point(880, 79);
+            panel3.Controls.Add(lblDisplayTeamName);
+            panel3.Location = new Point(880, 162);
             panel3.Name = "panel3";
-            panel3.Size = new Size(451, 667);
+            panel3.Size = new Size(451, 584);
             panel3.TabIndex = 5;
             // 
             // panel7
@@ -317,7 +335,7 @@
             panel7.Controls.Add(label11);
             panel7.Controls.Add(lblAvgCapPerSpotLeft);
             panel7.Controls.Add(label13);
-            panel7.Location = new Point(250, 59);
+            panel7.Location = new Point(249, 28);
             panel7.Name = "panel7";
             panel7.Size = new Size(177, 100);
             panel7.TabIndex = 14;
@@ -367,7 +385,7 @@
             panel6.Controls.Add(lblRosterValueDifference);
             panel6.Controls.Add(lblDisplayTeamBudget);
             panel6.Controls.Add(label4);
-            panel6.Location = new Point(19, 59);
+            panel6.Location = new Point(18, 28);
             panel6.Name = "panel6";
             panel6.Size = new Size(195, 99);
             panel6.TabIndex = 13;
@@ -425,7 +443,7 @@
             panel4.Controls.Add(label9);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(label7);
-            panel4.Location = new Point(3, 204);
+            panel4.Location = new Point(2, 145);
             panel4.Name = "panel4";
             panel4.Size = new Size(443, 51);
             panel4.TabIndex = 10;
@@ -546,21 +564,21 @@
             // 
             // lvTeamRoster
             // 
-            lvTeamRoster.Location = new Point(3, 259);
+            lvTeamRoster.Location = new Point(2, 200);
             lvTeamRoster.Name = "lvTeamRoster";
-            lvTeamRoster.Size = new Size(443, 405);
+            lvTeamRoster.Size = new Size(443, 379);
             lvTeamRoster.TabIndex = 8;
             lvTeamRoster.UseCompatibleStateImageBehavior = false;
             // 
-            // label2
+            // lblDisplayTeamName
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(133, 0);
-            label2.Name = "label2";
-            label2.Size = new Size(208, 25);
-            label2.TabIndex = 6;
-            label2.Text = "Disappointing Monday";
+            lblDisplayTeamName.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayTeamName.Location = new Point(5, 0);
+            lblDisplayTeamName.Name = "lblDisplayTeamName";
+            lblDisplayTeamName.Size = new Size(440, 25);
+            lblDisplayTeamName.TabIndex = 6;
+            lblDisplayTeamName.Text = "Disappointing Monday";
+            lblDisplayTeamName.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // panel5
             // 
@@ -639,28 +657,244 @@
             btnOpenSettings.UseVisualStyleBackColor = true;
             btnOpenSettings.Click += btnOpenSettings_Click;
             // 
+            // pnlTeamsToView
+            // 
+            pnlTeamsToView.Controls.Add(radioButton16);
+            pnlTeamsToView.Controls.Add(radioButton15);
+            pnlTeamsToView.Controls.Add(radioButton12);
+            pnlTeamsToView.Controls.Add(radioButton11);
+            pnlTeamsToView.Controls.Add(radioButton8);
+            pnlTeamsToView.Controls.Add(radioButton14);
+            pnlTeamsToView.Controls.Add(radioButton7);
+            pnlTeamsToView.Controls.Add(radioButton10);
+            pnlTeamsToView.Controls.Add(radioButton4);
+            pnlTeamsToView.Controls.Add(radioButton13);
+            pnlTeamsToView.Controls.Add(radioButton6);
+            pnlTeamsToView.Controls.Add(radioButton9);
+            pnlTeamsToView.Controls.Add(radioButton3);
+            pnlTeamsToView.Controls.Add(radioButton5);
+            pnlTeamsToView.Controls.Add(radioButton2);
+            pnlTeamsToView.Controls.Add(radioButton1);
+            pnlTeamsToView.Location = new Point(882, 40);
+            pnlTeamsToView.Name = "pnlTeamsToView";
+            pnlTeamsToView.Size = new Size(448, 113);
+            pnlTeamsToView.TabIndex = 11;
+            // 
+            // radioButton16
+            // 
+            radioButton16.Appearance = Appearance.Button;
+            radioButton16.Location = new Point(331, 89);
+            radioButton16.Name = "radioButton16";
+            radioButton16.Size = new Size(112, 24);
+            radioButton16.TabIndex = 0;
+            radioButton16.TabStop = true;
+            radioButton16.Text = "radioButton1";
+            radioButton16.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton16.UseVisualStyleBackColor = true;
+            // 
+            // radioButton15
+            // 
+            radioButton15.Appearance = Appearance.Button;
+            radioButton15.Location = new Point(221, 89);
+            radioButton15.Name = "radioButton15";
+            radioButton15.Size = new Size(112, 24);
+            radioButton15.TabIndex = 0;
+            radioButton15.TabStop = true;
+            radioButton15.Text = "radioButton1";
+            radioButton15.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton15.UseVisualStyleBackColor = true;
+            // 
+            // radioButton12
+            // 
+            radioButton12.Appearance = Appearance.Button;
+            radioButton12.Location = new Point(331, 59);
+            radioButton12.Name = "radioButton12";
+            radioButton12.Size = new Size(112, 24);
+            radioButton12.TabIndex = 0;
+            radioButton12.TabStop = true;
+            radioButton12.Text = "radioButton1";
+            radioButton12.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton12.UseVisualStyleBackColor = true;
+            // 
+            // radioButton11
+            // 
+            radioButton11.Appearance = Appearance.Button;
+            radioButton11.Location = new Point(221, 59);
+            radioButton11.Name = "radioButton11";
+            radioButton11.Size = new Size(112, 24);
+            radioButton11.TabIndex = 0;
+            radioButton11.TabStop = true;
+            radioButton11.Text = "radioButton1";
+            radioButton11.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton11.UseVisualStyleBackColor = true;
+            // 
+            // radioButton8
+            // 
+            radioButton8.Appearance = Appearance.Button;
+            radioButton8.Location = new Point(331, 29);
+            radioButton8.Name = "radioButton8";
+            radioButton8.Size = new Size(112, 24);
+            radioButton8.TabIndex = 0;
+            radioButton8.TabStop = true;
+            radioButton8.Text = "radioButton1";
+            radioButton8.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton8.UseVisualStyleBackColor = true;
+            // 
+            // radioButton14
+            // 
+            radioButton14.Appearance = Appearance.Button;
+            radioButton14.Location = new Point(111, 89);
+            radioButton14.Name = "radioButton14";
+            radioButton14.Size = new Size(112, 24);
+            radioButton14.TabIndex = 0;
+            radioButton14.TabStop = true;
+            radioButton14.Text = "radioButton1";
+            radioButton14.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton14.UseVisualStyleBackColor = true;
+            // 
+            // radioButton7
+            // 
+            radioButton7.Appearance = Appearance.Button;
+            radioButton7.Location = new Point(221, 29);
+            radioButton7.Name = "radioButton7";
+            radioButton7.Size = new Size(112, 24);
+            radioButton7.TabIndex = 0;
+            radioButton7.TabStop = true;
+            radioButton7.Text = "radioButton1";
+            radioButton7.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton7.UseVisualStyleBackColor = true;
+            // 
+            // radioButton10
+            // 
+            radioButton10.Appearance = Appearance.Button;
+            radioButton10.Location = new Point(111, 59);
+            radioButton10.Name = "radioButton10";
+            radioButton10.Size = new Size(112, 24);
+            radioButton10.TabIndex = 0;
+            radioButton10.TabStop = true;
+            radioButton10.Text = "radioButton1";
+            radioButton10.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton10.UseVisualStyleBackColor = true;
+            // 
+            // radioButton4
+            // 
+            radioButton4.Appearance = Appearance.Button;
+            radioButton4.Location = new Point(331, 0);
+            radioButton4.Name = "radioButton4";
+            radioButton4.Size = new Size(112, 24);
+            radioButton4.TabIndex = 0;
+            radioButton4.TabStop = true;
+            radioButton4.Text = "radioButton1";
+            radioButton4.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton4.UseVisualStyleBackColor = true;
+            // 
+            // radioButton13
+            // 
+            radioButton13.Appearance = Appearance.Button;
+            radioButton13.Location = new Point(3, 89);
+            radioButton13.Name = "radioButton13";
+            radioButton13.Size = new Size(112, 24);
+            radioButton13.TabIndex = 0;
+            radioButton13.TabStop = true;
+            radioButton13.Text = "radioButton1";
+            radioButton13.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton13.UseVisualStyleBackColor = true;
+            // 
+            // radioButton6
+            // 
+            radioButton6.Appearance = Appearance.Button;
+            radioButton6.Location = new Point(111, 29);
+            radioButton6.Name = "radioButton6";
+            radioButton6.Size = new Size(112, 24);
+            radioButton6.TabIndex = 0;
+            radioButton6.TabStop = true;
+            radioButton6.Text = "radioButton1";
+            radioButton6.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton6.UseVisualStyleBackColor = true;
+            // 
+            // radioButton9
+            // 
+            radioButton9.Appearance = Appearance.Button;
+            radioButton9.Location = new Point(3, 59);
+            radioButton9.Name = "radioButton9";
+            radioButton9.Size = new Size(112, 24);
+            radioButton9.TabIndex = 0;
+            radioButton9.TabStop = true;
+            radioButton9.Text = "radioButton1";
+            radioButton9.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton9.UseVisualStyleBackColor = true;
+            // 
+            // radioButton3
+            // 
+            radioButton3.Appearance = Appearance.Button;
+            radioButton3.Location = new Point(221, 0);
+            radioButton3.Name = "radioButton3";
+            radioButton3.Size = new Size(112, 24);
+            radioButton3.TabIndex = 0;
+            radioButton3.TabStop = true;
+            radioButton3.Text = "radioButton1";
+            radioButton3.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton3.UseVisualStyleBackColor = true;
+            // 
+            // radioButton5
+            // 
+            radioButton5.Appearance = Appearance.Button;
+            radioButton5.Location = new Point(3, 29);
+            radioButton5.Name = "radioButton5";
+            radioButton5.Size = new Size(112, 24);
+            radioButton5.TabIndex = 0;
+            radioButton5.TabStop = true;
+            radioButton5.Text = "radioButton1";
+            radioButton5.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton5.UseVisualStyleBackColor = true;
+            // 
+            // radioButton2
+            // 
+            radioButton2.Appearance = Appearance.Button;
+            radioButton2.Location = new Point(111, 0);
+            radioButton2.Name = "radioButton2";
+            radioButton2.Size = new Size(112, 24);
+            radioButton2.TabIndex = 0;
+            radioButton2.TabStop = true;
+            radioButton2.Text = "radioButton1";
+            radioButton2.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton2.UseVisualStyleBackColor = true;
+            // 
+            // radioButton1
+            // 
+            radioButton1.Appearance = Appearance.Button;
+            radioButton1.Location = new Point(3, 0);
+            radioButton1.Name = "radioButton1";
+            radioButton1.Size = new Size(112, 24);
+            radioButton1.TabIndex = 0;
+            radioButton1.TabStop = true;
+            radioButton1.Text = "radioButton1";
+            radioButton1.TextAlign = ContentAlignment.MiddleCenter;
+            radioButton1.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1337, 758);
+            Controls.Add(pnlTeamsToView);
             Controls.Add(btnOpenSettings);
             Controls.Add(btnCloseBrowser);
-            Controls.Add(webView);
             Controls.Add(btnDraftHistory);
             Controls.Add(panel5);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(lvUndraftedPlayers);
+            Controls.Add(webView);
             Name = "Form1";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
@@ -669,6 +903,7 @@
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)webView).EndInit();
+            pnlTeamsToView.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -691,7 +926,7 @@
         private Button btnOtherDraftsOnClock;
         private Label lblPlayerOnClockValue;
         private Panel panel3;
-        private Label label2;
+        private Label lblDisplayTeamName;
         private Panel panel4;
         private Label lblKs;
         private Label lblDEFs;
@@ -725,5 +960,22 @@
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private Button btnCloseBrowser;
         private Button btnOpenSettings;
+        private Panel pnlTeamsToView;
+        private RadioButton radioButton16;
+        private RadioButton radioButton15;
+        private RadioButton radioButton12;
+        private RadioButton radioButton11;
+        private RadioButton radioButton8;
+        private RadioButton radioButton14;
+        private RadioButton radioButton7;
+        private RadioButton radioButton10;
+        private RadioButton radioButton4;
+        private RadioButton radioButton13;
+        private RadioButton radioButton6;
+        private RadioButton radioButton9;
+        private RadioButton radioButton3;
+        private RadioButton radioButton5;
+        private RadioButton radioButton2;
+        private RadioButton radioButton1;
     }
 }

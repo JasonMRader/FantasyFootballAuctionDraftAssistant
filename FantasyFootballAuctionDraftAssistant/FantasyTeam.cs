@@ -13,7 +13,14 @@ namespace FantasyFootballAuctionDraftAssistant
             this.Players = new List<Player>();
             
         }
+        public FantasyTeam(string teamName, string ownerName)
+        {
+            this.Name = teamName;
+            this.Owner = ownerName;
+            this.Players = new List<Player>();
+        }
         public string Name { get; set; }
+        public string Owner { get; set; }
         private int _budget = 200;
         private int _rosterSpots = 16;
         public int RosterSpots

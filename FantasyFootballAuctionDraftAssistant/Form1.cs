@@ -7,6 +7,7 @@ namespace FantasyFootballAuctionDraftAssistant
     {
         List<Player> playerList;
         List<Player> FreeAgents;
+        List<FantasyTeam> FantasyTeamList;
         FantasyTeam DisplayedTeam = new FantasyTeam();
 
         Player playerOnClock = new Player();
@@ -19,13 +20,42 @@ namespace FantasyFootballAuctionDraftAssistant
         private async void Form1_Load(object sender, EventArgs e)
         {
             playerList = SQLiteDataAccess.LoadPlayers();
+            FantasyTeamList = SQLiteDataAccess.LoadFantasyTeams();
             await webView.EnsureCoreWebView2Async();
             FreeAgents = playerList.Where(player => !player.Drafted).ToList();
             cbAllPositions.Checked = true;
 
-
+            SetRadioButtonsToFantasyTeams();
             SetupListViewColumns();
             UpdateListView();
+        }
+        private void SetRadioButtonsToFantasyTeams()
+        {
+            int index = 0;
+            foreach (Control control in pnlTeamsToView.Controls)
+            {
+                if (control is RadioButton && index < FantasyTeamList.Count)
+                {
+                    control.Text = FantasyTeamList[index].Name;
+                    control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
+                    control.Click += RadioButton_Click; // Register common click event
+                    index++;
+                }
+            }
+        }
+        private void RadioButton_Click(object sender, EventArgs e)
+        {
+            RadioButton clickedRadioButton = sender as RadioButton;
+            if (clickedRadioButton != null && clickedRadioButton.Checked)
+            {
+                FantasyTeam selectedTeam = clickedRadioButton.Tag as FantasyTeam;
+                if (selectedTeam != null)
+                {
+                    // Assuming DisplayedTeam is a property where you want to store the selected team
+                    DisplayedTeam = selectedTeam;
+                }
+            }
+            UpdateDisplayTeam();
         }
         private void AddPlayerToMyTeam()
         {
@@ -84,6 +114,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 lvi.SubItems.Add(player.ValueDifference.ToString());
                 lvTeamRoster.Items.Add(lvi);
             }
+            lblDisplayTeamName.Text = DisplayedTeam.Name;
             lblDisplayTeamBudget.Text = DisplayedTeam.Budget.ToString();
             lblQBs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.QB).ToString();
             lblRBs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.RB).ToString();

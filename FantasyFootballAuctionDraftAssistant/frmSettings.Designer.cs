@@ -34,29 +34,30 @@
             cbTeam = new CheckBox();
             cbBye = new CheckBox();
             cbValue = new CheckBox();
-            listBox1 = new ListBox();
+            lbFantasyTeams = new ListBox();
             panel6 = new Panel();
+            nudYear = new NumericUpDown();
+            nudValue = new NumericUpDown();
+            nudBye = new NumericUpDown();
+            nudTeam = new NumericUpDown();
+            nudPosition = new NumericUpDown();
+            nudName = new NumericUpDown();
+            cbYear = new CheckBox();
             panel7 = new Panel();
             label2 = new Label();
             label1 = new Label();
-            button1 = new Button();
-            textBox7 = new TextBox();
-            textBox6 = new TextBox();
-            cbYear = new CheckBox();
-            nudName = new NumericUpDown();
-            nudPosition = new NumericUpDown();
-            nudTeam = new NumericUpDown();
-            nudBye = new NumericUpDown();
-            nudValue = new NumericUpDown();
-            nudYear = new NumericUpDown();
+            btnDelete = new Button();
+            btnSaveFantasyTeam = new Button();
+            txtFantasyOwner = new TextBox();
+            txtFantasyName = new TextBox();
             panel6.SuspendLayout();
-            panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)nudName).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudPosition).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudTeam).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudBye).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudValue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudYear).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudValue).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudBye).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudTeam).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudPosition).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudName).BeginInit();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // btnLoadExcelData
@@ -124,14 +125,14 @@
             cbValue.TextAlign = ContentAlignment.MiddleCenter;
             cbValue.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // lbFantasyTeams
             // 
-            listBox1.FormattingEnabled = true;
-            listBox1.ItemHeight = 15;
-            listBox1.Location = new Point(198, 17);
-            listBox1.Name = "listBox1";
-            listBox1.Size = new Size(184, 319);
-            listBox1.TabIndex = 4;
+            lbFantasyTeams.FormattingEnabled = true;
+            lbFantasyTeams.ItemHeight = 15;
+            lbFantasyTeams.Location = new Point(158, 21);
+            lbFantasyTeams.Name = "lbFantasyTeams";
+            lbFantasyTeams.Size = new Size(184, 319);
+            lbFantasyTeams.TabIndex = 4;
             // 
             // panel6
             // 
@@ -154,60 +155,47 @@
             panel6.Size = new Size(224, 351);
             panel6.TabIndex = 5;
             // 
-            // panel7
+            // nudYear
             // 
-            panel7.BackColor = Color.FromArgb(224, 224, 224);
-            panel7.Controls.Add(label2);
-            panel7.Controls.Add(label1);
-            panel7.Controls.Add(button1);
-            panel7.Controls.Add(textBox7);
-            panel7.Controls.Add(textBox6);
-            panel7.Controls.Add(listBox1);
-            panel7.Location = new Point(252, 14);
-            panel7.Name = "panel7";
-            panel7.Size = new Size(394, 351);
-            panel7.TabIndex = 6;
+            nudYear.Location = new Point(109, 211);
+            nudYear.Name = "nudYear";
+            nudYear.Size = new Size(67, 23);
+            nudYear.TabIndex = 5;
             // 
-            // label2
+            // nudValue
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(25, 89);
-            label2.Name = "label2";
-            label2.Size = new Size(42, 15);
-            label2.TabIndex = 7;
-            label2.Text = "Owner";
+            nudValue.Location = new Point(109, 173);
+            nudValue.Name = "nudValue";
+            nudValue.Size = new Size(67, 23);
+            nudValue.TabIndex = 5;
             // 
-            // label1
+            // nudBye
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(25, 25);
-            label1.Name = "label1";
-            label1.Size = new Size(70, 15);
-            label1.TabIndex = 7;
-            label1.Text = "Team Name";
+            nudBye.Location = new Point(109, 135);
+            nudBye.Name = "nudBye";
+            nudBye.Size = new Size(67, 23);
+            nudBye.TabIndex = 5;
             // 
-            // button1
+            // nudTeam
             // 
-            button1.Location = new Point(25, 178);
-            button1.Name = "button1";
-            button1.Size = new Size(100, 32);
-            button1.TabIndex = 6;
-            button1.Text = "Save Team";
-            button1.UseVisualStyleBackColor = true;
+            nudTeam.Location = new Point(109, 97);
+            nudTeam.Name = "nudTeam";
+            nudTeam.Size = new Size(67, 23);
+            nudTeam.TabIndex = 5;
             // 
-            // textBox7
+            // nudPosition
             // 
-            textBox7.Location = new Point(25, 107);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 5;
+            nudPosition.Location = new Point(109, 59);
+            nudPosition.Name = "nudPosition";
+            nudPosition.Size = new Size(67, 23);
+            nudPosition.TabIndex = 5;
             // 
-            // textBox6
+            // nudName
             // 
-            textBox6.Location = new Point(25, 43);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(100, 23);
-            textBox6.TabIndex = 5;
+            nudName.Location = new Point(109, 21);
+            nudName.Name = "nudName";
+            nudName.Size = new Size(67, 23);
+            nudName.TabIndex = 5;
             // 
             // cbYear
             // 
@@ -221,66 +209,91 @@
             cbYear.TextAlign = ContentAlignment.MiddleCenter;
             cbYear.UseVisualStyleBackColor = true;
             // 
-            // nudName
+            // panel7
             // 
-            nudName.Location = new Point(109, 21);
-            nudName.Name = "nudName";
-            nudName.Size = new Size(67, 23);
-            nudName.TabIndex = 5;
+            panel7.BackColor = Color.FromArgb(224, 224, 224);
+            panel7.Controls.Add(label2);
+            panel7.Controls.Add(label1);
+            panel7.Controls.Add(btnDelete);
+            panel7.Controls.Add(btnSaveFantasyTeam);
+            panel7.Controls.Add(txtFantasyOwner);
+            panel7.Controls.Add(txtFantasyName);
+            panel7.Controls.Add(lbFantasyTeams);
+            panel7.Location = new Point(252, 14);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(363, 351);
+            panel7.TabIndex = 6;
             // 
-            // nudPosition
+            // label2
             // 
-            nudPosition.Location = new Point(109, 59);
-            nudPosition.Name = "nudPosition";
-            nudPosition.Size = new Size(67, 23);
-            nudPosition.TabIndex = 5;
+            label2.AutoSize = true;
+            label2.Location = new Point(13, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 15);
+            label2.TabIndex = 7;
+            label2.Text = "Owner";
             // 
-            // nudTeam
+            // label1
             // 
-            nudTeam.Location = new Point(109, 97);
-            nudTeam.Name = "nudTeam";
-            nudTeam.Size = new Size(67, 23);
-            nudTeam.TabIndex = 5;
+            label1.AutoSize = true;
+            label1.Location = new Point(13, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Team Name";
             // 
-            // nudBye
+            // btnDelete
             // 
-            nudBye.Location = new Point(109, 135);
-            nudBye.Name = "nudBye";
-            nudBye.Size = new Size(67, 23);
-            nudBye.TabIndex = 5;
+            btnDelete.Location = new Point(13, 189);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(130, 32);
+            btnDelete.TabIndex = 6;
+            btnDelete.Text = "Delete Team";
+            btnDelete.UseVisualStyleBackColor = true;
             // 
-            // nudValue
+            // btnSaveFantasyTeam
             // 
-            nudValue.Location = new Point(109, 173);
-            nudValue.Name = "nudValue";
-            nudValue.Size = new Size(67, 23);
-            nudValue.TabIndex = 5;
+            btnSaveFantasyTeam.Location = new Point(13, 151);
+            btnSaveFantasyTeam.Name = "btnSaveFantasyTeam";
+            btnSaveFantasyTeam.Size = new Size(130, 32);
+            btnSaveFantasyTeam.TabIndex = 6;
+            btnSaveFantasyTeam.Text = "Save Team";
+            btnSaveFantasyTeam.UseVisualStyleBackColor = true;
+            btnSaveFantasyTeam.Click += btnSaveFantasyTeam_Click;
             // 
-            // nudYear
+            // txtFantasyOwner
             // 
-            nudYear.Location = new Point(109, 211);
-            nudYear.Name = "nudYear";
-            nudYear.Size = new Size(67, 23);
-            nudYear.TabIndex = 5;
+            txtFantasyOwner.Location = new Point(13, 107);
+            txtFantasyOwner.Name = "txtFantasyOwner";
+            txtFantasyOwner.Size = new Size(130, 23);
+            txtFantasyOwner.TabIndex = 5;
+            // 
+            // txtFantasyName
+            // 
+            txtFantasyName.Location = new Point(13, 43);
+            txtFantasyName.Name = "txtFantasyName";
+            txtFantasyName.Size = new Size(130, 23);
+            txtFantasyName.TabIndex = 5;
             // 
             // frmSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(669, 385);
+            ClientSize = new Size(631, 385);
             Controls.Add(panel7);
             Controls.Add(panel6);
             Name = "frmSettings";
             Text = "frmSettings";
+            Load += frmSettings_Load;
             panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nudYear).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudValue).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudBye).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudTeam).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudPosition).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudName).EndInit();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)nudName).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudPosition).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudTeam).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudBye).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudValue).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudYear).EndInit();
             ResumeLayout(false);
         }
 
@@ -292,14 +305,14 @@
         private CheckBox cbTeam;
         private CheckBox cbBye;
         private CheckBox cbValue;
-        private ListBox listBox1;
+        private ListBox lbFantasyTeams;
         private Panel panel6;
         private Panel panel7;
         private Label label2;
         private Label label1;
-        private Button button1;
-        private TextBox textBox7;
-        private TextBox textBox6;
+        private Button btnSaveFantasyTeam;
+        private TextBox txtFantasyOwner;
+        private TextBox txtFantasyName;
         private NumericUpDown nudYear;
         private NumericUpDown nudValue;
         private NumericUpDown nudBye;
@@ -307,5 +320,6 @@
         private NumericUpDown nudPosition;
         private NumericUpDown nudName;
         private CheckBox cbYear;
+        private Button btnDelete;
     }
 }

@@ -13,6 +13,7 @@ namespace FantasyFootballAuctionDraftAssistant
 {
     public partial class frmSettings : Form
     {
+        List<FantasyTeam> teamList = new List<FantasyTeam>();
         public frmSettings()
         {
             InitializeComponent();
@@ -80,5 +81,25 @@ namespace FantasyFootballAuctionDraftAssistant
             }
         }
 
+        private void btnSaveFantasyTeam_Click(object sender, EventArgs e)
+        {
+            FantasyTeam team = new FantasyTeam(txtFantasyName.Text, txtFantasyOwner.Text);
+            SQLiteDataAccess.SaveFantasyTeam(team);
+            txtFantasyName.Clear();
+            txtFantasyOwner.Clear();
+            teamList.Clear();
+            teamList = SQLiteDataAccess.LoadFantasyTeams();
+            lbFantasyTeams.DataSource = teamList;
+            lbFantasyTeams.DisplayMember = "Name";
+
+        }
+
+        private void frmSettings_Load(object sender, EventArgs e)
+        {
+            teamList = SQLiteDataAccess.LoadFantasyTeams();
+            lbFantasyTeams.DataSource = teamList;
+            lbFantasyTeams.DisplayMember = "Name";
+            //lbFantasyTeams.Items.Add(teamList);
+        }
     }
 }
