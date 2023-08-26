@@ -24,7 +24,7 @@ namespace FantasyFootballAuctionDraftAssistant
             await webView.EnsureCoreWebView2Async();
             FreeAgents = playerList.Where(player => !player.Drafted).ToList();
             cbAllPositions.Checked = true;
-
+            SetDraftButtonsToFantasyTeams();
             SetRadioButtonsToFantasyTeams();
             SetupListViewColumns();
             UpdateListView();
@@ -38,11 +38,40 @@ namespace FantasyFootballAuctionDraftAssistant
                 {
                     control.Text = FantasyTeamList[index].Name;
                     control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
+                    if (control.Text == "Disappointing Monday")
+                    {
+                        control.BackColor = Color.LightGreen;
+                    }
                     control.Click += RadioButton_Click; // Register common click event
                     index++;
                 }
             }
         }
+        private void SetDraftButtonsToFantasyTeams()
+        {
+            int index = 0;
+            foreach (Control control in pnlOtherTeamsDraft.Controls)
+            {
+                if (control is Button && index < FantasyTeamList.Count)
+                {
+                    if (FantasyTeamList[index].Name != "Disappointing Monday")
+                    {
+                        control.Text = FantasyTeamList[index].Name;
+                        control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
+                        
+                        control.Click += DraftButton_Click; // Register common click event 
+                        
+                    }
+                    index++;
+                }
+            }
+        }
+
+        private void DraftButton_Click(object? sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         private void RadioButton_Click(object sender, EventArgs e)
         {
             RadioButton clickedRadioButton = sender as RadioButton;

@@ -40,11 +40,26 @@
             lblPlayerOnClock = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            pnlOtherTeamsDraft = new Panel();
+            button14 = new Button();
+            button13 = new Button();
+            button11 = new Button();
+            button10 = new Button();
+            button8 = new Button();
+            button7 = new Button();
+            button12 = new Button();
+            button5 = new Button();
+            button9 = new Button();
+            button4 = new Button();
+            button6 = new Button();
+            button2 = new Button();
+            button3 = new Button();
+            button1 = new Button();
+            btnOtherDraftsOnClock = new Button();
+            btnWeDraftOnClock = new Button();
             btnOpenOnlineInfo = new Button();
             txtCost = new TextBox();
             btnCancelOnClock = new Button();
-            btnWeDraftOnClock = new Button();
-            btnOtherDraftsOnClock = new Button();
             lblPlayerOnClockValue = new Label();
             panel3 = new Panel();
             panel7 = new Panel();
@@ -98,6 +113,7 @@
             radioButton1 = new RadioButton();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
+            pnlOtherTeamsDraft.SuspendLayout();
             panel3.SuspendLayout();
             panel7.SuspendLayout();
             panel6.SuspendLayout();
@@ -244,11 +260,11 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.GradientActiveCaption;
+            panel2.Controls.Add(pnlOtherTeamsDraft);
+            panel2.Controls.Add(btnWeDraftOnClock);
             panel2.Controls.Add(btnOpenOnlineInfo);
             panel2.Controls.Add(txtCost);
             panel2.Controls.Add(btnCancelOnClock);
-            panel2.Controls.Add(btnWeDraftOnClock);
-            panel2.Controls.Add(btnOtherDraftsOnClock);
             panel2.Controls.Add(lblPlayerOnClock);
             panel2.Controls.Add(lblPlayerOnClockValue);
             panel2.Controls.Add(label1);
@@ -256,6 +272,203 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(252, 734);
             panel2.TabIndex = 4;
+            // 
+            // pnlOtherTeamsDraft
+            // 
+            pnlOtherTeamsDraft.Controls.Add(button14);
+            pnlOtherTeamsDraft.Controls.Add(button13);
+            pnlOtherTeamsDraft.Controls.Add(button11);
+            pnlOtherTeamsDraft.Controls.Add(button10);
+            pnlOtherTeamsDraft.Controls.Add(button8);
+            pnlOtherTeamsDraft.Controls.Add(button7);
+            pnlOtherTeamsDraft.Controls.Add(button12);
+            pnlOtherTeamsDraft.Controls.Add(button5);
+            pnlOtherTeamsDraft.Controls.Add(button9);
+            pnlOtherTeamsDraft.Controls.Add(button4);
+            pnlOtherTeamsDraft.Controls.Add(button6);
+            pnlOtherTeamsDraft.Controls.Add(button2);
+            pnlOtherTeamsDraft.Controls.Add(button3);
+            pnlOtherTeamsDraft.Controls.Add(button1);
+            pnlOtherTeamsDraft.Controls.Add(btnOtherDraftsOnClock);
+            pnlOtherTeamsDraft.Location = new Point(3, 254);
+            pnlOtherTeamsDraft.Name = "pnlOtherTeamsDraft";
+            pnlOtherTeamsDraft.Size = new Size(246, 475);
+            pnlOtherTeamsDraft.TabIndex = 7;
+            // 
+            // button14
+            // 
+            button14.Location = new Point(14, 437);
+            button14.Margin = new Padding(3, 5, 3, 3);
+            button14.Name = "button14";
+            button14.Size = new Size(206, 28);
+            button14.TabIndex = 4;
+            button14.Text = "Other Team Drafted";
+            button14.UseVisualStyleBackColor = true;
+            button14.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button13
+            // 
+            button13.Location = new Point(14, 406);
+            button13.Margin = new Padding(3, 5, 3, 3);
+            button13.Name = "button13";
+            button13.Size = new Size(206, 28);
+            button13.TabIndex = 4;
+            button13.Text = "Other Team Drafted";
+            button13.UseVisualStyleBackColor = true;
+            button13.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button11
+            // 
+            button11.Location = new Point(14, 344);
+            button11.Margin = new Padding(3, 5, 3, 3);
+            button11.Name = "button11";
+            button11.Size = new Size(206, 28);
+            button11.TabIndex = 4;
+            button11.Text = "Other Team Drafted";
+            button11.UseVisualStyleBackColor = true;
+            button11.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button10
+            // 
+            button10.Location = new Point(14, 313);
+            button10.Margin = new Padding(3, 5, 3, 3);
+            button10.Name = "button10";
+            button10.Size = new Size(206, 28);
+            button10.TabIndex = 4;
+            button10.Text = "Other Team Drafted";
+            button10.UseVisualStyleBackColor = true;
+            button10.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button8
+            // 
+            button8.Location = new Point(14, 251);
+            button8.Margin = new Padding(3, 5, 3, 3);
+            button8.Name = "button8";
+            button8.Size = new Size(206, 28);
+            button8.TabIndex = 4;
+            button8.Text = "Other Team Drafted";
+            button8.UseVisualStyleBackColor = true;
+            button8.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button7
+            // 
+            button7.Location = new Point(14, 220);
+            button7.Margin = new Padding(3, 5, 3, 3);
+            button7.Name = "button7";
+            button7.Size = new Size(206, 28);
+            button7.TabIndex = 4;
+            button7.Text = "Other Team Drafted";
+            button7.UseVisualStyleBackColor = true;
+            button7.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button12
+            // 
+            button12.Location = new Point(14, 375);
+            button12.Margin = new Padding(3, 5, 3, 3);
+            button12.Name = "button12";
+            button12.Size = new Size(206, 28);
+            button12.TabIndex = 4;
+            button12.Text = "Other Team Drafted";
+            button12.UseVisualStyleBackColor = true;
+            button12.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button5
+            // 
+            button5.Location = new Point(14, 158);
+            button5.Margin = new Padding(3, 5, 3, 3);
+            button5.Name = "button5";
+            button5.Size = new Size(206, 28);
+            button5.TabIndex = 4;
+            button5.Text = "Other Team Drafted";
+            button5.UseVisualStyleBackColor = true;
+            button5.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button9
+            // 
+            button9.Location = new Point(14, 282);
+            button9.Margin = new Padding(3, 5, 3, 3);
+            button9.Name = "button9";
+            button9.Size = new Size(206, 28);
+            button9.TabIndex = 4;
+            button9.Text = "Other Team Drafted";
+            button9.UseVisualStyleBackColor = true;
+            button9.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button4
+            // 
+            button4.Location = new Point(14, 127);
+            button4.Margin = new Padding(3, 5, 3, 3);
+            button4.Name = "button4";
+            button4.Size = new Size(206, 28);
+            button4.TabIndex = 4;
+            button4.Text = "Other Team Drafted";
+            button4.UseVisualStyleBackColor = true;
+            button4.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button6
+            // 
+            button6.Location = new Point(14, 189);
+            button6.Margin = new Padding(3, 5, 3, 3);
+            button6.Name = "button6";
+            button6.Size = new Size(206, 28);
+            button6.TabIndex = 4;
+            button6.Text = "Other Team Drafted";
+            button6.UseVisualStyleBackColor = true;
+            button6.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button2
+            // 
+            button2.Location = new Point(14, 65);
+            button2.Margin = new Padding(3, 5, 3, 3);
+            button2.Name = "button2";
+            button2.Size = new Size(206, 28);
+            button2.TabIndex = 4;
+            button2.Text = "Other Team Drafted";
+            button2.UseVisualStyleBackColor = true;
+            button2.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button3
+            // 
+            button3.Location = new Point(14, 96);
+            button3.Margin = new Padding(3, 5, 3, 3);
+            button3.Name = "button3";
+            button3.Size = new Size(206, 28);
+            button3.TabIndex = 4;
+            button3.Text = "Other Team Drafted";
+            button3.UseVisualStyleBackColor = true;
+            button3.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(14, 34);
+            button1.Margin = new Padding(3, 5, 3, 3);
+            button1.Name = "button1";
+            button1.Size = new Size(206, 28);
+            button1.TabIndex = 4;
+            button1.Text = "Other Team Drafted";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // btnOtherDraftsOnClock
+            // 
+            btnOtherDraftsOnClock.Location = new Point(14, 3);
+            btnOtherDraftsOnClock.Margin = new Padding(3, 5, 3, 3);
+            btnOtherDraftsOnClock.Name = "btnOtherDraftsOnClock";
+            btnOtherDraftsOnClock.Size = new Size(206, 28);
+            btnOtherDraftsOnClock.TabIndex = 4;
+            btnOtherDraftsOnClock.Text = "Other Team Drafted";
+            btnOtherDraftsOnClock.UseVisualStyleBackColor = true;
+            btnOtherDraftsOnClock.Click += btnOtherDraftsOnClock_Click;
+            // 
+            // btnWeDraftOnClock
+            // 
+            btnWeDraftOnClock.Location = new Point(17, 211);
+            btnWeDraftOnClock.Name = "btnWeDraftOnClock";
+            btnWeDraftOnClock.Size = new Size(206, 37);
+            btnWeDraftOnClock.TabIndex = 4;
+            btnWeDraftOnClock.Text = "We Draft";
+            btnWeDraftOnClock.UseVisualStyleBackColor = true;
+            btnWeDraftOnClock.Click += btnWeDraftOnClock_Click;
             // 
             // btnOpenOnlineInfo
             // 
@@ -284,26 +497,6 @@
             btnCancelOnClock.Text = "X";
             btnCancelOnClock.UseVisualStyleBackColor = true;
             btnCancelOnClock.Click += btnCancelOnClock_Click;
-            // 
-            // btnWeDraftOnClock
-            // 
-            btnWeDraftOnClock.Location = new Point(17, 270);
-            btnWeDraftOnClock.Name = "btnWeDraftOnClock";
-            btnWeDraftOnClock.Size = new Size(206, 23);
-            btnWeDraftOnClock.TabIndex = 4;
-            btnWeDraftOnClock.Text = "We Draft";
-            btnWeDraftOnClock.UseVisualStyleBackColor = true;
-            btnWeDraftOnClock.Click += btnWeDraftOnClock_Click;
-            // 
-            // btnOtherDraftsOnClock
-            // 
-            btnOtherDraftsOnClock.Location = new Point(17, 299);
-            btnOtherDraftsOnClock.Name = "btnOtherDraftsOnClock";
-            btnOtherDraftsOnClock.Size = new Size(206, 23);
-            btnOtherDraftsOnClock.TabIndex = 4;
-            btnOtherDraftsOnClock.Text = "Other Team Drafted";
-            btnOtherDraftsOnClock.UseVisualStyleBackColor = true;
-            btnOtherDraftsOnClock.Click += btnOtherDraftsOnClock_Click;
             // 
             // lblPlayerOnClockValue
             // 
@@ -894,6 +1087,7 @@
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
+            pnlOtherTeamsDraft.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
@@ -977,5 +1171,20 @@
         private RadioButton radioButton5;
         private RadioButton radioButton2;
         private RadioButton radioButton1;
+        private Panel pnlOtherTeamsDraft;
+        private Button button14;
+        private Button button13;
+        private Button button11;
+        private Button button10;
+        private Button button8;
+        private Button button7;
+        private Button button12;
+        private Button button5;
+        private Button button9;
+        private Button button4;
+        private Button button6;
+        private Button button2;
+        private Button button3;
+        private Button button1;
     }
 }
