@@ -44,16 +44,26 @@
             checkBox3 = new CheckBox();
             checkBox4 = new CheckBox();
             checkBox5 = new CheckBox();
+            listBox1 = new ListBox();
+            panel6 = new Panel();
+            panel7 = new Panel();
+            textBox6 = new TextBox();
+            textBox7 = new TextBox();
+            button1 = new Button();
+            label1 = new Label();
+            label2 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
             panel5.SuspendLayout();
+            panel6.SuspendLayout();
+            panel7.SuspendLayout();
             SuspendLayout();
             // 
             // btnLoadExcelData
             // 
-            btnLoadExcelData.Location = new Point(36, 271);
+            btnLoadExcelData.Location = new Point(28, 256);
             btnLoadExcelData.Name = "btnLoadExcelData";
             btnLoadExcelData.Size = new Size(363, 40);
             btnLoadExcelData.TabIndex = 0;
@@ -100,7 +110,7 @@
             // 
             panel1.Controls.Add(checkBox1);
             panel1.Controls.Add(textBox1);
-            panel1.Location = new Point(36, 40);
+            panel1.Location = new Point(25, 40);
             panel1.Name = "panel1";
             panel1.Size = new Size(101, 66);
             panel1.TabIndex = 3;
@@ -109,7 +119,7 @@
             // 
             panel2.Controls.Add(textBox2);
             panel2.Controls.Add(checkBox2);
-            panel2.Location = new Point(167, 40);
+            panel2.Location = new Point(156, 40);
             panel2.Name = "panel2";
             panel2.Size = new Size(101, 66);
             panel2.TabIndex = 3;
@@ -118,7 +128,7 @@
             // 
             panel3.Controls.Add(textBox3);
             panel3.Controls.Add(checkBox3);
-            panel3.Location = new Point(298, 40);
+            panel3.Location = new Point(287, 40);
             panel3.Name = "panel3";
             panel3.Size = new Size(101, 66);
             panel3.TabIndex = 3;
@@ -127,7 +137,7 @@
             // 
             panel4.Controls.Add(textBox4);
             panel4.Controls.Add(checkBox4);
-            panel4.Location = new Point(97, 122);
+            panel4.Location = new Point(86, 122);
             panel4.Name = "panel4";
             panel4.Size = new Size(101, 66);
             panel4.TabIndex = 3;
@@ -136,7 +146,7 @@
             // 
             panel5.Controls.Add(checkBox5);
             panel5.Controls.Add(textBox5);
-            panel5.Location = new Point(228, 122);
+            panel5.Location = new Point(217, 122);
             panel5.Name = "panel5";
             panel5.Size = new Size(101, 66);
             panel5.TabIndex = 3;
@@ -191,17 +201,91 @@
             checkBox5.Text = "Value";
             checkBox5.UseVisualStyleBackColor = true;
             // 
+            // listBox1
+            // 
+            listBox1.FormattingEnabled = true;
+            listBox1.ItemHeight = 15;
+            listBox1.Location = new Point(198, 17);
+            listBox1.Name = "listBox1";
+            listBox1.Size = new Size(184, 319);
+            listBox1.TabIndex = 4;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.FromArgb(224, 224, 224);
+            panel6.Controls.Add(panel1);
+            panel6.Controls.Add(btnLoadExcelData);
+            panel6.Controls.Add(panel5);
+            panel6.Controls.Add(panel2);
+            panel6.Controls.Add(panel4);
+            panel6.Controls.Add(panel3);
+            panel6.Location = new Point(12, 14);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(431, 351);
+            panel6.TabIndex = 5;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.FromArgb(224, 224, 224);
+            panel7.Controls.Add(label2);
+            panel7.Controls.Add(label1);
+            panel7.Controls.Add(button1);
+            panel7.Controls.Add(textBox7);
+            panel7.Controls.Add(textBox6);
+            panel7.Controls.Add(listBox1);
+            panel7.Location = new Point(471, 14);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(394, 351);
+            panel7.TabIndex = 6;
+            // 
+            // textBox6
+            // 
+            textBox6.Location = new Point(25, 43);
+            textBox6.Name = "textBox6";
+            textBox6.Size = new Size(100, 23);
+            textBox6.TabIndex = 5;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(25, 107);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(100, 23);
+            textBox7.TabIndex = 5;
+            // 
+            // button1
+            // 
+            button1.Location = new Point(25, 178);
+            button1.Name = "button1";
+            button1.Size = new Size(100, 32);
+            button1.TabIndex = 6;
+            button1.Text = "Save Team";
+            button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(25, 25);
+            label1.Name = "label1";
+            label1.Size = new Size(70, 15);
+            label1.TabIndex = 7;
+            label1.Text = "Team Name";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(25, 89);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 15);
+            label2.TabIndex = 7;
+            label2.Text = "Owner";
+            // 
             // frmSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(452, 342);
-            Controls.Add(panel5);
-            Controls.Add(panel4);
-            Controls.Add(panel3);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(btnLoadExcelData);
+            ClientSize = new Size(898, 385);
+            Controls.Add(panel7);
+            Controls.Add(panel6);
             Name = "frmSettings";
             Text = "frmSettings";
             panel1.ResumeLayout(false);
@@ -214,6 +298,9 @@
             panel4.PerformLayout();
             panel5.ResumeLayout(false);
             panel5.PerformLayout();
+            panel6.ResumeLayout(false);
+            panel7.ResumeLayout(false);
+            panel7.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -235,5 +322,13 @@
         private CheckBox checkBox4;
         private Panel panel5;
         private CheckBox checkBox5;
+        private ListBox listBox1;
+        private Panel panel6;
+        private Panel panel7;
+        private Label label2;
+        private Label label1;
+        private Button button1;
+        private TextBox textBox7;
+        private TextBox textBox6;
     }
 }
