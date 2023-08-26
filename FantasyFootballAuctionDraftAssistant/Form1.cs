@@ -57,7 +57,7 @@ namespace FantasyFootballAuctionDraftAssistant
             foreach (Player player in filteredPlayers)
             {
                 ListViewItem lvi = new ListViewItem(player.Name); // First column
-                lvi.SubItems.Add(player.Cost.ToString()); // Second column
+                lvi.SubItems.Add(player.EstimatedValue.ToString()); // Second column
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.NflTeam);
                 lvi.SubItems.Add(player.ByeWeek.ToString());
