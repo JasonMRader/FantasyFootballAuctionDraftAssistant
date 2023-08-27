@@ -25,7 +25,7 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Players (Name, EstimatedValue) values (@Name, @EstimatedValue)", player);
+                cnn.Execute("insert into Players (Name, EstimatedValue, Position) values (@Name, @EstimatedValue, @Position)", player);
             }
         }
         public static void SaveFantasyTeam(FantasyTeam team)

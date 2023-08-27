@@ -69,14 +69,15 @@ namespace FantasyFootballAuctionDraftAssistant
                 for (int row = 1; row <= rowCount; row++)
                 {
                     Player player = new Player();
-                    string playerName = worksheet.Cells[row, 1].Text; // A
-                    string position = worksheet.Cells[row, 2].Text; // B
-                    int value = int.Parse(worksheet.Cells[row, 3].Text); // C
+                    string playerName = worksheet.Cells[row, Convert.ToInt32(nudName.Value)].Text; // A
+                    string position = worksheet.Cells[row, Convert.ToInt32(nudPosition.Value)].Text; // B
+                    int value = int.Parse(worksheet.Cells[row, Convert.ToInt32(nudValue.Value)].Text); // C
 
                     player.Name = playerName;
                     player.PositionString = position;
                     player.EstimatedValue = value;
                     playersToAdd.Add(player);
+                    SQLiteDataAccess.SavePlayer(player);
                 }
             }
         }
@@ -100,6 +101,54 @@ namespace FantasyFootballAuctionDraftAssistant
             lbFantasyTeams.DataSource = teamList;
             lbFantasyTeams.DisplayMember = "Name";
             //lbFantasyTeams.Items.Add(teamList);
+        }
+
+        private void cbName_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbName.Checked)
+            {
+                nudName.Enabled = true;
+            }
+            else
+            {
+                nudName.Enabled = false;
+            }
+        }
+
+        private void cbPosition_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPosition.Checked)
+            {
+                nudPosition.Enabled = true;
+            }
+            else { nudPosition.Enabled = false; }
+        }
+
+        private void cbTeam_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbTeam.Checked) { nudTeam.Enabled = true; }
+            else { nudTeam.Enabled = false; }
+        }
+
+        private void cbBye_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbBye.Checked) { nudBye.Enabled = true;}
+            else { nudBye.Enabled = false;}
+        }
+
+        private void cbValue_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbValue.Checked) { nudValue.Enabled = true; }
+            else { nudValue.Enabled= false; }
+        }
+
+        private void cbYear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbYear.Checked) { nudYear.Enabled = true;}
+            else
+            {
+                nudYear.Enabled = false;
+            }
         }
     }
 }

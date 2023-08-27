@@ -73,6 +73,8 @@
             // cbName
             // 
             cbName.Appearance = Appearance.Button;
+            cbName.Checked = true;
+            cbName.CheckState = CheckState.Checked;
             cbName.Location = new Point(13, 21);
             cbName.Name = "cbName";
             cbName.Size = new Size(75, 23);
@@ -80,10 +82,13 @@
             cbName.Text = "Name";
             cbName.TextAlign = ContentAlignment.MiddleCenter;
             cbName.UseVisualStyleBackColor = true;
+            cbName.CheckedChanged += cbName_CheckedChanged;
             // 
             // cbPosition
             // 
             cbPosition.Appearance = Appearance.Button;
+            cbPosition.Checked = true;
+            cbPosition.CheckState = CheckState.Checked;
             cbPosition.Location = new Point(13, 59);
             cbPosition.Name = "cbPosition";
             cbPosition.Size = new Size(75, 23);
@@ -91,10 +96,13 @@
             cbPosition.Text = "Position";
             cbPosition.TextAlign = ContentAlignment.MiddleCenter;
             cbPosition.UseVisualStyleBackColor = true;
+            cbPosition.CheckedChanged += cbPosition_CheckedChanged;
             // 
             // cbTeam
             // 
             cbTeam.Appearance = Appearance.Button;
+            cbTeam.Checked = true;
+            cbTeam.CheckState = CheckState.Checked;
             cbTeam.Location = new Point(13, 97);
             cbTeam.Name = "cbTeam";
             cbTeam.Size = new Size(75, 23);
@@ -102,10 +110,13 @@
             cbTeam.Text = "Team";
             cbTeam.TextAlign = ContentAlignment.MiddleCenter;
             cbTeam.UseVisualStyleBackColor = true;
+            cbTeam.CheckedChanged += cbTeam_CheckedChanged;
             // 
             // cbBye
             // 
             cbBye.Appearance = Appearance.Button;
+            cbBye.Checked = true;
+            cbBye.CheckState = CheckState.Checked;
             cbBye.Location = new Point(13, 135);
             cbBye.Name = "cbBye";
             cbBye.Size = new Size(75, 23);
@@ -113,10 +124,13 @@
             cbBye.Text = "Bye";
             cbBye.TextAlign = ContentAlignment.MiddleCenter;
             cbBye.UseVisualStyleBackColor = true;
+            cbBye.CheckedChanged += cbBye_CheckedChanged;
             // 
             // cbValue
             // 
             cbValue.Appearance = Appearance.Button;
+            cbValue.Checked = true;
+            cbValue.CheckState = CheckState.Checked;
             cbValue.Location = new Point(13, 173);
             cbValue.Name = "cbValue";
             cbValue.Size = new Size(75, 23);
@@ -124,6 +138,7 @@
             cbValue.Text = "Value";
             cbValue.TextAlign = ContentAlignment.MiddleCenter;
             cbValue.UseVisualStyleBackColor = true;
+            cbValue.CheckedChanged += cbValue_CheckedChanged;
             // 
             // lbFantasyTeams
             // 
@@ -201,6 +216,8 @@
             // 
             cbYear.Appearance = Appearance.Button;
             cbYear.CheckAlign = ContentAlignment.TopRight;
+            cbYear.Checked = true;
+            cbYear.CheckState = CheckState.Checked;
             cbYear.Location = new Point(13, 211);
             cbYear.Name = "cbYear";
             cbYear.Size = new Size(75, 23);
@@ -208,6 +225,7 @@
             cbYear.Text = "Year";
             cbYear.TextAlign = ContentAlignment.MiddleCenter;
             cbYear.UseVisualStyleBackColor = true;
+            cbYear.CheckedChanged += cbYear_CheckedChanged;
             // 
             // panel7
             // 

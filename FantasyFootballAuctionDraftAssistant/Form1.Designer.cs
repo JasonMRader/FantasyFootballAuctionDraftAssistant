@@ -149,7 +149,9 @@
             // cbK
             // 
             cbK.Appearance = Appearance.Button;
-            cbK.BackColor = Color.FromArgb(255, 192, 255);
+            cbK.BackColor = SystemColors.Control;
+            cbK.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbK.FlatStyle = FlatStyle.Flat;
             cbK.Location = new Point(489, 3);
             cbK.Name = "cbK";
             cbK.Size = new Size(75, 24);
@@ -162,7 +164,9 @@
             // cbDEF
             // 
             cbDEF.Appearance = Appearance.Button;
-            cbDEF.BackColor = Color.FromArgb(255, 192, 255);
+            cbDEF.BackColor = SystemColors.Control;
+            cbDEF.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbDEF.FlatStyle = FlatStyle.Flat;
             cbDEF.Location = new Point(408, 3);
             cbDEF.Name = "cbDEF";
             cbDEF.Size = new Size(75, 24);
@@ -175,7 +179,9 @@
             // cbTE
             // 
             cbTE.Appearance = Appearance.Button;
-            cbTE.BackColor = Color.FromArgb(255, 192, 255);
+            cbTE.BackColor = SystemColors.Control;
+            cbTE.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbTE.FlatStyle = FlatStyle.Flat;
             cbTE.Location = new Point(327, 3);
             cbTE.Name = "cbTE";
             cbTE.Size = new Size(75, 24);
@@ -188,7 +194,9 @@
             // cbWR
             // 
             cbWR.Appearance = Appearance.Button;
-            cbWR.BackColor = Color.FromArgb(255, 192, 255);
+            cbWR.BackColor = SystemColors.Control;
+            cbWR.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbWR.FlatStyle = FlatStyle.Flat;
             cbWR.Location = new Point(246, 3);
             cbWR.Name = "cbWR";
             cbWR.Size = new Size(75, 24);
@@ -201,7 +209,9 @@
             // cbRB
             // 
             cbRB.Appearance = Appearance.Button;
-            cbRB.BackColor = Color.FromArgb(255, 192, 255);
+            cbRB.BackColor = SystemColors.Control;
+            cbRB.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbRB.FlatStyle = FlatStyle.Flat;
             cbRB.Location = new Point(165, 3);
             cbRB.Name = "cbRB";
             cbRB.Size = new Size(75, 24);
@@ -214,7 +224,9 @@
             // cbQB
             // 
             cbQB.Appearance = Appearance.Button;
-            cbQB.BackColor = Color.FromArgb(255, 192, 255);
+            cbQB.BackColor = SystemColors.Control;
+            cbQB.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbQB.FlatStyle = FlatStyle.Flat;
             cbQB.Location = new Point(84, 3);
             cbQB.Name = "cbQB";
             cbQB.Size = new Size(75, 24);
@@ -227,7 +239,9 @@
             // cbAllPositions
             // 
             cbAllPositions.Appearance = Appearance.Button;
-            cbAllPositions.BackColor = Color.FromArgb(255, 192, 255);
+            cbAllPositions.BackColor = SystemColors.Control;
+            cbAllPositions.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbAllPositions.FlatStyle = FlatStyle.Flat;
             cbAllPositions.Location = new Point(3, 3);
             cbAllPositions.Name = "cbAllPositions";
             cbAllPositions.Size = new Size(75, 24);

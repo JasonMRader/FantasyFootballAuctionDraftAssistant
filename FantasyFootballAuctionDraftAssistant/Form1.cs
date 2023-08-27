@@ -49,19 +49,28 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void SetDraftButtonsToFantasyTeams()
         {
+            
             int index = 0;
             foreach (Control control in pnlOtherTeamsDraft.Controls)
             {
-                if (control is Button && index < FantasyTeamList.Count)
+                if (control is Button)
                 {
-                    if (FantasyTeamList[index].Name != "Disappointing Monday")
+                    // Skip the loop iteration if we've processed all the teams or if the current team is "Disappointing Monday"
+                    while (index < FantasyTeamList.Count && FantasyTeamList[index].Name == "Disappointing Monday")
                     {
-                        control.Text = FantasyTeamList[index].Name;
-                        control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
-                        
-                        control.Click += DraftButton_Click; // Register common click event 
-                        
+                        index++;
                     }
+
+                    // Check again if we've reached the end of the otherTeams list
+                    if (index >= FantasyTeamList.Count)
+                    {
+                        break; // Exit the loop if we've processed all the teams
+                    }
+
+                    control.Text = FantasyTeamList[index].Name;
+                    control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
+
+                    control.Click += DraftButton_Click; // Register common click event 
                     index++;
                 }
             }
@@ -69,7 +78,11 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void DraftButton_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
+            {
+                // Assuming playerOnClock and txtCost.Text have been declared and initialized in this scope
+               AddPlayerToTeam(selectedTeam);
+            }
         }
 
         private void RadioButton_Click(object sender, EventArgs e)
@@ -85,10 +98,15 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
             }
             UpdateDisplayTeam();
+            UpdateListView();
+            UpdateDisplayTeam();
+            lblPlayerOnClock.Text = "Select A Player";
+            lblPlayerOnClockValue.Text = "";
+            txtCost.Clear();
         }
-        private void AddPlayerToMyTeam()
+        private void AddPlayerToTeam(FantasyTeam Team)
         {
-            DisplayedTeam.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
+            Team.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
             FreeAgents = playerList.Where(player => !player.Drafted).ToList();
         }
         private void SetupListViewColumns()
@@ -133,6 +151,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void UpdateDisplayTeam()
         {
+            //lvTeamRoster.Clear();
             foreach (Player player in DisplayedTeam.Players)
             {
                 ListViewItem lvi = new ListViewItem(player.Name); // First column
@@ -251,7 +270,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnWeDraftOnClock_Click(object sender, EventArgs e)
         {
-            AddPlayerToMyTeam();
+            AddPlayerToTeam(DisplayedTeam);
             UpdateListView();
             UpdateDisplayTeam();
             lblPlayerOnClock.Text = "Select A Player";
