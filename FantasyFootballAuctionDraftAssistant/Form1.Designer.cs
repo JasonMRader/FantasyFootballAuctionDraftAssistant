@@ -71,6 +71,7 @@
             label3 = new Label();
             lblRosterValueDifference = new Label();
             lblDisplayTeamBudget = new Label();
+            label2 = new Label();
             label4 = new Label();
             panel4 = new Panel();
             lblKs = new Label();
@@ -111,6 +112,7 @@
             radioButton5 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
+            lblMaxBid = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -591,6 +593,8 @@
             panel6.Controls.Add(label3);
             panel6.Controls.Add(lblRosterValueDifference);
             panel6.Controls.Add(lblDisplayTeamBudget);
+            panel6.Controls.Add(lblMaxBid);
+            panel6.Controls.Add(label2);
             panel6.Controls.Add(label4);
             panel6.Location = new Point(18, 28);
             panel6.Name = "panel6";
@@ -610,7 +614,7 @@
             // lblRosterValueDifference
             // 
             lblRosterValueDifference.AutoSize = true;
-            lblRosterValueDifference.Location = new Point(157, 44);
+            lblRosterValueDifference.Location = new Point(124, 64);
             lblRosterValueDifference.Name = "lblRosterValueDifference";
             lblRosterValueDifference.Size = new Size(13, 15);
             lblRosterValueDifference.TabIndex = 12;
@@ -626,14 +630,23 @@
             lblDisplayTeamBudget.TabIndex = 7;
             lblDisplayTeamBudget.Text = "200";
             // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(50, 44);
+            label2.Name = "label2";
+            label2.Size = new Size(53, 15);
+            label2.TabIndex = 11;
+            label2.Text = "Max Bid:";
+            // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(18, 44);
+            label4.Location = new Point(29, 64);
             label4.Name = "label4";
-            label4.Size = new Size(131, 15);
+            label4.Size = new Size(74, 15);
             label4.TabIndex = 11;
-            label4.Text = "Roster Value Difference:";
+            label4.Text = "Roster Value:";
             // 
             // panel4
             // 
@@ -1079,6 +1092,15 @@
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
             radioButton1.UseVisualStyleBackColor = true;
             // 
+            // lblMaxBid
+            // 
+            lblMaxBid.AutoSize = true;
+            lblMaxBid.Location = new Point(124, 44);
+            lblMaxBid.Name = "lblMaxBid";
+            lblMaxBid.Size = new Size(13, 15);
+            lblMaxBid.TabIndex = 11;
+            lblMaxBid.Text = "0";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1200,5 +1222,7 @@
         private Button button2;
         private Button button3;
         private Button button1;
+        private Label label2;
+        private Label lblMaxBid;
     }
 }

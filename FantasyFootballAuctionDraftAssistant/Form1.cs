@@ -49,7 +49,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void SetDraftButtonsToFantasyTeams()
         {
-            
+
             int index = 0;
             foreach (Control control in pnlOtherTeamsDraft.Controls)
             {
@@ -81,8 +81,13 @@ namespace FantasyFootballAuctionDraftAssistant
             if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
             {
                 // Assuming playerOnClock and txtCost.Text have been declared and initialized in this scope
-               AddPlayerToTeam(selectedTeam);
+                AddPlayerToTeam(selectedTeam);
             }
+            UpdateListView();
+            UpdateDisplayTeam();
+            lblPlayerOnClock.Text = "Select A Player";
+            lblPlayerOnClockValue.Text = "";
+            txtCost.Clear();
         }
 
         private void RadioButton_Click(object sender, EventArgs e)
@@ -106,8 +111,16 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void AddPlayerToTeam(FantasyTeam Team)
         {
-            Team.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
-            FreeAgents = playerList.Where(player => !player.Drafted).ToList();
+            if (IsValidNumber(txtCost.Text))
+            {
+                Team.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
+                FreeAgents = playerList.Where(player => !player.Drafted).ToList();
+            }
+            else
+            {
+                MessageBox.Show("Please enter player cost to draft");
+            }
+
         }
         private void SetupListViewColumns()
         {
@@ -117,11 +130,12 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Team", 120, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Exp", 50, HorizontalAlignment.Left);
             lvTeamRoster.View = View.Details; // Ensure the view is set to details
             lvTeamRoster.Columns.Add("Name", 125, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Cost", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Position", 65, HorizontalAlignment.Left);
-            lvTeamRoster.Columns.Add("Team", 120, HorizontalAlignment.Left);
+            lvTeamRoster.Columns.Add("Team", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Bye", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Surplus", 50, HorizontalAlignment.Left);
         }
@@ -138,6 +152,10 @@ namespace FantasyFootballAuctionDraftAssistant
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.NflTeam);
                 lvi.SubItems.Add(player.ByeWeek.ToString());
+                if (player.Year == 1)
+                {
+                    lvi.SubItems.Add("Rookie");
+                }
 
 
                 lvUndraftedPlayers.Items.Add(lvi);
@@ -172,7 +190,12 @@ namespace FantasyFootballAuctionDraftAssistant
             lblKs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.K).ToString();
             lblRosterSpots.Text = DisplayedTeam.RosterSpots.ToString();
             lblRosterValueDifference.Text = DisplayedTeam.TeamValueDifference().ToString();
-            lblAvgCapPerSpotLeft.Text = (DisplayedTeam.Budget / DisplayedTeam.RosterSpots).ToString();
+            if (DisplayedTeam.RosterSpots > 0)
+            {
+                lblAvgCapPerSpotLeft.Text = (DisplayedTeam.Budget / DisplayedTeam.RosterSpots).ToString();
+            }
+            
+            lblMaxBid.Text = (DisplayedTeam.Budget - DisplayedTeam.RosterSpots).ToString();
         }
 
         private void lvUndraftedPlayers_SelectedIndexChanged(object sender, EventArgs e)
@@ -270,6 +293,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnWeDraftOnClock_Click(object sender, EventArgs e)
         {
+            DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
             AddPlayerToTeam(DisplayedTeam);
             UpdateListView();
             UpdateDisplayTeam();
