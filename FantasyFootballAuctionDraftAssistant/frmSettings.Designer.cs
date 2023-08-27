@@ -50,6 +50,7 @@
             btnSaveFantasyTeam = new Button();
             txtFantasyOwner = new TextBox();
             txtFantasyName = new TextBox();
+            btnDeleteAllPlayers = new Button();
             panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)nudYear).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudValue).BeginInit();
@@ -152,6 +153,7 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(224, 224, 224);
+            panel6.Controls.Add(btnDeleteAllPlayers);
             panel6.Controls.Add(nudYear);
             panel6.Controls.Add(nudValue);
             panel6.Controls.Add(nudBye);
@@ -293,6 +295,16 @@
             txtFantasyName.Size = new Size(130, 23);
             txtFantasyName.TabIndex = 5;
             // 
+            // btnDeleteAllPlayers
+            // 
+            btnDeleteAllPlayers.Location = new Point(13, 325);
+            btnDeleteAllPlayers.Name = "btnDeleteAllPlayers";
+            btnDeleteAllPlayers.Size = new Size(65, 23);
+            btnDeleteAllPlayers.TabIndex = 6;
+            btnDeleteAllPlayers.Text = "Delete All Players";
+            btnDeleteAllPlayers.UseVisualStyleBackColor = true;
+            btnDeleteAllPlayers.Click += btnDeleteAllPlayers_Click;
+            // 
             // frmSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -339,5 +351,6 @@
         private NumericUpDown nudName;
         private CheckBox cbYear;
         private Button btnDelete;
+        private Button btnDeleteAllPlayers;
     }
 }

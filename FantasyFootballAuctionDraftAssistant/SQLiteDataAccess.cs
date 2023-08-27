@@ -25,9 +25,35 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Players (Name, EstimatedValue, Position) values (@Name, @EstimatedValue, @Position)", player);
+                cnn.Execute("insert into Players (Name, EstimatedValue, Position, NflTeam, ByeWeek, Drafted, " +
+                    "FantasyTeamID, Cost, Year) values (@Name, @EstimatedValue, @Position, @NflTeam, @ByeWeek, @Drafted," +
+                    " @FantasyTeamID, @Cost, @Year)", player);
             }
         }
+        public static void DeletePlayer(int playerId)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("DELETE FROM Players WHERE PlayerId = @Id", new { Id = playerId });
+            }
+        }
+        public static void DeleteAllPlayers()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("DELETE FROM Players");
+            }
+        }
+        public static void UpdatePlayer(Player player)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("UPDATE Players SET Name = @Name, EstimatedValue = @EstimatedValue, Position = @Position, " +
+                    "NflTeam = @NflTeam, ByeWeek = @ByeWeek, Drafted = @Drafted, FantasyTeamID = @FantasyTeamID, " +
+                    "Cost = @Cost, Year = @Year WHERE PlayerId = @PlayerId", player);
+            }
+        }
+
         public static void SaveFantasyTeam(FantasyTeam team)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))

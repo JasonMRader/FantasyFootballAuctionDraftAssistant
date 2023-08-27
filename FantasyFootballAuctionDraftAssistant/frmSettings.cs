@@ -65,17 +65,42 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 ExcelWorksheet worksheet = package.Workbook.Worksheets[0]; // Assuming data is in the first sheet
                 int rowCount = worksheet.Dimension.Rows;
-
+                //Value, name, pos, Team, bye, year 
                 for (int row = 1; row <= rowCount; row++)
                 {
                     Player player = new Player();
-                    string playerName = worksheet.Cells[row, Convert.ToInt32(nudName.Value)].Text; // A
-                    string position = worksheet.Cells[row, Convert.ToInt32(nudPosition.Value)].Text; // B
-                    int value = int.Parse(worksheet.Cells[row, Convert.ToInt32(nudValue.Value)].Text); // C
+                    if (cbName.Checked)
+                    {
+                        string playerName = worksheet.Cells[row, Convert.ToInt32(nudName.Value)].Text;
+                        player.Name = playerName;
+                    }
+                    if (cbPosition.Checked)
+                    {
+                        string position = worksheet.Cells[row, Convert.ToInt32(nudPosition.Value)].Text;
+                        player.PositionString = position;
+                    }
+                    if (cbTeam.Checked)
+                    {
+                        string team = worksheet.Cells[row, Convert.ToInt32(nudTeam.Value)].Text;
+                        player.NflTeam = team;
+                    }
+                    if (cbBye.Checked)
+                    {
+                        int bye = int.Parse(worksheet.Cells[row, Convert.ToInt32(nudBye.Value)].Text);
+                        player.ByeWeek = bye;
+                    }
 
-                    player.Name = playerName;
-                    player.PositionString = position;
-                    player.EstimatedValue = value;
+                    if (cbValue.Checked)
+                    {
+                        int value = int.Parse(worksheet.Cells[row, Convert.ToInt32(nudValue.Value)].Text);
+                        player.EstimatedValue = value;
+                    }
+                    if (cbYear.Checked)
+                    {
+                        int year = int.Parse(worksheet.Cells[row, Convert.ToInt32(nudYear.Value)].Text);
+                        player.Year = year;
+                    }
+
                     playersToAdd.Add(player);
                     SQLiteDataAccess.SavePlayer(player);
                 }
@@ -132,23 +157,28 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void cbBye_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbBye.Checked) { nudBye.Enabled = true;}
-            else { nudBye.Enabled = false;}
+            if (cbBye.Checked) { nudBye.Enabled = true; }
+            else { nudBye.Enabled = false; }
         }
 
         private void cbValue_CheckedChanged(object sender, EventArgs e)
         {
             if (cbValue.Checked) { nudValue.Enabled = true; }
-            else { nudValue.Enabled= false; }
+            else { nudValue.Enabled = false; }
         }
 
         private void cbYear_CheckedChanged(object sender, EventArgs e)
         {
-            if (cbYear.Checked) { nudYear.Enabled = true;}
+            if (cbYear.Checked) { nudYear.Enabled = true; }
             else
             {
                 nudYear.Enabled = false;
             }
+        }
+
+        private void btnDeleteAllPlayers_Click(object sender, EventArgs e)
+        {
+            SQLiteDataAccess.DeleteAllPlayers();
         }
     }
 }
