@@ -62,6 +62,7 @@
             btnCancelOnClock = new Button();
             lblPlayerOnClockValue = new Label();
             panel3 = new Panel();
+            btnRemovePlayerFromTeam = new Button();
             panel7 = new Panel();
             lblRosterSpots = new Label();
             label11 = new Label();
@@ -97,6 +98,22 @@
             btnCloseBrowser = new Button();
             btnOpenSettings = new Button();
             pnlTeamsToView = new Panel();
+            label28 = new Label();
+            label27 = new Label();
+            label26 = new Label();
+            label25 = new Label();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            label21 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            label17 = new Label();
+            label16 = new Label();
+            label15 = new Label();
+            label14 = new Label();
+            label12 = new Label();
             radioButton16 = new RadioButton();
             radioButton15 = new RadioButton();
             radioButton12 = new RadioButton();
@@ -528,15 +545,26 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(192, 255, 192);
+            panel3.Controls.Add(btnRemovePlayerFromTeam);
             panel3.Controls.Add(panel7);
             panel3.Controls.Add(panel6);
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(lvTeamRoster);
             panel3.Controls.Add(lblDisplayTeamName);
-            panel3.Location = new Point(880, 182);
+            panel3.Location = new Point(880, 196);
             panel3.Name = "panel3";
-            panel3.Size = new Size(451, 564);
+            panel3.Size = new Size(451, 550);
             panel3.TabIndex = 5;
+            // 
+            // btnRemovePlayerFromTeam
+            // 
+            btnRemovePlayerFromTeam.Location = new Point(271, 524);
+            btnRemovePlayerFromTeam.Name = "btnRemovePlayerFromTeam";
+            btnRemovePlayerFromTeam.Size = new Size(174, 23);
+            btnRemovePlayerFromTeam.TabIndex = 15;
+            btnRemovePlayerFromTeam.Text = "Remove Player";
+            btnRemovePlayerFromTeam.UseVisualStyleBackColor = true;
+            btnRemovePlayerFromTeam.Click += btnRemovePlayerFromTeam_Click;
             // 
             // panel7
             // 
@@ -796,9 +824,10 @@
             // 
             lvTeamRoster.Location = new Point(2, 200);
             lvTeamRoster.Name = "lvTeamRoster";
-            lvTeamRoster.Size = new Size(443, 354);
+            lvTeamRoster.Size = new Size(443, 324);
             lvTeamRoster.TabIndex = 8;
             lvTeamRoster.UseCompatibleStateImageBehavior = false;
+            lvTeamRoster.SelectedIndexChanged += lvTeamRoster_SelectedIndexChanged;
             // 
             // lblDisplayTeamName
             // 
@@ -868,7 +897,7 @@
             // btnCloseBrowser
             // 
             btnCloseBrowser.Enabled = false;
-            btnCloseBrowser.Location = new Point(1129, 7);
+            btnCloseBrowser.Location = new Point(1111, 1);
             btnCloseBrowser.Name = "btnCloseBrowser";
             btnCloseBrowser.Size = new Size(207, 23);
             btnCloseBrowser.TabIndex = 9;
@@ -879,7 +908,7 @@
             // 
             // btnOpenSettings
             // 
-            btnOpenSettings.Location = new Point(1000, 9);
+            btnOpenSettings.Location = new Point(1002, 1);
             btnOpenSettings.Name = "btnOpenSettings";
             btnOpenSettings.Size = new Size(103, 23);
             btnOpenSettings.TabIndex = 10;
@@ -889,6 +918,22 @@
             // 
             // pnlTeamsToView
             // 
+            pnlTeamsToView.Controls.Add(label28);
+            pnlTeamsToView.Controls.Add(label27);
+            pnlTeamsToView.Controls.Add(label26);
+            pnlTeamsToView.Controls.Add(label25);
+            pnlTeamsToView.Controls.Add(label24);
+            pnlTeamsToView.Controls.Add(label23);
+            pnlTeamsToView.Controls.Add(label22);
+            pnlTeamsToView.Controls.Add(label21);
+            pnlTeamsToView.Controls.Add(label20);
+            pnlTeamsToView.Controls.Add(label19);
+            pnlTeamsToView.Controls.Add(label18);
+            pnlTeamsToView.Controls.Add(label17);
+            pnlTeamsToView.Controls.Add(label16);
+            pnlTeamsToView.Controls.Add(label15);
+            pnlTeamsToView.Controls.Add(label14);
+            pnlTeamsToView.Controls.Add(label12);
             pnlTeamsToView.Controls.Add(radioButton16);
             pnlTeamsToView.Controls.Add(radioButton15);
             pnlTeamsToView.Controls.Add(radioButton12);
@@ -905,17 +950,161 @@
             pnlTeamsToView.Controls.Add(radioButton5);
             pnlTeamsToView.Controls.Add(radioButton2);
             pnlTeamsToView.Controls.Add(radioButton1);
-            pnlTeamsToView.Location = new Point(882, 40);
+            pnlTeamsToView.Location = new Point(882, 28);
             pnlTeamsToView.Name = "pnlTeamsToView";
-            pnlTeamsToView.Size = new Size(448, 136);
+            pnlTeamsToView.Size = new Size(450, 160);
             pnlTeamsToView.TabIndex = 11;
+            // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(416, 138);
+            label28.Name = "label28";
+            label28.Size = new Size(31, 15);
+            label28.TabIndex = 12;
+            label28.Text = "$200";
+            // 
+            // label27
+            // 
+            label27.AutoSize = true;
+            label27.Location = new Point(416, 108);
+            label27.Name = "label27";
+            label27.Size = new Size(31, 15);
+            label27.TabIndex = 12;
+            label27.Text = "$200";
+            // 
+            // label26
+            // 
+            label26.AutoSize = true;
+            label26.Location = new Point(269, 108);
+            label26.Name = "label26";
+            label26.Size = new Size(31, 15);
+            label26.TabIndex = 12;
+            label26.Text = "$200";
+            // 
+            // label25
+            // 
+            label25.AutoSize = true;
+            label25.Location = new Point(119, 108);
+            label25.Name = "label25";
+            label25.Size = new Size(31, 15);
+            label25.TabIndex = 12;
+            label25.Text = "$200";
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(416, 83);
+            label24.Name = "label24";
+            label24.Size = new Size(31, 15);
+            label24.TabIndex = 12;
+            label24.Text = "$200";
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(269, 83);
+            label23.Name = "label23";
+            label23.Size = new Size(31, 15);
+            label23.TabIndex = 12;
+            label23.Text = "$200";
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(119, 83);
+            label22.Name = "label22";
+            label22.Size = new Size(31, 15);
+            label22.TabIndex = 12;
+            label22.Text = "$200";
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(416, 57);
+            label21.Name = "label21";
+            label21.Size = new Size(31, 15);
+            label21.TabIndex = 12;
+            label21.Text = "$200";
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(269, 57);
+            label20.Name = "label20";
+            label20.Size = new Size(31, 15);
+            label20.TabIndex = 12;
+            label20.Text = "$200";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(119, 57);
+            label19.Name = "label19";
+            label19.Size = new Size(31, 15);
+            label19.TabIndex = 12;
+            label19.Text = "$200";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(416, 31);
+            label18.Name = "label18";
+            label18.Size = new Size(31, 15);
+            label18.TabIndex = 12;
+            label18.Text = "$200";
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(269, 31);
+            label17.Name = "label17";
+            label17.Size = new Size(31, 15);
+            label17.TabIndex = 12;
+            label17.Text = "$200";
+            // 
+            // label16
+            // 
+            label16.AutoSize = true;
+            label16.Location = new Point(119, 31);
+            label16.Name = "label16";
+            label16.Size = new Size(31, 15);
+            label16.TabIndex = 12;
+            label16.Text = "$200";
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Location = new Point(416, 5);
+            label15.Name = "label15";
+            label15.Size = new Size(31, 15);
+            label15.TabIndex = 12;
+            label15.Text = "$200";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(269, 4);
+            label14.Name = "label14";
+            label14.Size = new Size(31, 15);
+            label14.TabIndex = 12;
+            label14.Text = "$200";
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Location = new Point(119, 5);
+            label12.Name = "label12";
+            label12.Size = new Size(31, 15);
+            label12.TabIndex = 12;
+            label12.Text = "$200";
             // 
             // radioButton16
             // 
             radioButton16.Appearance = Appearance.Button;
-            radioButton16.Location = new Point(331, 89);
+            radioButton16.Location = new Point(3, 133);
             radioButton16.Name = "radioButton16";
-            radioButton16.Size = new Size(112, 24);
+            radioButton16.Size = new Size(411, 24);
             radioButton16.TabIndex = 0;
             radioButton16.TabStop = true;
             radioButton16.Text = "radioButton1";
@@ -925,9 +1114,10 @@
             // radioButton15
             // 
             radioButton15.Appearance = Appearance.Button;
-            radioButton15.Location = new Point(221, 89);
+            radioButton15.Location = new Point(299, 104);
+            radioButton15.Margin = new Padding(0, 0, 0, 2);
             radioButton15.Name = "radioButton15";
-            radioButton15.Size = new Size(112, 24);
+            radioButton15.Size = new Size(115, 24);
             radioButton15.TabIndex = 0;
             radioButton15.TabStop = true;
             radioButton15.Text = "radioButton1";
@@ -937,9 +1127,10 @@
             // radioButton12
             // 
             radioButton12.Appearance = Appearance.Button;
-            radioButton12.Location = new Point(331, 59);
+            radioButton12.Location = new Point(3, 52);
+            radioButton12.Margin = new Padding(0, 0, 0, 2);
             radioButton12.Name = "radioButton12";
-            radioButton12.Size = new Size(112, 24);
+            radioButton12.Size = new Size(115, 24);
             radioButton12.TabIndex = 0;
             radioButton12.TabStop = true;
             radioButton12.Text = "radioButton1";
@@ -949,9 +1140,10 @@
             // radioButton11
             // 
             radioButton11.Appearance = Appearance.Button;
-            radioButton11.Location = new Point(221, 59);
+            radioButton11.Location = new Point(299, 78);
+            radioButton11.Margin = new Padding(0, 0, 0, 2);
             radioButton11.Name = "radioButton11";
-            radioButton11.Size = new Size(112, 24);
+            radioButton11.Size = new Size(115, 24);
             radioButton11.TabIndex = 0;
             radioButton11.TabStop = true;
             radioButton11.Text = "radioButton1";
@@ -961,9 +1153,10 @@
             // radioButton8
             // 
             radioButton8.Appearance = Appearance.Button;
-            radioButton8.Location = new Point(331, 29);
+            radioButton8.Location = new Point(153, 52);
+            radioButton8.Margin = new Padding(0, 0, 0, 2);
             radioButton8.Name = "radioButton8";
-            radioButton8.Size = new Size(112, 24);
+            radioButton8.Size = new Size(115, 24);
             radioButton8.TabIndex = 0;
             radioButton8.TabStop = true;
             radioButton8.Text = "radioButton1";
@@ -973,9 +1166,10 @@
             // radioButton14
             // 
             radioButton14.Appearance = Appearance.Button;
-            radioButton14.Location = new Point(111, 89);
+            radioButton14.Location = new Point(153, 104);
+            radioButton14.Margin = new Padding(0, 0, 0, 2);
             radioButton14.Name = "radioButton14";
-            radioButton14.Size = new Size(112, 24);
+            radioButton14.Size = new Size(115, 24);
             radioButton14.TabIndex = 0;
             radioButton14.TabStop = true;
             radioButton14.Text = "radioButton1";
@@ -985,9 +1179,10 @@
             // radioButton7
             // 
             radioButton7.Appearance = Appearance.Button;
-            radioButton7.Location = new Point(221, 29);
+            radioButton7.Location = new Point(299, 26);
+            radioButton7.Margin = new Padding(0, 0, 0, 2);
             radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(112, 24);
+            radioButton7.Size = new Size(115, 24);
             radioButton7.TabIndex = 0;
             radioButton7.TabStop = true;
             radioButton7.Text = "radioButton1";
@@ -997,9 +1192,10 @@
             // radioButton10
             // 
             radioButton10.Appearance = Appearance.Button;
-            radioButton10.Location = new Point(111, 59);
+            radioButton10.Location = new Point(153, 78);
+            radioButton10.Margin = new Padding(0, 0, 0, 2);
             radioButton10.Name = "radioButton10";
-            radioButton10.Size = new Size(112, 24);
+            radioButton10.Size = new Size(115, 24);
             radioButton10.TabIndex = 0;
             radioButton10.TabStop = true;
             radioButton10.Text = "radioButton1";
@@ -1009,9 +1205,10 @@
             // radioButton4
             // 
             radioButton4.Appearance = Appearance.Button;
-            radioButton4.Location = new Point(331, 0);
+            radioButton4.Location = new Point(299, 52);
+            radioButton4.Margin = new Padding(0, 0, 0, 2);
             radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(112, 24);
+            radioButton4.Size = new Size(115, 24);
             radioButton4.TabIndex = 0;
             radioButton4.TabStop = true;
             radioButton4.Text = "radioButton1";
@@ -1021,9 +1218,10 @@
             // radioButton13
             // 
             radioButton13.Appearance = Appearance.Button;
-            radioButton13.Location = new Point(3, 89);
+            radioButton13.Location = new Point(3, 104);
+            radioButton13.Margin = new Padding(0, 0, 0, 2);
             radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(112, 24);
+            radioButton13.Size = new Size(115, 24);
             radioButton13.TabIndex = 0;
             radioButton13.TabStop = true;
             radioButton13.Text = "radioButton1";
@@ -1033,9 +1231,10 @@
             // radioButton6
             // 
             radioButton6.Appearance = Appearance.Button;
-            radioButton6.Location = new Point(111, 29);
+            radioButton6.Location = new Point(153, 26);
+            radioButton6.Margin = new Padding(0, 0, 0, 2);
             radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(112, 24);
+            radioButton6.Size = new Size(115, 24);
             radioButton6.TabIndex = 0;
             radioButton6.TabStop = true;
             radioButton6.Text = "radioButton1";
@@ -1045,9 +1244,10 @@
             // radioButton9
             // 
             radioButton9.Appearance = Appearance.Button;
-            radioButton9.Location = new Point(3, 59);
+            radioButton9.Location = new Point(3, 78);
+            radioButton9.Margin = new Padding(0, 0, 0, 2);
             radioButton9.Name = "radioButton9";
-            radioButton9.Size = new Size(112, 24);
+            radioButton9.Size = new Size(115, 24);
             radioButton9.TabIndex = 0;
             radioButton9.TabStop = true;
             radioButton9.Text = "radioButton1";
@@ -1057,9 +1257,10 @@
             // radioButton3
             // 
             radioButton3.Appearance = Appearance.Button;
-            radioButton3.Location = new Point(221, 0);
+            radioButton3.Location = new Point(299, 0);
+            radioButton3.Margin = new Padding(0, 0, 0, 2);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(112, 24);
+            radioButton3.Size = new Size(115, 24);
             radioButton3.TabIndex = 0;
             radioButton3.TabStop = true;
             radioButton3.Text = "radioButton1";
@@ -1069,9 +1270,10 @@
             // radioButton5
             // 
             radioButton5.Appearance = Appearance.Button;
-            radioButton5.Location = new Point(3, 29);
+            radioButton5.Location = new Point(3, 26);
+            radioButton5.Margin = new Padding(0, 0, 0, 2);
             radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(112, 24);
+            radioButton5.Size = new Size(115, 24);
             radioButton5.TabIndex = 0;
             radioButton5.TabStop = true;
             radioButton5.Text = "radioButton1";
@@ -1081,9 +1283,10 @@
             // radioButton2
             // 
             radioButton2.Appearance = Appearance.Button;
-            radioButton2.Location = new Point(111, 0);
+            radioButton2.Location = new Point(153, 0);
+            radioButton2.Margin = new Padding(0, 0, 0, 2);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(112, 24);
+            radioButton2.Size = new Size(115, 24);
             radioButton2.TabIndex = 0;
             radioButton2.TabStop = true;
             radioButton2.Text = "radioButton1";
@@ -1094,8 +1297,9 @@
             // 
             radioButton1.Appearance = Appearance.Button;
             radioButton1.Location = new Point(3, 0);
+            radioButton1.Margin = new Padding(0, 0, 0, 2);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(112, 24);
+            radioButton1.Size = new Size(115, 24);
             radioButton1.TabIndex = 0;
             radioButton1.TabStop = true;
             radioButton1.Text = "radioButton1";
@@ -1135,6 +1339,7 @@
             panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)webView).EndInit();
             pnlTeamsToView.ResumeLayout(false);
+            pnlTeamsToView.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -1225,5 +1430,22 @@
         private Button button1;
         private Label label2;
         private Label lblMaxBid;
+        private Label label28;
+        private Label label27;
+        private Label label26;
+        private Label label25;
+        private Label label24;
+        private Label label23;
+        private Label label22;
+        private Label label21;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Label label17;
+        private Label label16;
+        private Label label15;
+        private Label label14;
+        private Label label12;
+        private Button btnRemovePlayerFromTeam;
     }
 }

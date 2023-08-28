@@ -9,7 +9,7 @@ namespace FantasyFootballAuctionDraftAssistant
         List<Player> FreeAgents;
         List<FantasyTeam> FantasyTeamList;
         FantasyTeam DisplayedTeam = new FantasyTeam();
-
+        Player SelectedPlayerOnRoster = new Player();
         Player playerOnClock = new Player();
         public Form1()
         {
@@ -26,24 +26,65 @@ namespace FantasyFootballAuctionDraftAssistant
             cbAllPositions.Checked = true;
             SetDraftButtonsToFantasyTeams();
             SetRadioButtonsToFantasyTeams();
+
             SetupListViewColumns();
             UpdateListView();
         }
         private void SetRadioButtonsToFantasyTeams()
         {
-            int index = 0;
+            int radioButtonIndex = 0;
+            int labelIndex = 0;
+
             foreach (Control control in pnlTeamsToView.Controls)
             {
-                if (control is RadioButton && index < FantasyTeamList.Count)
+                if (control is RadioButton && radioButtonIndex < FantasyTeamList.Count)
                 {
-                    control.Text = FantasyTeamList[index].Name;
-                    control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
+                    control.Text = FantasyTeamList[radioButtonIndex].Name;
+                    control.Tag = FantasyTeamList[radioButtonIndex]; // Store the FantasyTeam object in the Tag for later retrieval
+
                     if (control.Text == "Disappointing Monday")
                     {
                         control.BackColor = Color.LightGreen;
                     }
+
                     control.Click += RadioButton_Click; // Register common click event
-                    index++;
+
+                    radioButtonIndex++;
+                }
+                else if (control is Label && labelIndex < FantasyTeamList.Count)
+                {
+                    control.Text = "$" + FantasyTeamList[labelIndex].Budget.ToString();
+                    labelIndex++;
+                }
+            }
+        }
+
+        //private void SetRadioButtonsToFantasyTeams()
+        //{
+        //    int index = 0;
+        //    foreach (Control control in pnlTeamsToView.Controls)
+        //    {
+        //        if (control is RadioButton && index < FantasyTeamList.Count)
+        //        {
+        //            control.Text = FantasyTeamList[index].Name;
+        //            control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
+        //            if (control.Text == "Disappointing Monday")
+        //            {
+        //                control.BackColor = Color.LightGreen;
+        //            }
+        //            control.Click += RadioButton_Click; // Register common click event
+        //            index++;
+        //        }
+        //    }
+        //}
+        private void SetTeamBudgetLabels()
+        {
+            foreach (Control control in pnlTeamsToView.Controls)
+            {
+                if (control is Label && control.Tag is FantasyTeam)
+                {
+                    FantasyTeam team = (FantasyTeam)control.Tag;
+                    control.Text = "$" + team.Budget.ToString();
                 }
             }
         }
@@ -87,6 +128,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
                 UpdateListView();
                 UpdateDisplayTeam();
+                SetTeamBudgetLabels();
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
                 txtCost.Clear();
@@ -129,6 +171,10 @@ namespace FantasyFootballAuctionDraftAssistant
             }
 
         }
+        private void RemovePlayerFromTeam(Player player)
+        {
+
+        }
         private void SetupListViewColumns()
         {
             lvUndraftedPlayers.View = View.Details; // Ensure the view is set to details
@@ -154,7 +200,7 @@ namespace FantasyFootballAuctionDraftAssistant
         private ListViewColumnSorter lvUndraftedPlayersSorter = new ListViewColumnSorter();
         private ListViewColumnSorter lvTeamRosterSorter = new ListViewColumnSorter();
 
-        
+
 
         private void LvUndraftedPlayers_ColumnClick(object sender, ColumnClickEventArgs e)
         {
@@ -218,6 +264,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void UpdateDisplayTeam()
         {
+            SelectedPlayerOnRoster = null;
             //lvTeamRoster.Clear();
             foreach (Player player in DisplayedTeam.Players)
             {
@@ -345,10 +392,12 @@ namespace FantasyFootballAuctionDraftAssistant
 
             if (IsValidNumber(txtCost.Text))
             {
+
                 DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
                 AddPlayerToTeam(DisplayedTeam);
                 UpdateListView();
                 UpdateDisplayTeam();
+                SetTeamBudgetLabels();
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
                 txtCost.Clear();
@@ -464,6 +513,25 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             Form form = new frmSettings();
             form.ShowDialog();
+        }
+
+        private void btnRemovePlayerFromTeam_Click(object sender, EventArgs e)
+        {
+            DisplayedTeam.RemovePlayer(SelectedPlayerOnRoster);
+            FreeAgents.Add(SelectedPlayerOnRoster);
+        }
+
+        private void lvTeamRoster_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvTeamRoster.SelectedItems.Count > 0)
+            {
+                ListViewItem selectedItem = lvTeamRoster.SelectedItems[0]; // Get the first selected item
+
+
+                string selectedPlayerName = selectedItem.Text;
+                SelectedPlayerOnRoster = playerList.FirstOrDefault(p => p.Name == selectedPlayerName);
+                SetPlayerOnClockUI();
+            }
         }
     }
 }
