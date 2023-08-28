@@ -20,6 +20,8 @@ namespace FantasyFootballAuctionDraftAssistant
             this.Players = new List<Player>();
         }
         public string Name { get; set; }
+        public int ID { get; set; }
+        public Player Keeper { get; set; }
         public string Owner { get; set; }
         private int _budget = 200;
         private int _rosterSpots = 16;
@@ -38,6 +40,8 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             player.Cost = Cost;
             player.Drafted = true;
+            player.FantasyTeamID = this.ID;
+            player.FantasyTeam = this.Name;
             this.Players.Add(player);
             RecalculateBudget();
             RecalculateRosterSpots();

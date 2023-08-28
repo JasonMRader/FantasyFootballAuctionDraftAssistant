@@ -21,6 +21,7 @@ namespace FantasyFootballAuctionDraftAssistant
         public int Cost { get; set; }
         public int Year { get; set; }
         public bool Keeper { get; set; }
+        public int DraftPickNumber { get; set; }
         public string PositionString { get; set; }
         public int ValueDifference
         {

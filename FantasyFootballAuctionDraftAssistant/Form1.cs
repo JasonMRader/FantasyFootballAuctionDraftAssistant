@@ -151,7 +151,7 @@ namespace FantasyFootballAuctionDraftAssistant
                     DisplayedTeam = selectedTeam;
                 }
             }
-            UpdateDisplayTeam();
+            //UpdateDisplayTeam();
             UpdateListView();
             UpdateDisplayTeam();
             lblPlayerOnClock.Text = "Select A Player";
@@ -164,6 +164,7 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 Team.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
                 FreeAgents = playerList.Where(player => !player.Drafted).ToList();
+                SQLiteDataAccess.UpdatePlayer(playerOnClock);
             }
             else
             {
@@ -211,7 +212,11 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             SortListView(e, lvTeamRoster, lvTeamRosterSorter);
         }
-
+        private void SortByValueDecending(ListView listView, ListViewColumnSorter sorter)
+        {
+            sorter.Order = SortOrder.Descending;
+            sorter.SortColumn = 1;
+        }
         private void SortListView(ColumnClickEventArgs e, ListView listView, ListViewColumnSorter sorter)
         {
             if (e.Column == sorter.SortColumn)
@@ -255,7 +260,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
-
+            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
         }
         private void SetPlayerOnClockUI()
         {
@@ -398,6 +403,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 UpdateListView();
                 UpdateDisplayTeam();
                 SetTeamBudgetLabels();
+                
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
                 txtCost.Clear();
@@ -519,6 +525,9 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             DisplayedTeam.RemovePlayer(SelectedPlayerOnRoster);
             FreeAgents.Add(SelectedPlayerOnRoster);
+            SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
+            UpdateListView();
+            UpdateDisplayTeam();
         }
 
         private void lvTeamRoster_SelectedIndexChanged(object sender, EventArgs e)

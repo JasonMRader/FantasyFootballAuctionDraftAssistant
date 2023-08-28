@@ -50,7 +50,7 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 cnn.Execute("UPDATE Players SET Name = @Name, EstimatedValue = @EstimatedValue, Position = @Position, " +
                     "NflTeam = @NflTeam, ByeWeek = @ByeWeek, Drafted = @Drafted, FantasyTeamID = @FantasyTeamID, " +
-                    "Cost = @Cost, Year = @Year WHERE PlayerId = @PlayerId", player);
+                    "Cost = @Cost, Year = @Year WHERE ID = @ID", player);
             }
         }
 
@@ -65,9 +65,21 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters());
-                return output.ToList();
+                var teams = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters()).ToList();
+                var players = LoadPlayers();
+
+                foreach (var team in teams)
+                {
+                    team.Players.AddRange(players.Where(p => p.FantasyTeamID == team.ID));
+                }
+
+                return teams;
             }
+            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            //{
+            //    var output = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters());
+            //    return output.ToList();
+            //}
         }
         private static string LoadConnectionString(string id = "Default")
         {
