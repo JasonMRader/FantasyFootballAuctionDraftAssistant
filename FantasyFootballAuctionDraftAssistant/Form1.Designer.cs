@@ -71,6 +71,7 @@
             label3 = new Label();
             lblRosterValueDifference = new Label();
             lblDisplayTeamBudget = new Label();
+            lblMaxBid = new Label();
             label2 = new Label();
             label4 = new Label();
             panel4 = new Panel();
@@ -112,7 +113,6 @@
             radioButton5 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
-            lblMaxBid = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -532,9 +532,9 @@
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(lvTeamRoster);
             panel3.Controls.Add(lblDisplayTeamName);
-            panel3.Location = new Point(880, 162);
+            panel3.Location = new Point(880, 182);
             panel3.Name = "panel3";
-            panel3.Size = new Size(451, 584);
+            panel3.Size = new Size(451, 564);
             panel3.TabIndex = 5;
             // 
             // panel7
@@ -629,6 +629,15 @@
             lblDisplayTeamBudget.Size = new Size(37, 21);
             lblDisplayTeamBudget.TabIndex = 7;
             lblDisplayTeamBudget.Text = "200";
+            // 
+            // lblMaxBid
+            // 
+            lblMaxBid.AutoSize = true;
+            lblMaxBid.Location = new Point(124, 44);
+            lblMaxBid.Name = "lblMaxBid";
+            lblMaxBid.Size = new Size(13, 15);
+            lblMaxBid.TabIndex = 11;
+            lblMaxBid.Text = "0";
             // 
             // label2
             // 
@@ -786,7 +795,7 @@
             // 
             lvTeamRoster.Location = new Point(2, 200);
             lvTeamRoster.Name = "lvTeamRoster";
-            lvTeamRoster.Size = new Size(443, 379);
+            lvTeamRoster.Size = new Size(443, 354);
             lvTeamRoster.TabIndex = 8;
             lvTeamRoster.UseCompatibleStateImageBehavior = false;
             // 
@@ -897,7 +906,7 @@
             pnlTeamsToView.Controls.Add(radioButton1);
             pnlTeamsToView.Location = new Point(882, 40);
             pnlTeamsToView.Name = "pnlTeamsToView";
-            pnlTeamsToView.Size = new Size(448, 113);
+            pnlTeamsToView.Size = new Size(448, 136);
             pnlTeamsToView.TabIndex = 11;
             // 
             // radioButton16
@@ -1091,15 +1100,6 @@
             radioButton1.Text = "radioButton1";
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
             radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // lblMaxBid
-            // 
-            lblMaxBid.AutoSize = true;
-            lblMaxBid.Location = new Point(124, 44);
-            lblMaxBid.Name = "lblMaxBid";
-            lblMaxBid.Size = new Size(13, 15);
-            lblMaxBid.TabIndex = 11;
-            lblMaxBid.Text = "0";
             // 
             // Form1
             // 

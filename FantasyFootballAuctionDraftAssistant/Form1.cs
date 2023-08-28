@@ -78,16 +78,23 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void DraftButton_Click(object? sender, EventArgs e)
         {
-            if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
+            if (IsValidNumber(txtCost.Text))
             {
-                // Assuming playerOnClock and txtCost.Text have been declared and initialized in this scope
-                AddPlayerToTeam(selectedTeam);
+                if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
+                {
+                    // Assuming playerOnClock and txtCost.Text have been declared and initialized in this scope
+                    AddPlayerToTeam(selectedTeam);
+                }
+                UpdateListView();
+                UpdateDisplayTeam();
+                lblPlayerOnClock.Text = "Select A Player";
+                lblPlayerOnClockValue.Text = "";
+                txtCost.Clear(); 
             }
-            UpdateListView();
-            UpdateDisplayTeam();
-            lblPlayerOnClock.Text = "Select A Player";
-            lblPlayerOnClockValue.Text = "";
-            txtCost.Clear();
+            else
+            {
+                MessageBox.Show("Please enter player cost to draft");
+            }
         }
 
         private void RadioButton_Click(object sender, EventArgs e)
@@ -194,7 +201,7 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 lblAvgCapPerSpotLeft.Text = (DisplayedTeam.Budget / DisplayedTeam.RosterSpots).ToString();
             }
-            
+
             lblMaxBid.Text = (DisplayedTeam.Budget - DisplayedTeam.RosterSpots).ToString();
         }
 
@@ -293,13 +300,21 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnWeDraftOnClock_Click(object sender, EventArgs e)
         {
-            DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
-            AddPlayerToTeam(DisplayedTeam);
-            UpdateListView();
-            UpdateDisplayTeam();
-            lblPlayerOnClock.Text = "Select A Player";
-            lblPlayerOnClockValue.Text = "";
-            txtCost.Clear();
+
+            if (IsValidNumber(txtCost.Text))
+            {
+                DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
+                AddPlayerToTeam(DisplayedTeam);
+                UpdateListView();
+                UpdateDisplayTeam();
+                lblPlayerOnClock.Text = "Select A Player";
+                lblPlayerOnClockValue.Text = "";
+                txtCost.Clear(); 
+            }
+            else
+            {
+                MessageBox.Show("Please enter player cost to draft");
+            }
         }
 
         private void btnOtherDraftsOnClock_Click(object sender, EventArgs e)
