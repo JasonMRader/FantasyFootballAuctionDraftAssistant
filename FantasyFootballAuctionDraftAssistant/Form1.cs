@@ -89,7 +89,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 UpdateDisplayTeam();
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
-                txtCost.Clear(); 
+                txtCost.Clear();
             }
             else
             {
@@ -145,7 +145,49 @@ namespace FantasyFootballAuctionDraftAssistant
             lvTeamRoster.Columns.Add("Team", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Bye", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Surplus", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.ListViewItemSorter = lvUndraftedPlayersSorter;
+            lvUndraftedPlayers.ColumnClick += LvUndraftedPlayers_ColumnClick;
+
+            lvTeamRoster.ListViewItemSorter = lvTeamRosterSorter;
+            lvTeamRoster.ColumnClick += LvTeamRoster_ColumnClick;
         }
+        private ListViewColumnSorter lvUndraftedPlayersSorter = new ListViewColumnSorter();
+        private ListViewColumnSorter lvTeamRosterSorter = new ListViewColumnSorter();
+
+        
+
+        private void LvUndraftedPlayers_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(e, lvUndraftedPlayers, lvUndraftedPlayersSorter);
+        }
+
+        private void LvTeamRoster_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            SortListView(e, lvTeamRoster, lvTeamRosterSorter);
+        }
+
+        private void SortListView(ColumnClickEventArgs e, ListView listView, ListViewColumnSorter sorter)
+        {
+            if (e.Column == sorter.SortColumn)
+            {
+                if (sorter.Order == SortOrder.Ascending)
+                {
+                    sorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    sorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                sorter.SortColumn = e.Column;
+                sorter.Order = SortOrder.Ascending;
+            }
+
+            listView.Sort();
+        }
+
         private void UpdateListView()
         {
             lvUndraftedPlayers.Items.Clear(); // Clear existing items first
@@ -309,7 +351,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 UpdateDisplayTeam();
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
-                txtCost.Clear(); 
+                txtCost.Clear();
             }
             else
             {
@@ -342,6 +384,7 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             webView.Visible = true;
             webView.Enabled = true;
+            webView.BringToFront();
             rdoDrafted.Visible = false;
             rdoFreeAgents.Visible = false;
             btnDraftHistory.Visible = false;

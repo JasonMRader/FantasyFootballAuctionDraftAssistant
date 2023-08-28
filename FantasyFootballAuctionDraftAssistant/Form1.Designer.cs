@@ -130,6 +130,7 @@
             lvUndraftedPlayers.Location = new Point(299, 79);
             lvUndraftedPlayers.Name = "lvUndraftedPlayers";
             lvUndraftedPlayers.Size = new Size(575, 667);
+            lvUndraftedPlayers.Sorting = SortOrder.Descending;
             lvUndraftedPlayers.TabIndex = 0;
             lvUndraftedPlayers.UseCompatibleStateImageBehavior = false;
             lvUndraftedPlayers.SelectedIndexChanged += lvUndraftedPlayers_SelectedIndexChanged;
