@@ -403,7 +403,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 UpdateListView();
                 UpdateDisplayTeam();
                 SetTeamBudgetLabels();
-                
+
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
                 txtCost.Clear();
@@ -440,8 +440,8 @@ namespace FantasyFootballAuctionDraftAssistant
             webView.Visible = true;
             webView.Enabled = true;
             webView.BringToFront();
-            rdoDrafted.Visible = false;
-            rdoFreeAgents.Visible = false;
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
             btnDraftHistory.Visible = false;
             btnCloseBrowser.Visible = true;
             btnCloseBrowser.Enabled = true;
@@ -509,8 +509,8 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             webView.Visible = false;
             webView.Enabled = false;
-            rdoDrafted.Visible = true;
-            rdoFreeAgents.Visible = true;
+            btnSearch.Visible = true;
+            txtSearch.Visible = true;
             btnDraftHistory.Visible = true;
             btnCloseBrowser.Visible = false;
         }
