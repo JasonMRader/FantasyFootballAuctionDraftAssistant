@@ -50,7 +50,7 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 cnn.Execute("UPDATE Players SET Name = @Name, EstimatedValue = @EstimatedValue, Position = @Position, " +
                     "NflTeam = @NflTeam, ByeWeek = @ByeWeek, Drafted = @Drafted, FantasyTeamID = @FantasyTeamID, " +
-                    "Cost = @Cost, Year = @Year, Keeper = @Keeper, DraftPickNumber = @DraftPickNumber WHERE ID = @ID", player);
+                    "Cost = @Cost, Year = @Year, Keeper = @Keeper, DraftPickNumber = @DraftPickNumber, Notes = @Notes WHERE ID = @ID", player);
             }
         }
 
@@ -61,16 +61,33 @@ namespace FantasyFootballAuctionDraftAssistant
                 cnn.Execute("insert into FantasyTeams (Name, Owner) values (@Name, @Owner)", team);
             }
         }
-        public static List<FantasyTeam> LoadFantasyTeams()
+        public static List<FantasyTeam> LoadFantasyTeams(List <Player> players)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var teams = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters()).ToList();
-                var players = LoadPlayers();
+                //var players = LoadPlayers();
 
                 foreach (var team in teams)
                 {
-                    team.Players.AddRange(players.Where(p => p.FantasyTeamID == team.ID));
+                    
+
+                    var teamPlayerIndices = players.Select((p, index) => new { Player = p, Index = index })
+                               .Where(p => p.Player.FantasyTeamID == team.ID)
+                               .ToList();
+
+                    foreach (var playerIndex in teamPlayerIndices)
+                    {
+                        players[playerIndex.Index].FantasyTeam = team;
+                    }
+                    var teamPlayers = players.Where(p => p.FantasyTeamID == team.ID).ToList();
+
+                    //foreach (var player in players)
+                    //{
+                    //    player.FantasyTeam = team;  // Assign the fantasy team to the player's FantasyTeam property
+                    //}
+
+                    team.Players.AddRange(teamPlayers);
                     team.Keeper = team.Players.FirstOrDefault(p => p.Keeper);
                     team.RecalculateBudget();
                     team.RecalculateRosterSpots();
@@ -78,12 +95,31 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 return teams;
             }
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    var output = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters());
-            //    return output.ToList();
-            //}
         }
+
+        //public static List<FantasyTeam> LoadFantasyTeams()
+        //{
+        //    using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+        //    {
+        //        var teams = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters()).ToList();
+        //        var players = LoadPlayers();
+
+        //        foreach (var team in teams)
+        //        {
+        //            team.Players.AddRange(players.Where(p => p.FantasyTeamID == team.ID));
+        //            team.Keeper = team.Players.FirstOrDefault(p => p.Keeper);
+        //            team.RecalculateBudget();
+        //            team.RecalculateRosterSpots();
+        //        }
+
+        //        return teams;
+        //    }
+        //    //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+        //    //{
+        //    //    var output = cnn.Query<FantasyTeam>("select * from FantasyTeams", new DynamicParameters());
+        //    //    return output.ToList();
+        //    //}
+        //}
         private static string LoadConnectionString(string id = "Default")
         {
             return ConfigurationManager.ConnectionStrings[id].ConnectionString;

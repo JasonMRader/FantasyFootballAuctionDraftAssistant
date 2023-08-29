@@ -114,11 +114,11 @@
             radioButton5 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
-            label12 = new Label();
-            label28 = new Label();
             txtSearch = new TextBox();
             btnSearch = new Button();
             btnKeepers = new Button();
+            rdoFreeAgenceVsHistoryToggle = new RadioButton();
+            cbDraftHistory = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -876,9 +876,9 @@
             // 
             // btnDraftHistory
             // 
-            btnDraftHistory.Location = new Point(664, 9);
+            btnDraftHistory.Location = new Point(1467, 10);
             btnDraftHistory.Name = "btnDraftHistory";
-            btnDraftHistory.Size = new Size(130, 23);
+            btnDraftHistory.Size = new Size(55, 23);
             btnDraftHistory.TabIndex = 7;
             btnDraftHistory.Text = "View Draft History";
             btnDraftHistory.UseVisualStyleBackColor = true;
@@ -1149,23 +1149,6 @@
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
             radioButton1.UseVisualStyleBackColor = true;
             // 
-            // label12
-            // 
-            label12.Location = new Point(1374, -10);
-            label12.Name = "label12";
-            label12.Size = new Size(40, 30);
-            label12.TabIndex = 12;
-            label12.Text = "$200\r\n2/16\r\n";
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Location = new Point(1477, 5);
-            label28.Name = "label28";
-            label28.Size = new Size(31, 15);
-            label28.TabIndex = 12;
-            label28.Text = "$200";
-            // 
             // txtSearch
             // 
             txtSearch.Location = new Point(314, 10);
@@ -1186,7 +1169,7 @@
             // 
             // btnKeepers
             // 
-            btnKeepers.Location = new Point(800, 9);
+            btnKeepers.Location = new Point(859, 1);
             btnKeepers.Name = "btnKeepers";
             btnKeepers.Size = new Size(86, 23);
             btnKeepers.TabIndex = 14;
@@ -1194,15 +1177,40 @@
             btnKeepers.UseVisualStyleBackColor = true;
             btnKeepers.Click += btnKeepers_Click;
             // 
+            // rdoFreeAgenceVsHistoryToggle
+            // 
+            rdoFreeAgenceVsHistoryToggle.Appearance = Appearance.Button;
+            rdoFreeAgenceVsHistoryToggle.Location = new Point(1336, 0);
+            rdoFreeAgenceVsHistoryToggle.Name = "rdoFreeAgenceVsHistoryToggle";
+            rdoFreeAgenceVsHistoryToggle.Size = new Size(130, 24);
+            rdoFreeAgenceVsHistoryToggle.TabIndex = 15;
+            rdoFreeAgenceVsHistoryToggle.TabStop = true;
+            rdoFreeAgenceVsHistoryToggle.Text = "View Draft History";
+            rdoFreeAgenceVsHistoryToggle.TextAlign = ContentAlignment.MiddleCenter;
+            rdoFreeAgenceVsHistoryToggle.UseVisualStyleBackColor = true;
+            rdoFreeAgenceVsHistoryToggle.CheckedChanged += rdoFreeAgenceVsHistoryToggle_CheckedChanged;
+            // 
+            // cbDraftHistory
+            // 
+            cbDraftHistory.Appearance = Appearance.Button;
+            cbDraftHistory.Location = new Point(664, 9);
+            cbDraftHistory.Name = "cbDraftHistory";
+            cbDraftHistory.Size = new Size(104, 24);
+            cbDraftHistory.TabIndex = 16;
+            cbDraftHistory.Text = "Draft History";
+            cbDraftHistory.TextAlign = ContentAlignment.MiddleCenter;
+            cbDraftHistory.UseVisualStyleBackColor = true;
+            cbDraftHistory.CheckedChanged += cbDraftHistory_CheckedChanged;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1520, 951);
+            Controls.Add(cbDraftHistory);
+            Controls.Add(rdoFreeAgenceVsHistoryToggle);
             Controls.Add(btnKeepers);
-            Controls.Add(label28);
             Controls.Add(btnSearch);
-            Controls.Add(label12);
             Controls.Add(txtSearch);
             Controls.Add(pnlTeamsToView);
             Controls.Add(btnOpenSettings);
@@ -1319,8 +1327,6 @@
         private Button button1;
         private Label label2;
         private Label lblMaxBid;
-        private Label label28;
-        private Label label12;
         private Button btnRemovePlayerFromTeam;
         private TextBox txtSearch;
         private Button btnSearch;
@@ -1328,5 +1334,7 @@
         private Label lblDisplayKeeper;
         private Label label14;
         private Button btnKeepers;
+        private RadioButton rdoFreeAgenceVsHistoryToggle;
+        private CheckBox cbDraftHistory;
     }
 }

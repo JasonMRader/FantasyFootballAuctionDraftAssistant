@@ -24,10 +24,15 @@ namespace FantasyFootballAuctionDraftAssistant
             foreach (var player in allPlayers.Where(p => p.Keeper))
             {
                 //RecordMove(player, player.fantasyTeam, true, 0);
-                var move = new RosterMoves(player, player.fantasyTeam, true, 0);
+                var move = new RosterMoves(player, player.FantasyTeam, true, 0);
                 Keepers.Add(player);
                 FreeAgents.Remove(player);
                 Moves.Add(move);
+            }
+            foreach (var player in allPlayers.Where(p => p.DraftPickNumber > 0))
+            {
+                DraftedPlayers.Add(player);
+                currentPickNumber ++;
             }
             FreeAgents.AddRange(allPlayers.Where(p => !p.Keeper));
         }
@@ -41,7 +46,7 @@ namespace FantasyFootballAuctionDraftAssistant
             // Update the Player's Keeper and DraftPickNumber properties
             player.Keeper = false;
             player.DraftPickNumber = currentPickNumber;
-            player.fantasyTeam = team;
+            player.FantasyTeam = team;
             
             DraftedPlayers.Add(player);
             FreeAgents.Remove(player);
