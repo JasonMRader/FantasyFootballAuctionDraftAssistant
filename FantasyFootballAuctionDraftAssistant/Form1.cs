@@ -217,6 +217,30 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Team", 125, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Cost", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Value", 50, HorizontalAlignment.Left);
+
+        }
+        private void SetViewToKeepers()
+        {
+            SetListViewToRosterMoves();
+            lvUndraftedPlayers.Items.Clear(); // Clear existing items first
+
+            //IEnumerable<Player> filteredPlayers = FreeAgents.Where(player => IsPositionChecked(player.Position));
+
+            foreach (Player player in Draft.Keepers)
+            {
+                ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
+                lvi.SubItems.Add(player.Name); // Second column
+                lvi.SubItems.Add(player.FantasyTeam.Name);
+                lvi.SubItems.Add(player.Position.ToString());
+                lvi.SubItems.Add(player.Cost.ToString());
+                lvi.SubItems.Add(player.ValueDifference.ToString());
+
+
+
+                lvUndraftedPlayers.Items.Add(lvi);
+            }
+            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
 
         }
         private void SetViewToDraftHistory()
@@ -233,7 +257,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 lvi.SubItems.Add(player.FantasyTeam.Name);
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.Cost.ToString());
-
+                lvi.SubItems.Add(player.ValueDifference.ToString());
 
 
                 lvUndraftedPlayers.Items.Add(lvi);
@@ -251,6 +275,7 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Team", 120, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Exp", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Notes", 100, HorizontalAlignment.Left);
         }
         private void SetupListViewColumns()
         {
@@ -329,11 +354,16 @@ namespace FantasyFootballAuctionDraftAssistant
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.NflTeam);
                 lvi.SubItems.Add(player.ByeWeek.ToString());
+               
                 if (player.Year == 1)
                 {
                     lvi.SubItems.Add("Rookie");
                 }
-
+                else
+                {
+                    lvi.SubItems.Add("");
+                }
+                lvi.SubItems.Add(player.Notes);
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
@@ -343,6 +373,7 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             lblPlayerOnClock.Text = playerOnClock.Name;
             lblPlayerOnClockValue.Text = playerOnClock.EstimatedValue.ToString();
+            txtPlayerNotes.Text = playerOnClock.Notes;
         }
         private void UpdateDisplayTeam()
         {
@@ -368,6 +399,7 @@ namespace FantasyFootballAuctionDraftAssistant
             lblKs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.K).ToString();
             lblRosterSpots.Text = DisplayedTeam.RosterSpots.ToString();
             lblRosterValueDifference.Text = DisplayedTeam.TeamValueDifference().ToString();
+            
             if (DisplayedTeam.RosterSpots > 0)
             {
                 lblAvgCapPerSpotLeft.Text = (DisplayedTeam.Budget / DisplayedTeam.RosterSpots).ToString();
@@ -387,6 +419,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void lvUndraftedPlayers_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (lvUndraftedPlayers.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = lvUndraftedPlayers.SelectedItems[0]; // Get the first selected item
@@ -397,10 +430,13 @@ namespace FantasyFootballAuctionDraftAssistant
                 {
                     playerOnClock = playerList.FirstOrDefault(p => p.Name == selectedPlayerName);
                     SetPlayerOnClockUI();
+
                 }
 
 
             }
+
+
         }
         private bool IsPositionChecked(PlayerPosition position)
         {
@@ -534,7 +570,9 @@ namespace FantasyFootballAuctionDraftAssistant
             webView.BringToFront();
             btnSearch.Visible = false;
             txtSearch.Visible = false;
-            btnDraftHistory.Visible = false;
+            //btnDraftHistory.Visible = false;
+            cbDraftHistory.Visible = false;
+            cbKeepers.Visible = false;
             btnCloseBrowser.Visible = true;
             btnCloseBrowser.Enabled = true;
 
@@ -603,7 +641,9 @@ namespace FantasyFootballAuctionDraftAssistant
             webView.Enabled = false;
             btnSearch.Visible = true;
             txtSearch.Visible = true;
-            btnDraftHistory.Visible = true;
+            cbKeepers.Visible = true;
+            cbDraftHistory.Visible = true;
+            //btnDraftHistory.Visible = true;
             btnCloseBrowser.Visible = false;
         }
 
@@ -636,7 +676,7 @@ namespace FantasyFootballAuctionDraftAssistant
                     SelectedPlayerOnRoster = playerList.FirstOrDefault(p => p.Name == selectedPlayerName);
                     SetPlayerOnClockUI();
                 }
-                
+
             }
         }
 
@@ -650,29 +690,78 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnDraftHistory_Click(object sender, EventArgs e)
-        {
-            SetViewToDraftHistory();
-        }
-
-        private void btnKeepers_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rdoFreeAgenceVsHistoryToggle_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rdoFreeAgenceVsHistoryToggle.Checked == true)
+            List<Player> results = new List<Player>();
+            string query = txtSearch.Text.ToLower();
+            if (!cbKeepers.Checked && !cbDraftHistory.Checked)
             {
-                SetViewToDraftHistory();
+                results = FreeAgents.Where(p => p.Name.ToLower().Contains(query)).ToList();             
+
+                SetListViewToFreeAgents();
+                lvUndraftedPlayers.Items.Clear();
+                foreach (Player player in results)
+                {
+                    ListViewItem lvi = new ListViewItem(player.Name); // First column
+                    lvi.SubItems.Add(player.EstimatedValue.ToString()); // Second column
+                    lvi.SubItems.Add(player.Position.ToString());
+                    lvi.SubItems.Add(player.NflTeam);
+                    lvi.SubItems.Add(player.ByeWeek.ToString());
+
+                    if (player.Year == 1)
+                    {
+                        lvi.SubItems.Add("Rookie");
+                    }
+                    else
+                    {
+                        lvi.SubItems.Add("");
+                    }
+                    lvi.SubItems.Add(player.Notes);
+
+                    lvUndraftedPlayers.Items.Add(lvi);
+                }
             }
-            else
+            if (cbDraftHistory.Checked)
             {
-                UpdateListView();
+                results = Draft.DraftedPlayers.Where(p => p.Name.ToLower().Contains(query)).ToList();
+                SetListViewToRosterMoves();
+                lvUndraftedPlayers.Items.Clear();
+                foreach (Player player in results)
+                {
+                    ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
+                    lvi.SubItems.Add(player.Name); // Second column
+                    lvi.SubItems.Add(player.FantasyTeam.Name);
+                    lvi.SubItems.Add(player.Position.ToString());
+                    lvi.SubItems.Add(player.Cost.ToString());
+                    lvi.SubItems.Add(player.ValueDifference.ToString());
+
+
+                    lvUndraftedPlayers.Items.Add(lvi);
+                }
+                SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
             }
+            if (cbKeepers.Checked)
+            {
+                results = Draft.Keepers.Where(p => p.Name.ToLower().Contains(query)).ToList();
+                SetListViewToRosterMoves();
+                lvUndraftedPlayers.Items.Clear();
+                foreach (Player player in results)
+                {
+                    ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
+                    lvi.SubItems.Add(player.Name); // Second column
+                    lvi.SubItems.Add(player.FantasyTeam.Name);
+                    lvi.SubItems.Add(player.Position.ToString());
+                    lvi.SubItems.Add(player.Cost.ToString());
+                    lvi.SubItems.Add(player.ValueDifference.ToString());
+
+
+                    lvUndraftedPlayers.Items.Add(lvi);
+                }
+                SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
+            }
+           
+            
+
+            
+            
         }
 
         private void cbDraftHistory_CheckedChanged(object sender, EventArgs e)
@@ -680,11 +769,89 @@ namespace FantasyFootballAuctionDraftAssistant
             if (cbDraftHistory.Checked == true)
             {
                 SetViewToDraftHistory();
+                cbKeepers.Checked = false;
             }
             else
             {
                 UpdateListView();
             }
+        }
+
+        private void cbKeepers_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbKeepers.Checked)
+            {
+                SetViewToKeepers();
+                cbDraftHistory.Checked = false;
+            }
+            else { UpdateListView(); }
+        }
+
+        private void lvUndraftedPlayers_DoubleClick(object sender, EventArgs e)
+        {
+            txtCost.Focus();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            webView.Visible = true;
+            webView.Enabled = true;
+            webView.BringToFront();
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
+            //btnDraftHistory.Visible = false;
+            cbDraftHistory.Visible = false;
+            cbKeepers.Visible = false;
+            btnCloseBrowser.Visible = true;
+            btnCloseBrowser.Enabled = true;
+
+            //string url = GetYahooURL();
+            //string url = GetFantasyProsURL();
+            string url = GetFantasyDataSearchURL();
+            if (webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.Navigate(url);
+            }
+            else
+            {
+                MessageBox.Show("WebView2 is not ready. Please try again later.");
+            }
+            //webView.CoreWebView2.Navigate(url);
+            //OpenUrl(url);
+        }
+
+        private void lblPlayerOnClock_Click(object sender, EventArgs e)
+        {
+            webView.Visible = true;
+            webView.Enabled = true;
+            webView.BringToFront();
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
+            //btnDraftHistory.Visible = false;
+            cbDraftHistory.Visible = false;
+            cbKeepers.Visible = false;
+            btnCloseBrowser.Visible = true;
+            btnCloseBrowser.Enabled = true;
+
+            //string url = GetYahooURL();
+            //string url = GetFantasyProsURL();
+            string url = GetFantasyDataSearchURL();
+            if (webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.Navigate(url);
+            }
+            else
+            {
+                MessageBox.Show("WebView2 is not ready. Please try again later.");
+            }
+            //webView.CoreWebView2.Navigate(url);
+            //OpenUrl(url);
+        }
+
+        private void btnSaveNotes_Click(object sender, EventArgs e)
+        {
+            playerOnClock.Notes = txtPlayerNotes.Text;
+            SQLiteDataAccess.UpdatePlayer(playerOnClock);
         }
     }
 }

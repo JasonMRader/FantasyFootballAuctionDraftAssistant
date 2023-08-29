@@ -57,7 +57,6 @@
             button1 = new Button();
             btnOtherDraftsOnClock = new Button();
             btnWeDraftOnClock = new Button();
-            btnOpenOnlineInfo = new Button();
             txtCost = new TextBox();
             btnCancelOnClock = new Button();
             lblPlayerOnClockValue = new Label();
@@ -93,7 +92,6 @@
             label7 = new Label();
             lvTeamRoster = new ListView();
             lblDisplayTeamName = new Label();
-            btnDraftHistory = new Button();
             webView = new Microsoft.Web.WebView2.WinForms.WebView2();
             btnCloseBrowser = new Button();
             btnOpenSettings = new Button();
@@ -116,9 +114,11 @@
             radioButton1 = new RadioButton();
             txtSearch = new TextBox();
             btnSearch = new Button();
-            btnKeepers = new Button();
-            rdoFreeAgenceVsHistoryToggle = new RadioButton();
             cbDraftHistory = new CheckBox();
+            cbKeepers = new CheckBox();
+            label12 = new Label();
+            txtPlayerNotes = new TextBox();
+            btnSaveNotes = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -139,6 +139,7 @@
             lvUndraftedPlayers.TabIndex = 0;
             lvUndraftedPlayers.UseCompatibleStateImageBehavior = false;
             lvUndraftedPlayers.SelectedIndexChanged += lvUndraftedPlayers_SelectedIndexChanged;
+            lvUndraftedPlayers.DoubleClick += lvUndraftedPlayers_DoubleClick;
             // 
             // panel1
             // 
@@ -261,38 +262,43 @@
             // 
             // lblPlayerOnClock
             // 
+            lblPlayerOnClock.BackColor = SystemColors.ControlText;
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClock.Location = new Point(3, 47);
+            lblPlayerOnClock.ForeColor = SystemColors.MenuHighlight;
+            lblPlayerOnClock.Location = new Point(3, 21);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
             lblPlayerOnClock.Size = new Size(246, 35);
             lblPlayerOnClock.TabIndex = 2;
             lblPlayerOnClock.Text = "Choose Player";
             lblPlayerOnClock.TextAlign = ContentAlignment.MiddleCenter;
+            lblPlayerOnClock.Click += lblPlayerOnClock_Click;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(64, 92);
+            label1.Location = new Point(17, 61);
             label1.Name = "label1";
-            label1.Size = new Size(64, 25);
+            label1.Size = new Size(80, 25);
             label1.TabIndex = 3;
-            label1.Text = "Value:";
+            label1.Text = "Value: $";
             // 
             // panel2
             // 
             panel2.BackColor = SystemColors.GradientActiveCaption;
+            panel2.Controls.Add(btnSaveNotes);
+            panel2.Controls.Add(txtPlayerNotes);
+            panel2.Controls.Add(label12);
             panel2.Controls.Add(pnlOtherTeamsDraft);
             panel2.Controls.Add(btnWeDraftOnClock);
-            panel2.Controls.Add(btnOpenOnlineInfo);
             panel2.Controls.Add(txtCost);
             panel2.Controls.Add(btnCancelOnClock);
             panel2.Controls.Add(lblPlayerOnClock);
             panel2.Controls.Add(lblPlayerOnClockValue);
             panel2.Controls.Add(label1);
-            panel2.Location = new Point(45, 12);
+            panel2.Location = new Point(45, 9);
             panel2.Name = "panel2";
-            panel2.Size = new Size(252, 912);
+            panel2.Size = new Size(252, 915);
             panel2.TabIndex = 4;
             // 
             // pnlOtherTeamsDraft
@@ -508,27 +514,18 @@
             btnWeDraftOnClock.UseVisualStyleBackColor = true;
             btnWeDraftOnClock.Click += btnWeDraftOnClock_Click;
             // 
-            // btnOpenOnlineInfo
-            // 
-            btnOpenOnlineInfo.Location = new Point(17, 6);
-            btnOpenOnlineInfo.Name = "btnOpenOnlineInfo";
-            btnOpenOnlineInfo.Size = new Size(197, 23);
-            btnOpenOnlineInfo.TabIndex = 6;
-            btnOpenOnlineInfo.Text = "View Info";
-            btnOpenOnlineInfo.UseVisualStyleBackColor = true;
-            btnOpenOnlineInfo.Click += btnOpenOnlineInfo_Click;
-            // 
             // txtCost
             // 
-            txtCost.Location = new Point(17, 146);
+            txtCost.Location = new Point(69, 146);
             txtCost.Name = "txtCost";
-            txtCost.Size = new Size(206, 23);
+            txtCost.Size = new Size(154, 23);
             txtCost.TabIndex = 5;
             // 
             // btnCancelOnClock
             // 
+            btnCancelOnClock.FlatAppearance.BorderSize = 0;
             btnCancelOnClock.FlatStyle = FlatStyle.Flat;
-            btnCancelOnClock.Location = new Point(220, 6);
+            btnCancelOnClock.Location = new Point(223, 1);
             btnCancelOnClock.Name = "btnCancelOnClock";
             btnCancelOnClock.Size = new Size(29, 23);
             btnCancelOnClock.TabIndex = 4;
@@ -540,7 +537,7 @@
             // 
             lblPlayerOnClockValue.AutoSize = true;
             lblPlayerOnClockValue.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClockValue.Location = new Point(145, 92);
+            lblPlayerOnClockValue.Location = new Point(92, 61);
             lblPlayerOnClockValue.Name = "lblPlayerOnClockValue";
             lblPlayerOnClockValue.Size = new Size(34, 25);
             lblPlayerOnClockValue.TabIndex = 3;
@@ -874,16 +871,6 @@
             lblDisplayTeamName.Text = "Disappointing Monday";
             lblDisplayTeamName.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // btnDraftHistory
-            // 
-            btnDraftHistory.Location = new Point(1467, 10);
-            btnDraftHistory.Name = "btnDraftHistory";
-            btnDraftHistory.Size = new Size(55, 23);
-            btnDraftHistory.TabIndex = 7;
-            btnDraftHistory.Text = "View Draft History";
-            btnDraftHistory.UseVisualStyleBackColor = true;
-            btnDraftHistory.Click += btnDraftHistory_Click;
-            // 
             // webView
             // 
             webView.AllowExternalDrop = true;
@@ -1167,29 +1154,6 @@
             btnSearch.UseVisualStyleBackColor = true;
             btnSearch.Click += btnSearch_Click;
             // 
-            // btnKeepers
-            // 
-            btnKeepers.Location = new Point(859, 1);
-            btnKeepers.Name = "btnKeepers";
-            btnKeepers.Size = new Size(86, 23);
-            btnKeepers.TabIndex = 14;
-            btnKeepers.Text = "Keepers";
-            btnKeepers.UseVisualStyleBackColor = true;
-            btnKeepers.Click += btnKeepers_Click;
-            // 
-            // rdoFreeAgenceVsHistoryToggle
-            // 
-            rdoFreeAgenceVsHistoryToggle.Appearance = Appearance.Button;
-            rdoFreeAgenceVsHistoryToggle.Location = new Point(1336, 0);
-            rdoFreeAgenceVsHistoryToggle.Name = "rdoFreeAgenceVsHistoryToggle";
-            rdoFreeAgenceVsHistoryToggle.Size = new Size(130, 24);
-            rdoFreeAgenceVsHistoryToggle.TabIndex = 15;
-            rdoFreeAgenceVsHistoryToggle.TabStop = true;
-            rdoFreeAgenceVsHistoryToggle.Text = "View Draft History";
-            rdoFreeAgenceVsHistoryToggle.TextAlign = ContentAlignment.MiddleCenter;
-            rdoFreeAgenceVsHistoryToggle.UseVisualStyleBackColor = true;
-            rdoFreeAgenceVsHistoryToggle.CheckedChanged += rdoFreeAgenceVsHistoryToggle_CheckedChanged;
-            // 
             // cbDraftHistory
             // 
             cbDraftHistory.Appearance = Appearance.Button;
@@ -1202,20 +1166,61 @@
             cbDraftHistory.UseVisualStyleBackColor = true;
             cbDraftHistory.CheckedChanged += cbDraftHistory_CheckedChanged;
             // 
+            // cbKeepers
+            // 
+            cbKeepers.Appearance = Appearance.Button;
+            cbKeepers.Location = new Point(774, 9);
+            cbKeepers.Name = "cbKeepers";
+            cbKeepers.Size = new Size(104, 24);
+            cbKeepers.TabIndex = 17;
+            cbKeepers.Text = "Keepers";
+            cbKeepers.TextAlign = ContentAlignment.MiddleCenter;
+            cbKeepers.UseVisualStyleBackColor = true;
+            cbKeepers.CheckedChanged += cbKeepers_CheckedChanged;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(17, 144);
+            label12.Name = "label12";
+            label12.Size = new Size(50, 25);
+            label12.TabIndex = 8;
+            label12.Text = "Cost";
+            // 
+            // txtPlayerNotes
+            // 
+            txtPlayerNotes.BackColor = SystemColors.Info;
+            txtPlayerNotes.Location = new Point(17, 89);
+            txtPlayerNotes.Multiline = true;
+            txtPlayerNotes.Name = "txtPlayerNotes";
+            txtPlayerNotes.Size = new Size(206, 51);
+            txtPlayerNotes.TabIndex = 9;
+            // 
+            // btnSaveNotes
+            // 
+            btnSaveNotes.BackColor = SystemColors.Info;
+            btnSaveNotes.FlatStyle = FlatStyle.Flat;
+            btnSaveNotes.Location = new Point(181, 117);
+            btnSaveNotes.Name = "btnSaveNotes";
+            btnSaveNotes.Size = new Size(42, 23);
+            btnSaveNotes.TabIndex = 10;
+            btnSaveNotes.Text = "Save";
+            btnSaveNotes.UseVisualStyleBackColor = false;
+            btnSaveNotes.Click += btnSaveNotes_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1520, 951);
+            Controls.Add(cbKeepers);
             Controls.Add(cbDraftHistory);
-            Controls.Add(rdoFreeAgenceVsHistoryToggle);
-            Controls.Add(btnKeepers);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
             Controls.Add(pnlTeamsToView);
             Controls.Add(btnOpenSettings);
             Controls.Add(btnCloseBrowser);
-            Controls.Add(btnDraftHistory);
             Controls.Add(panel3);
             Controls.Add(panel2);
             Controls.Add(panel1);
@@ -1288,8 +1293,6 @@
         private Panel panel6;
         private Label lblRosterValueDifference;
         private Label label4;
-        private Button btnOpenOnlineInfo;
-        private Button btnDraftHistory;
         private Microsoft.Web.WebView2.WinForms.WebView2 webView;
         private Button btnCloseBrowser;
         private Button btnOpenSettings;
@@ -1333,8 +1336,10 @@
         private Button btnSetKeeper;
         private Label lblDisplayKeeper;
         private Label label14;
-        private Button btnKeepers;
-        private RadioButton rdoFreeAgenceVsHistoryToggle;
         private CheckBox cbDraftHistory;
+        private CheckBox cbKeepers;
+        private Button btnSaveNotes;
+        private TextBox txtPlayerNotes;
+        private Label label12;
     }
 }
