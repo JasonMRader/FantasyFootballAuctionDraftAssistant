@@ -95,10 +95,9 @@
             btnCloseBrowser = new Button();
             btnOpenSettings = new Button();
             pnlTeamsToView = new Panel();
-            label28 = new Label();
-            label12 = new Label();
             radioButton16 = new RadioButton();
             radioButton15 = new RadioButton();
+            label12 = new Label();
             radioButton12 = new RadioButton();
             radioButton11 = new RadioButton();
             radioButton8 = new RadioButton();
@@ -113,6 +112,7 @@
             radioButton5 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
+            label28 = new Label();
             txtSearch = new TextBox();
             btnSearch = new Button();
             panel1.SuspendLayout();
@@ -869,8 +869,6 @@
             // 
             // pnlTeamsToView
             // 
-            pnlTeamsToView.Controls.Add(label28);
-            pnlTeamsToView.Controls.Add(label12);
             pnlTeamsToView.Controls.Add(radioButton16);
             pnlTeamsToView.Controls.Add(radioButton15);
             pnlTeamsToView.Controls.Add(radioButton12);
@@ -889,26 +887,8 @@
             pnlTeamsToView.Controls.Add(radioButton1);
             pnlTeamsToView.Location = new Point(919, 47);
             pnlTeamsToView.Name = "pnlTeamsToView";
-            pnlTeamsToView.Size = new Size(546, 278);
+            pnlTeamsToView.Size = new Size(569, 278);
             pnlTeamsToView.TabIndex = 11;
-            // 
-            // label28
-            // 
-            label28.AutoSize = true;
-            label28.Location = new Point(481, 248);
-            label28.Name = "label28";
-            label28.Size = new Size(31, 15);
-            label28.TabIndex = 12;
-            label28.Text = "$200";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Location = new Point(151, 14);
-            label12.Name = "label12";
-            label12.Size = new Size(31, 15);
-            label12.TabIndex = 12;
-            label12.Text = "$200";
             // 
             // radioButton16
             // 
@@ -934,6 +914,14 @@
             radioButton15.Text = "radioButton1";
             radioButton15.TextAlign = ContentAlignment.MiddleCenter;
             radioButton15.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            label12.Location = new Point(1374, -10);
+            label12.Name = "label12";
+            label12.Size = new Size(40, 30);
+            label12.TabIndex = 12;
+            label12.Text = "$200\r\n2/16\r\n";
             // 
             // radioButton12
             // 
@@ -1117,6 +1105,15 @@
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
             radioButton1.UseVisualStyleBackColor = true;
             // 
+            // label28
+            // 
+            label28.AutoSize = true;
+            label28.Location = new Point(1477, 5);
+            label28.Name = "label28";
+            label28.Size = new Size(31, 15);
+            label28.TabIndex = 12;
+            label28.Text = "$200";
+            // 
             // txtSearch
             // 
             txtSearch.Location = new Point(314, 10);
@@ -1139,7 +1136,9 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1520, 951);
+            Controls.Add(label28);
             Controls.Add(btnSearch);
+            Controls.Add(label12);
             Controls.Add(txtSearch);
             Controls.Add(pnlTeamsToView);
             Controls.Add(btnOpenSettings);
@@ -1167,7 +1166,6 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)webView).EndInit();
             pnlTeamsToView.ResumeLayout(false);
-            pnlTeamsToView.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }

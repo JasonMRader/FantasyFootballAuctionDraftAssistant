@@ -56,11 +56,11 @@ namespace FantasyFootballAuctionDraftAssistant
             RecalculateBudget();
             RecalculateRosterSpots();
         }
-        private void RecalculateBudget()
+        public void RecalculateBudget()
         {
             _budget = 200 - Players.Sum(player => player.Cost);
         }
-        private void RecalculateRosterSpots()
+        public void RecalculateRosterSpots()
         {
             _rosterSpots = 16 - Players.Count();
         }

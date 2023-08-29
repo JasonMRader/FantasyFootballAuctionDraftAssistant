@@ -71,6 +71,8 @@ namespace FantasyFootballAuctionDraftAssistant
                 foreach (var team in teams)
                 {
                     team.Players.AddRange(players.Where(p => p.FantasyTeamID == team.ID));
+                    team.RecalculateBudget();
+                    team.RecalculateRosterSpots();
                 }
 
                 return teams;

@@ -33,7 +33,7 @@ namespace FantasyFootballAuctionDraftAssistant
         private void SetRadioButtonsToFantasyTeams()
         {
             int radioButtonIndex = 0;
-            int labelIndex = 0;
+            //int labelIndex = 0;
 
             foreach (Control control in pnlTeamsToView.Controls)
             {
@@ -48,13 +48,38 @@ namespace FantasyFootballAuctionDraftAssistant
                     }
 
                     control.Click += RadioButton_Click; // Register common click event
-
+                    CreateSalaryCapLabels(control as RadioButton);
                     radioButtonIndex++;
                 }
-                else if (control is Label && labelIndex < FantasyTeamList.Count)
+                //else if (control is Label && labelIndex < FantasyTeamList.Count)
+                //{
+                //    control.Text = "$" + FantasyTeamList[labelIndex].Budget.ToString();
+                //    labelIndex++;
+                //}
+            }
+
+        }
+        private void CreateSalaryCapLabels(RadioButton radioButton)
+        {
+            FantasyTeam team = radioButton.Tag as FantasyTeam;
+            if (team == null) return;
+
+            Label salaryLabel = new Label();
+            salaryLabel.AutoSize = false;
+            salaryLabel.Size = new Size(40, 30);
+            salaryLabel.Text = "$" + team.Budget.ToString() + "\n" + team.Players.Count.ToString() + "/16";
+            salaryLabel.Location = new Point(radioButton.Location.X + radioButton.Width + 10, radioButton.Location.Y);
+            salaryLabel.Tag = team;
+            pnlTeamsToView.Controls.Add(salaryLabel);
+        }
+        private void UpdateSalaryCapLabels()
+        {
+            foreach (Control control in pnlTeamsToView.Controls)
+            {
+                if (control is Label && control.Tag is FantasyTeam)
                 {
-                    control.Text = "$" + FantasyTeamList[labelIndex].Budget.ToString();
-                    labelIndex++;
+                    FantasyTeam team = control.Tag as FantasyTeam;
+                    control.Text = "$" + team.Budget.ToString() + "\n" + team.Players.Count.ToString() + "/16";
                 }
             }
         }
@@ -77,17 +102,17 @@ namespace FantasyFootballAuctionDraftAssistant
         //        }
         //    }
         //}
-        private void SetTeamBudgetLabels()
-        {
-            foreach (Control control in pnlTeamsToView.Controls)
-            {
-                if (control is Label && control.Tag is FantasyTeam)
-                {
-                    FantasyTeam team = (FantasyTeam)control.Tag;
-                    control.Text = "$" + team.Budget.ToString();
-                }
-            }
-        }
+        //private void SetTeamBudgetLabels()
+        //{
+        //    foreach (Control control in pnlTeamsToView.Controls)
+        //    {
+        //        if (control is Label && control.Tag is FantasyTeam)
+        //        {
+        //            FantasyTeam team = (FantasyTeam)control.Tag;
+        //            control.Text = "$" + team.Budget.ToString();
+        //        }
+        //    }
+        //}
         private void SetDraftButtonsToFantasyTeams()
         {
 
@@ -128,7 +153,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
                 UpdateListView();
                 UpdateDisplayTeam();
-                SetTeamBudgetLabels();
+                UpdateSalaryCapLabels();
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
                 txtCost.Clear();
@@ -402,7 +427,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 AddPlayerToTeam(DisplayedTeam);
                 UpdateListView();
                 UpdateDisplayTeam();
-                SetTeamBudgetLabels();
+                UpdateSalaryCapLabels();
 
                 lblPlayerOnClock.Text = "Select A Player";
                 lblPlayerOnClockValue.Text = "";
