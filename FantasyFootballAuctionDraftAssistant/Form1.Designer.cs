@@ -62,6 +62,9 @@
             btnCancelOnClock = new Button();
             lblPlayerOnClockValue = new Label();
             panel3 = new Panel();
+            lblDisplayKeeper = new Label();
+            label14 = new Label();
+            btnSetKeeper = new Button();
             btnRemovePlayerFromTeam = new Button();
             panel7 = new Panel();
             lblRosterSpots = new Label();
@@ -97,7 +100,6 @@
             pnlTeamsToView = new Panel();
             radioButton16 = new RadioButton();
             radioButton15 = new RadioButton();
-            label12 = new Label();
             radioButton12 = new RadioButton();
             radioButton11 = new RadioButton();
             radioButton8 = new RadioButton();
@@ -112,6 +114,7 @@
             radioButton5 = new RadioButton();
             radioButton2 = new RadioButton();
             radioButton1 = new RadioButton();
+            label12 = new Label();
             label28 = new Label();
             txtSearch = new TextBox();
             btnSearch = new Button();
@@ -529,6 +532,9 @@
             // panel3
             // 
             panel3.BackColor = Color.FromArgb(192, 255, 192);
+            panel3.Controls.Add(lblDisplayKeeper);
+            panel3.Controls.Add(label14);
+            panel3.Controls.Add(btnSetKeeper);
             panel3.Controls.Add(btnRemovePlayerFromTeam);
             panel3.Controls.Add(panel7);
             panel3.Controls.Add(panel6);
@@ -539,6 +545,34 @@
             panel3.Name = "panel3";
             panel3.Size = new Size(531, 593);
             panel3.TabIndex = 5;
+            // 
+            // lblDisplayKeeper
+            // 
+            lblDisplayKeeper.AutoSize = true;
+            lblDisplayKeeper.Location = new Point(135, 117);
+            lblDisplayKeeper.Name = "lblDisplayKeeper";
+            lblDisplayKeeper.Size = new Size(36, 15);
+            lblDisplayKeeper.TabIndex = 17;
+            lblDisplayKeeper.Text = "None";
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(71, 117);
+            label14.Name = "label14";
+            label14.Size = new Size(46, 15);
+            label14.TabIndex = 17;
+            label14.Text = "Keeper:";
+            // 
+            // btnSetKeeper
+            // 
+            btnSetKeeper.Location = new Point(183, 530);
+            btnSetKeeper.Name = "btnSetKeeper";
+            btnSetKeeper.Size = new Size(133, 23);
+            btnSetKeeper.TabIndex = 16;
+            btnSetKeeper.Text = "Set Keeper";
+            btnSetKeeper.UseVisualStyleBackColor = true;
+            btnSetKeeper.Click += btnSetKeeper_Click;
             // 
             // btnRemovePlayerFromTeam
             // 
@@ -559,14 +593,14 @@
             panel7.Controls.Add(label13);
             panel7.Location = new Point(236, 28);
             panel7.Name = "panel7";
-            panel7.Size = new Size(177, 100);
+            panel7.Size = new Size(177, 81);
             panel7.TabIndex = 14;
             // 
             // lblRosterSpots
             // 
             lblRosterSpots.AutoSize = true;
             lblRosterSpots.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRosterSpots.Location = new Point(115, 14);
+            lblRosterSpots.Location = new Point(115, 5);
             lblRosterSpots.Name = "lblRosterSpots";
             lblRosterSpots.Size = new Size(25, 21);
             lblRosterSpots.TabIndex = 8;
@@ -576,7 +610,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.Location = new Point(3, 14);
+            label11.Location = new Point(3, 5);
             label11.Name = "label11";
             label11.Size = new Size(106, 21);
             label11.TabIndex = 8;
@@ -585,7 +619,7 @@
             // lblAvgCapPerSpotLeft
             // 
             lblAvgCapPerSpotLeft.AutoSize = true;
-            lblAvgCapPerSpotLeft.Location = new Point(119, 44);
+            lblAvgCapPerSpotLeft.Location = new Point(119, 34);
             lblAvgCapPerSpotLeft.Name = "lblAvgCapPerSpotLeft";
             lblAvgCapPerSpotLeft.Size = new Size(13, 15);
             lblAvgCapPerSpotLeft.TabIndex = 11;
@@ -594,7 +628,7 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(3, 44);
+            label13.Location = new Point(3, 34);
             label13.Name = "label13";
             label13.Size = new Size(110, 15);
             label13.TabIndex = 11;
@@ -611,14 +645,14 @@
             panel6.Controls.Add(label4);
             panel6.Location = new Point(18, 28);
             panel6.Name = "panel6";
-            panel6.Size = new Size(195, 99);
+            panel6.Size = new Size(195, 80);
             panel6.TabIndex = 13;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(18, 14);
+            label3.Location = new Point(21, 5);
             label3.Name = "label3";
             label3.Size = new Size(90, 21);
             label3.TabIndex = 7;
@@ -627,7 +661,7 @@
             // lblRosterValueDifference
             // 
             lblRosterValueDifference.AutoSize = true;
-            lblRosterValueDifference.Location = new Point(124, 64);
+            lblRosterValueDifference.Location = new Point(117, 55);
             lblRosterValueDifference.Name = "lblRosterValueDifference";
             lblRosterValueDifference.Size = new Size(13, 15);
             lblRosterValueDifference.TabIndex = 12;
@@ -637,7 +671,7 @@
             // 
             lblDisplayTeamBudget.AutoSize = true;
             lblDisplayTeamBudget.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDisplayTeamBudget.Location = new Point(114, 14);
+            lblDisplayTeamBudget.Location = new Point(117, 5);
             lblDisplayTeamBudget.Name = "lblDisplayTeamBudget";
             lblDisplayTeamBudget.Size = new Size(37, 21);
             lblDisplayTeamBudget.TabIndex = 7;
@@ -646,7 +680,7 @@
             // lblMaxBid
             // 
             lblMaxBid.AutoSize = true;
-            lblMaxBid.Location = new Point(124, 44);
+            lblMaxBid.Location = new Point(117, 34);
             lblMaxBid.Name = "lblMaxBid";
             lblMaxBid.Size = new Size(13, 15);
             lblMaxBid.TabIndex = 11;
@@ -655,7 +689,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(50, 44);
+            label2.Location = new Point(53, 33);
             label2.Name = "label2";
             label2.Size = new Size(53, 15);
             label2.TabIndex = 11;
@@ -664,7 +698,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(29, 64);
+            label4.Location = new Point(37, 55);
             label4.Name = "label4";
             label4.Size = new Size(74, 15);
             label4.TabIndex = 11;
@@ -915,14 +949,6 @@
             radioButton15.TextAlign = ContentAlignment.MiddleCenter;
             radioButton15.UseVisualStyleBackColor = true;
             // 
-            // label12
-            // 
-            label12.Location = new Point(1374, -10);
-            label12.Name = "label12";
-            label12.Size = new Size(40, 30);
-            label12.TabIndex = 12;
-            label12.Text = "$200\r\n2/16\r\n";
-            // 
             // radioButton12
             // 
             radioButton12.Appearance = Appearance.Button;
@@ -1105,6 +1131,14 @@
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
             radioButton1.UseVisualStyleBackColor = true;
             // 
+            // label12
+            // 
+            label12.Location = new Point(1374, -10);
+            label12.Name = "label12";
+            label12.Size = new Size(40, 30);
+            label12.TabIndex = 12;
+            label12.Text = "$200\r\n2/16\r\n";
+            // 
             // label28
             // 
             label28.AutoSize = true;
@@ -1158,6 +1192,7 @@
             panel2.PerformLayout();
             pnlOtherTeamsDraft.ResumeLayout(false);
             panel3.ResumeLayout(false);
+            panel3.PerformLayout();
             panel7.ResumeLayout(false);
             panel7.PerformLayout();
             panel6.ResumeLayout(false);
@@ -1259,5 +1294,8 @@
         private Button btnRemovePlayerFromTeam;
         private TextBox txtSearch;
         private Button btnSearch;
+        private Button btnSetKeeper;
+        private Label lblDisplayKeeper;
+        private Label label14;
     }
 }

@@ -77,8 +77,29 @@ namespace FantasyFootballAuctionDraftAssistant
             }
             return difference;
         }
+        public void SetKeeper(Player newKeeper)
+        {
+            // If the player is not already part of the team, throw an exception or handle it accordingly
+            if (!Players.Any(p => p.ID == newKeeper.ID))
+            {
+                throw new InvalidOperationException("The provided player is not part of this fantasy team.");
+            }
+
+            // Unset any existing keeper on the team
+            foreach (var player in Players)
+            {
+                if (player.Keeper)
+                {
+                    player.Keeper = false;
+                }
+            }
+
+            // Set the new keeper
+            newKeeper.Keeper = true;
+            Keeper = newKeeper;
+        }
 
 
-        
+
     }
 }

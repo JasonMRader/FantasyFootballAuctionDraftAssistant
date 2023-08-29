@@ -322,6 +322,15 @@ namespace FantasyFootballAuctionDraftAssistant
             }
 
             lblMaxBid.Text = (DisplayedTeam.Budget - DisplayedTeam.RosterSpots).ToString();
+            if (DisplayedTeam.Keeper != null)
+            {
+                lblDisplayKeeper.Text = DisplayedTeam.Keeper.Name;
+            }
+            else
+            {
+                lblDisplayKeeper.Text = "None";
+            }
+
         }
 
         private void lvUndraftedPlayers_SelectedIndexChanged(object sender, EventArgs e)
@@ -553,6 +562,7 @@ namespace FantasyFootballAuctionDraftAssistant
             SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
             UpdateListView();
             UpdateDisplayTeam();
+            UpdateSalaryCapLabels();
         }
 
         private void lvTeamRoster_SelectedIndexChanged(object sender, EventArgs e)
@@ -566,6 +576,14 @@ namespace FantasyFootballAuctionDraftAssistant
                 SelectedPlayerOnRoster = playerList.FirstOrDefault(p => p.Name == selectedPlayerName);
                 SetPlayerOnClockUI();
             }
+        }
+
+        private void btnSetKeeper_Click(object sender, EventArgs e)
+        {
+            DisplayedTeam.SetKeeper(SelectedPlayerOnRoster);
+            SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
+            //lvTeamRoster.Clear();
+            UpdateDisplayTeam();
         }
     }
 }

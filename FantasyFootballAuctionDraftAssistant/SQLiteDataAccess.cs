@@ -50,7 +50,7 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 cnn.Execute("UPDATE Players SET Name = @Name, EstimatedValue = @EstimatedValue, Position = @Position, " +
                     "NflTeam = @NflTeam, ByeWeek = @ByeWeek, Drafted = @Drafted, FantasyTeamID = @FantasyTeamID, " +
-                    "Cost = @Cost, Year = @Year WHERE ID = @ID", player);
+                    "Cost = @Cost, Year = @Year, Keeper = @Keeper, DraftPickNumber = @DraftPickNumber WHERE ID = @ID", player);
             }
         }
 
@@ -71,6 +71,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 foreach (var team in teams)
                 {
                     team.Players.AddRange(players.Where(p => p.FantasyTeamID == team.ID));
+                    team.Keeper = team.Players.FirstOrDefault(p => p.Keeper);
                     team.RecalculateBudget();
                     team.RecalculateRosterSpots();
                 }
