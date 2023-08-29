@@ -16,7 +16,7 @@ namespace FantasyFootballAuctionDraftAssistant
         public string NflTeam { get; set; }
         public int ByeWeek { get; set; }
         public bool Drafted { get; set; }
-        public string FantasyTeam { get; set; }
+        public FantasyTeam fantasyTeam { get; set; }
         public int FantasyTeamID { get; set; }
         public int Cost { get; set; }
         public int Year { get; set; }

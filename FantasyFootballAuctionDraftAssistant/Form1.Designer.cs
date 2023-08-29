@@ -118,6 +118,7 @@
             label28 = new Label();
             txtSearch = new TextBox();
             btnSearch = new Button();
+            btnKeepers = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -272,7 +273,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(53, 116);
+            label1.Location = new Point(64, 92);
             label1.Name = "label1";
             label1.Size = new Size(64, 25);
             label1.TabIndex = 3;
@@ -311,17 +312,18 @@
             pnlOtherTeamsDraft.Controls.Add(button3);
             pnlOtherTeamsDraft.Controls.Add(button1);
             pnlOtherTeamsDraft.Controls.Add(btnOtherDraftsOnClock);
-            pnlOtherTeamsDraft.Location = new Point(3, 254);
+            pnlOtherTeamsDraft.Location = new Point(3, 233);
             pnlOtherTeamsDraft.Name = "pnlOtherTeamsDraft";
-            pnlOtherTeamsDraft.Size = new Size(246, 475);
+            pnlOtherTeamsDraft.Size = new Size(246, 676);
             pnlOtherTeamsDraft.TabIndex = 7;
             // 
             // button14
             // 
-            button14.Location = new Point(14, 437);
-            button14.Margin = new Padding(3, 5, 3, 3);
+            button14.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button14.Location = new Point(14, 630);
+            button14.Margin = new Padding(0, 0, 0, 10);
             button14.Name = "button14";
-            button14.Size = new Size(206, 28);
+            button14.Size = new Size(206, 35);
             button14.TabIndex = 4;
             button14.Text = "Other Team Drafted";
             button14.UseVisualStyleBackColor = true;
@@ -329,10 +331,11 @@
             // 
             // button13
             // 
-            button13.Location = new Point(14, 406);
-            button13.Margin = new Padding(3, 5, 3, 3);
+            button13.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button13.Location = new Point(14, 585);
+            button13.Margin = new Padding(0, 0, 0, 10);
             button13.Name = "button13";
-            button13.Size = new Size(206, 28);
+            button13.Size = new Size(206, 35);
             button13.TabIndex = 4;
             button13.Text = "Other Team Drafted";
             button13.UseVisualStyleBackColor = true;
@@ -340,10 +343,11 @@
             // 
             // button11
             // 
-            button11.Location = new Point(14, 344);
-            button11.Margin = new Padding(3, 5, 3, 3);
+            button11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button11.Location = new Point(14, 495);
+            button11.Margin = new Padding(0, 0, 0, 10);
             button11.Name = "button11";
-            button11.Size = new Size(206, 28);
+            button11.Size = new Size(206, 35);
             button11.TabIndex = 4;
             button11.Text = "Other Team Drafted";
             button11.UseVisualStyleBackColor = true;
@@ -351,10 +355,11 @@
             // 
             // button10
             // 
-            button10.Location = new Point(14, 313);
-            button10.Margin = new Padding(3, 5, 3, 3);
+            button10.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button10.Location = new Point(14, 450);
+            button10.Margin = new Padding(0, 0, 0, 10);
             button10.Name = "button10";
-            button10.Size = new Size(206, 28);
+            button10.Size = new Size(206, 35);
             button10.TabIndex = 4;
             button10.Text = "Other Team Drafted";
             button10.UseVisualStyleBackColor = true;
@@ -362,10 +367,11 @@
             // 
             // button8
             // 
-            button8.Location = new Point(14, 251);
-            button8.Margin = new Padding(3, 5, 3, 3);
+            button8.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button8.Location = new Point(14, 360);
+            button8.Margin = new Padding(0, 0, 0, 10);
             button8.Name = "button8";
-            button8.Size = new Size(206, 28);
+            button8.Size = new Size(206, 35);
             button8.TabIndex = 4;
             button8.Text = "Other Team Drafted";
             button8.UseVisualStyleBackColor = true;
@@ -373,10 +379,11 @@
             // 
             // button7
             // 
-            button7.Location = new Point(14, 220);
-            button7.Margin = new Padding(3, 5, 3, 3);
+            button7.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button7.Location = new Point(14, 315);
+            button7.Margin = new Padding(0, 0, 0, 10);
             button7.Name = "button7";
-            button7.Size = new Size(206, 28);
+            button7.Size = new Size(206, 35);
             button7.TabIndex = 4;
             button7.Text = "Other Team Drafted";
             button7.UseVisualStyleBackColor = true;
@@ -384,10 +391,11 @@
             // 
             // button12
             // 
-            button12.Location = new Point(14, 375);
-            button12.Margin = new Padding(3, 5, 3, 3);
+            button12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button12.Location = new Point(14, 540);
+            button12.Margin = new Padding(0, 0, 0, 10);
             button12.Name = "button12";
-            button12.Size = new Size(206, 28);
+            button12.Size = new Size(206, 35);
             button12.TabIndex = 4;
             button12.Text = "Other Team Drafted";
             button12.UseVisualStyleBackColor = true;
@@ -395,10 +403,11 @@
             // 
             // button5
             // 
-            button5.Location = new Point(14, 158);
-            button5.Margin = new Padding(3, 5, 3, 3);
+            button5.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Location = new Point(14, 225);
+            button5.Margin = new Padding(0, 0, 0, 10);
             button5.Name = "button5";
-            button5.Size = new Size(206, 28);
+            button5.Size = new Size(206, 35);
             button5.TabIndex = 4;
             button5.Text = "Other Team Drafted";
             button5.UseVisualStyleBackColor = true;
@@ -406,10 +415,11 @@
             // 
             // button9
             // 
-            button9.Location = new Point(14, 282);
-            button9.Margin = new Padding(3, 5, 3, 3);
+            button9.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button9.Location = new Point(14, 405);
+            button9.Margin = new Padding(0, 0, 0, 10);
             button9.Name = "button9";
-            button9.Size = new Size(206, 28);
+            button9.Size = new Size(206, 35);
             button9.TabIndex = 4;
             button9.Text = "Other Team Drafted";
             button9.UseVisualStyleBackColor = true;
@@ -417,10 +427,11 @@
             // 
             // button4
             // 
-            button4.Location = new Point(14, 127);
-            button4.Margin = new Padding(3, 5, 3, 3);
+            button4.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Location = new Point(14, 180);
+            button4.Margin = new Padding(0, 0, 0, 10);
             button4.Name = "button4";
-            button4.Size = new Size(206, 28);
+            button4.Size = new Size(206, 35);
             button4.TabIndex = 4;
             button4.Text = "Other Team Drafted";
             button4.UseVisualStyleBackColor = true;
@@ -428,10 +439,11 @@
             // 
             // button6
             // 
-            button6.Location = new Point(14, 189);
-            button6.Margin = new Padding(3, 5, 3, 3);
+            button6.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button6.Location = new Point(14, 270);
+            button6.Margin = new Padding(0, 0, 0, 10);
             button6.Name = "button6";
-            button6.Size = new Size(206, 28);
+            button6.Size = new Size(206, 35);
             button6.TabIndex = 4;
             button6.Text = "Other Team Drafted";
             button6.UseVisualStyleBackColor = true;
@@ -439,10 +451,11 @@
             // 
             // button2
             // 
-            button2.Location = new Point(14, 65);
-            button2.Margin = new Padding(3, 5, 3, 3);
+            button2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Location = new Point(14, 95);
+            button2.Margin = new Padding(0, 0, 0, 10);
             button2.Name = "button2";
-            button2.Size = new Size(206, 28);
+            button2.Size = new Size(206, 35);
             button2.TabIndex = 4;
             button2.Text = "Other Team Drafted";
             button2.UseVisualStyleBackColor = true;
@@ -450,10 +463,11 @@
             // 
             // button3
             // 
-            button3.Location = new Point(14, 96);
-            button3.Margin = new Padding(3, 5, 3, 3);
+            button3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Location = new Point(14, 135);
+            button3.Margin = new Padding(0, 0, 0, 10);
             button3.Name = "button3";
-            button3.Size = new Size(206, 28);
+            button3.Size = new Size(206, 35);
             button3.TabIndex = 4;
             button3.Text = "Other Team Drafted";
             button3.UseVisualStyleBackColor = true;
@@ -461,10 +475,11 @@
             // 
             // button1
             // 
-            button1.Location = new Point(14, 34);
-            button1.Margin = new Padding(3, 5, 3, 3);
+            button1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Location = new Point(14, 50);
+            button1.Margin = new Padding(0, 0, 0, 10);
             button1.Name = "button1";
-            button1.Size = new Size(206, 28);
+            button1.Size = new Size(206, 35);
             button1.TabIndex = 4;
             button1.Text = "Other Team Drafted";
             button1.UseVisualStyleBackColor = true;
@@ -472,10 +487,11 @@
             // 
             // btnOtherDraftsOnClock
             // 
-            btnOtherDraftsOnClock.Location = new Point(14, 3);
-            btnOtherDraftsOnClock.Margin = new Padding(3, 5, 3, 3);
+            btnOtherDraftsOnClock.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnOtherDraftsOnClock.Location = new Point(14, 5);
+            btnOtherDraftsOnClock.Margin = new Padding(0, 0, 0, 10);
             btnOtherDraftsOnClock.Name = "btnOtherDraftsOnClock";
-            btnOtherDraftsOnClock.Size = new Size(206, 28);
+            btnOtherDraftsOnClock.Size = new Size(206, 35);
             btnOtherDraftsOnClock.TabIndex = 4;
             btnOtherDraftsOnClock.Text = "Other Team Drafted";
             btnOtherDraftsOnClock.UseVisualStyleBackColor = true;
@@ -483,9 +499,10 @@
             // 
             // btnWeDraftOnClock
             // 
-            btnWeDraftOnClock.Location = new Point(17, 211);
+            btnWeDraftOnClock.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            btnWeDraftOnClock.Location = new Point(17, 175);
             btnWeDraftOnClock.Name = "btnWeDraftOnClock";
-            btnWeDraftOnClock.Size = new Size(206, 37);
+            btnWeDraftOnClock.Size = new Size(206, 52);
             btnWeDraftOnClock.TabIndex = 4;
             btnWeDraftOnClock.Text = "We Draft";
             btnWeDraftOnClock.UseVisualStyleBackColor = true;
@@ -503,7 +520,7 @@
             // 
             // txtCost
             // 
-            txtCost.Location = new Point(17, 170);
+            txtCost.Location = new Point(17, 146);
             txtCost.Name = "txtCost";
             txtCost.Size = new Size(206, 23);
             txtCost.TabIndex = 5;
@@ -523,7 +540,7 @@
             // 
             lblPlayerOnClockValue.AutoSize = true;
             lblPlayerOnClockValue.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClockValue.Location = new Point(134, 116);
+            lblPlayerOnClockValue.Location = new Point(145, 92);
             lblPlayerOnClockValue.Name = "lblPlayerOnClockValue";
             lblPlayerOnClockValue.Size = new Size(34, 25);
             lblPlayerOnClockValue.TabIndex = 3;
@@ -859,12 +876,13 @@
             // 
             // btnDraftHistory
             // 
-            btnDraftHistory.Location = new Point(688, 9);
+            btnDraftHistory.Location = new Point(664, 9);
             btnDraftHistory.Name = "btnDraftHistory";
-            btnDraftHistory.Size = new Size(187, 23);
+            btnDraftHistory.Size = new Size(130, 23);
             btnDraftHistory.TabIndex = 7;
             btnDraftHistory.Text = "View Draft History";
             btnDraftHistory.UseVisualStyleBackColor = true;
+            btnDraftHistory.Click += btnDraftHistory_Click;
             // 
             // webView
             // 
@@ -1164,12 +1182,24 @@
             btnSearch.TabIndex = 13;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
+            // 
+            // btnKeepers
+            // 
+            btnKeepers.Location = new Point(800, 9);
+            btnKeepers.Name = "btnKeepers";
+            btnKeepers.Size = new Size(86, 23);
+            btnKeepers.TabIndex = 14;
+            btnKeepers.Text = "Keepers";
+            btnKeepers.UseVisualStyleBackColor = true;
+            btnKeepers.Click += btnKeepers_Click;
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1520, 951);
+            Controls.Add(btnKeepers);
             Controls.Add(label28);
             Controls.Add(btnSearch);
             Controls.Add(label12);
@@ -1297,5 +1327,6 @@
         private Button btnSetKeeper;
         private Label lblDisplayKeeper;
         private Label label14;
+        private Button btnKeepers;
     }
 }

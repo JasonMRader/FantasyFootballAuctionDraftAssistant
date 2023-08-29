@@ -41,7 +41,7 @@ namespace FantasyFootballAuctionDraftAssistant
             player.Cost = Cost;
             player.Drafted = true;
             player.FantasyTeamID = this.ID;
-            player.FantasyTeam = this.Name;
+            player.fantasyTeam = this;
             this.Players.Add(player);
             RecalculateBudget();
             RecalculateRosterSpots();
@@ -50,7 +50,7 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             player.Cost = 0;
             player.Drafted = false;
-            player.FantasyTeam = null;
+            player.fantasyTeam = null;
             player.FantasyTeamID = 0;
             this.Players.Remove(player);
             RecalculateBudget();

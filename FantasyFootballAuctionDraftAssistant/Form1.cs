@@ -11,6 +11,7 @@ namespace FantasyFootballAuctionDraftAssistant
         FantasyTeam DisplayedTeam = new FantasyTeam();
         Player SelectedPlayerOnRoster = new Player();
         Player playerOnClock = new Player();
+        DraftManager Draft = new DraftManager();
         public Form1()
         {
             InitializeComponent();
@@ -24,11 +25,14 @@ namespace FantasyFootballAuctionDraftAssistant
             await webView.EnsureCoreWebView2Async();
             FreeAgents = playerList.Where(player => !player.Drafted).ToList();
             cbAllPositions.Checked = true;
+            DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
+            Draft.StartDraft(playerList);
             SetDraftButtonsToFantasyTeams();
             SetRadioButtonsToFantasyTeams();
 
             SetupListViewColumns();
             UpdateListView();
+            UpdateDisplayTeam();
         }
         private void SetRadioButtonsToFantasyTeams()
         {
@@ -434,6 +438,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
                 AddPlayerToTeam(DisplayedTeam);
+                Draft.RecordMove(playerOnClock, DisplayedTeam, false, 1);
                 UpdateListView();
                 UpdateDisplayTeam();
                 UpdateSalaryCapLabels();
@@ -584,6 +589,21 @@ namespace FantasyFootballAuctionDraftAssistant
             SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
             //lvTeamRoster.Clear();
             UpdateDisplayTeam();
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDraftHistory_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnKeepers_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
