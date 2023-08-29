@@ -23,12 +23,31 @@ namespace FantasyFootballAuctionDraftAssistant
             // Register all keepers with pickNumber 0
             foreach (var player in allPlayers.Where(p => p.Keeper))
             {
-                RecordMove(player, player.fantasyTeam, true, 0);
+                //RecordMove(player, player.fantasyTeam, true, 0);
+                var move = new RosterMoves(player, player.fantasyTeam, true, 0);
                 Keepers.Add(player);
+                FreeAgents.Remove(player);
+                Moves.Add(move);
             }
             FreeAgents.AddRange(allPlayers.Where(p => !p.Keeper));
         }
+        public void RecordDraftPick(Player player, FantasyTeam team)
+        {
+            // If the player is a keeper, we don't update the draft pick number.
+            
 
+            var move = new RosterMoves(player, team, false, currentPickNumber);
+
+            // Update the Player's Keeper and DraftPickNumber properties
+            player.Keeper = false;
+            player.DraftPickNumber = currentPickNumber;
+            player.fantasyTeam = team;
+            
+            DraftedPlayers.Add(player);
+            FreeAgents.Remove(player);
+            Moves.Add(move);
+            currentPickNumber++;
+        }
         public void RecordMove(Player player, FantasyTeam team, bool keeper, int pickNo)
         {
             // If the player is a keeper, we don't update the draft pick number.
@@ -42,7 +61,7 @@ namespace FantasyFootballAuctionDraftAssistant
             // Update the Player's Keeper and DraftPickNumber properties
             player.Keeper = keeper;
             player.DraftPickNumber = pickNo;
-            if (player.Keeper = false)
+            if (player.Keeper == false)
             {
                 DraftedPlayers.Add(player);
             }

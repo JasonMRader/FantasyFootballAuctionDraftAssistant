@@ -438,7 +438,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
                 AddPlayerToTeam(DisplayedTeam);
-                Draft.RecordMove(playerOnClock, DisplayedTeam, false, 1);
+                Draft.RecordDraftPick(playerOnClock, DisplayedTeam);
                 UpdateListView();
                 UpdateDisplayTeam();
                 UpdateSalaryCapLabels();
