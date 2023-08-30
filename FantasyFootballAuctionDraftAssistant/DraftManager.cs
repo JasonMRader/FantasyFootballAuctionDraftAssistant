@@ -55,13 +55,13 @@ namespace FantasyFootballAuctionDraftAssistant
                 FreeAgents.Remove(player);
                 Moves.Add(move);
             }
-            foreach (var player in this.AllPlayers.Where(p => p.Drafted == true))
+            foreach (var player in this.AllPlayers.Where(p => p.Drafted == true && p.Keeper == false))
             {
                 DraftedPlayers.Add(player);
                 FreeAgents.Remove(player);
                 currentPickNumber ++;
             }
-            FreeAgents.AddRange(this.AllPlayers.Where(p => !p.Keeper));
+            FreeAgents.AddRange(this.AllPlayers.Where(p => !p.Keeper && !p.Drafted));
         }
         public void RecordDraftPick(FantasyTeam team, int cost)
         {
