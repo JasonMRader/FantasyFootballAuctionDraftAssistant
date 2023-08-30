@@ -92,7 +92,7 @@ namespace FantasyFootballAuctionDraftAssistant
                     team.RecalculateBudget();
                     team.RecalculateRosterSpots();
                 }
-
+                //teams.OrderBy(t => t.Name);
                 return teams;
             }
         }

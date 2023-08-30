@@ -5,13 +5,16 @@ namespace FantasyFootballAuctionDraftAssistant
 {
     public partial class Form1 : Form
     {
-        List<Player> playerList;
-        List<Player> FreeAgents;
-        List<FantasyTeam> FantasyTeamList;
-        FantasyTeam DisplayedTeam = new FantasyTeam();
-        Player SelectedPlayerOnRoster = new Player();
-        Player playerOnClock = new Player();
+        // Reformating code
+        //List<Player> playerList;
+        //List<Player> FreeAgents;
+        //List<FantasyTeam> FantasyTeamList;
+        //FantasyTeam DisplayedTeam = new FantasyTeam();
+        //Player SelectedPlayerOnRoster = new Player();
+        //Player playerOnClock = new Player();
         DraftManager Draft = new DraftManager();
+        
+
         public Form1()
         {
             InitializeComponent();
@@ -20,13 +23,15 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-            playerList = SQLiteDataAccess.LoadPlayers();
-            FantasyTeamList = SQLiteDataAccess.LoadFantasyTeams(playerList);
+            //playerList = SQLiteDataAccess.LoadPlayers();
+            //FantasyTeamList = SQLiteDataAccess.LoadFantasyTeams(playerList);
             await webView.EnsureCoreWebView2Async();
-            FreeAgents = playerList.Where(player => !player.Drafted).ToList();
+            //FreeAgents = playerList.Where(player => !player.Drafted).ToList();
             cbAllPositions.Checked = true;
-            DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
-            Draft.StartDraft(playerList);
+            
+            Draft.StartDraft();
+            //Draft.AllFantasyTeams.OrderByDescending(t => t.Name).ToList();
+            Draft.DisplayTeam = Draft.AllFantasyTeams.FirstOrDefault(team => team.Name == "Disappointing Monday");
             SetDraftButtonsToFantasyTeams();
             SetRadioButtonsToFantasyTeams();
 
@@ -37,29 +42,25 @@ namespace FantasyFootballAuctionDraftAssistant
         private void SetRadioButtonsToFantasyTeams()
         {
             int radioButtonIndex = 0;
-            //int labelIndex = 0;
+           
 
             foreach (Control control in pnlTeamsToView.Controls)
             {
-                if (control is RadioButton && radioButtonIndex < FantasyTeamList.Count)
+                if (control is RadioButton && radioButtonIndex < Draft.AllFantasyTeams.Count)
                 {
-                    control.Text = FantasyTeamList[radioButtonIndex].Name;
-                    control.Tag = FantasyTeamList[radioButtonIndex]; // Store the FantasyTeam object in the Tag for later retrieval
+                    control.Text = Draft.AllFantasyTeams[radioButtonIndex].Name;
+                    control.Tag = Draft.AllFantasyTeams[radioButtonIndex];
 
                     if (control.Text == "Disappointing Monday")
                     {
                         control.BackColor = Color.LightGreen;
                     }
 
-                    control.Click += RadioButton_Click; // Register common click event
+                    control.Click += RadioButton_Click; 
                     CreateSalaryCapLabels(control as RadioButton);
                     radioButtonIndex++;
                 }
-                //else if (control is Label && labelIndex < FantasyTeamList.Count)
-                //{
-                //    control.Text = "$" + FantasyTeamList[labelIndex].Budget.ToString();
-                //    labelIndex++;
-                //}
+                
             }
 
         }
@@ -87,64 +88,57 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
             }
         }
+        private void SetDraftButtonsToFantasyTeams()
+        {
+            var teamButtons = pnlOtherTeamsDraft.Controls.OfType<Button>().ToList();
 
-        //private void SetRadioButtonsToFantasyTeams()
+            // Assuming Draft.AllFantasyTeams is ordered correctly, we'll first remove "Disappointing Monday"
+            var orderedTeams = Draft.AllFantasyTeams.Where(team => team.Name != "Disappointing Monday").ToList();
+
+            // Now loop through both the teamButtons and orderedTeams together using Zip
+            foreach (var (btn, team) in teamButtons.Zip(orderedTeams, (b, t) => (b, t)))
+            {
+                btn.Text = team.Name;
+                btn.Tag = team;
+                btn.Click += DraftButton_Click; // This might add multiple click events if called multiple times. Ensure you only do this once.
+            }
+        }
+
+
+        //private void SetDraftButtonsToFantasyTeams()
         //{
+        //    var teamButtons = pnlOtherTeamsDraft.Controls.OfType<Button>().ToList();
+
         //    int index = 0;
-        //    foreach (Control control in pnlTeamsToView.Controls)
+        //    foreach (Control control in pnlOtherTeamsDraft.Controls)
         //    {
-        //        if (control is RadioButton && index < FantasyTeamList.Count)
+        //        if (control is Button)
         //        {
-        //            control.Text = FantasyTeamList[index].Name;
-        //            control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
-        //            if (control.Text == "Disappointing Monday")
+        //            // Skip the loop iteration if we've processed all the teams or if the current team is "Disappointing Monday"
+        //            while (index < Draft.AllFantasyTeams.Count && Draft.AllFantasyTeams[index].Name == "Disappointing Monday")
         //            {
-        //                control.BackColor = Color.LightGreen;
+        //                index++;
         //            }
-        //            control.Click += RadioButton_Click; // Register common click event
+
+        //            // Check again if we've reached the end of the otherTeams list
+        //            if (index >= Draft.AllFantasyTeams.Count)
+        //            {
+        //                break; // Exit the loop if we've processed all the teams
+        //            }
+
+        //            control.Text = Draft.AllFantasyTeams[index].Name;
+        //            control.Tag = Draft.AllFantasyTeams[index]; // Store the FantasyTeam object in the Tag for later retrieval
+
+        //            control.Click += DraftButton_Click; // Register common click event 
         //            index++;
         //        }
         //    }
-        //}
-        //private void SetTeamBudgetLabels()
-        //{
-        //    foreach (Control control in pnlTeamsToView.Controls)
+        //    teamButtons = teamButtons.OrderBy(btn => Draft.AllFantasyTeams.FindIndex(team => team.Name == btn.Text)).ToList();
+        //    foreach (var btn in teamButtons)
         //    {
-        //        if (control is Label && control.Tag is FantasyTeam)
-        //        {
-        //            FantasyTeam team = (FantasyTeam)control.Tag;
-        //            control.Text = "$" + team.Budget.ToString();
-        //        }
+        //        pnlOtherTeamsDraft.Controls.SetChildIndex(btn, teamButtons.IndexOf(btn));
         //    }
         //}
-        private void SetDraftButtonsToFantasyTeams()
-        {
-
-            int index = 0;
-            foreach (Control control in pnlOtherTeamsDraft.Controls)
-            {
-                if (control is Button)
-                {
-                    // Skip the loop iteration if we've processed all the teams or if the current team is "Disappointing Monday"
-                    while (index < FantasyTeamList.Count && FantasyTeamList[index].Name == "Disappointing Monday")
-                    {
-                        index++;
-                    }
-
-                    // Check again if we've reached the end of the otherTeams list
-                    if (index >= FantasyTeamList.Count)
-                    {
-                        break; // Exit the loop if we've processed all the teams
-                    }
-
-                    control.Text = FantasyTeamList[index].Name;
-                    control.Tag = FantasyTeamList[index]; // Store the FantasyTeam object in the Tag for later retrieval
-
-                    control.Click += DraftButton_Click; // Register common click event 
-                    index++;
-                }
-            }
-        }
 
         private void DraftButton_Click(object? sender, EventArgs e)
         {
@@ -153,7 +147,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
                 {
                     // Assuming playerOnClock and txtCost.Text have been declared and initialized in this scope
-                    AddPlayerToTeam(selectedTeam);
+                    AddPlayerToTeam(selectedTeam, Int32.Parse(txtCost.Text));
                 }
                 UpdateListView();
                 UpdateDisplayTeam();
@@ -176,25 +170,26 @@ namespace FantasyFootballAuctionDraftAssistant
                 FantasyTeam selectedTeam = clickedRadioButton.Tag as FantasyTeam;
                 if (selectedTeam != null)
                 {
-                    // Assuming DisplayedTeam is a property where you want to store the selected team
-                    DisplayedTeam = selectedTeam;
+                   
+                    Draft.DisplayTeam = selectedTeam;
                 }
             }
-            //UpdateDisplayTeam();
+           
             UpdateListView();
             UpdateDisplayTeam();
             lblPlayerOnClock.Text = "Select A Player";
             lblPlayerOnClockValue.Text = "";
             txtCost.Clear();
         }
-        private void AddPlayerToTeam(FantasyTeam Team)
+        private void AddPlayerToTeam(FantasyTeam Team, int cost)
         {
+
             if (IsValidNumber(txtCost.Text))
             {
-                Team.AddPlayer(playerOnClock, int.Parse(txtCost.Text));
-                FreeAgents = playerList.Where(player => !player.Drafted).ToList();
-                Draft.RecordDraftPick(playerOnClock, Team);
-                SQLiteDataAccess.UpdatePlayer(playerOnClock);
+                //Team.AddPlayer(Draft.PlayerOnTheClock, cost);
+                //FreeAgents = playerList.Where(player => !player.Drafted).ToList();
+                //Draft.RecordDraftPick(Team, cost);
+                //SQLiteDataAccess.UpdatePlayer(Draft.PlayerOnTheClock);
             }
             else
             {
@@ -210,7 +205,7 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             lvUndraftedPlayers.Items.Clear();
             lvUndraftedPlayers.Columns.Clear();
-            lvUndraftedPlayers.View = View.Details; // Ensure the view is set to details
+            lvUndraftedPlayers.View = View.Details; 
 
             lvUndraftedPlayers.Columns.Add("Pick", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Name", 125, HorizontalAlignment.Left);
@@ -223,14 +218,14 @@ namespace FantasyFootballAuctionDraftAssistant
         private void SetViewToKeepers()
         {
             SetListViewToRosterMoves();
-            lvUndraftedPlayers.Items.Clear(); // Clear existing items first
+            lvUndraftedPlayers.Items.Clear(); 
 
-            //IEnumerable<Player> filteredPlayers = FreeAgents.Where(player => IsPositionChecked(player.Position));
+            
 
             foreach (Player player in Draft.Keepers)
             {
-                ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
-                lvi.SubItems.Add(player.Name); // Second column
+                ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); 
+                lvi.SubItems.Add(player.Name); 
                 lvi.SubItems.Add(player.FantasyTeam.Name);
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.Cost.ToString());
@@ -240,20 +235,20 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
-            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
+            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter, 1);
 
         }
         private void SetViewToDraftHistory()
         {
             SetListViewToRosterMoves();
-            lvUndraftedPlayers.Items.Clear(); // Clear existing items first
+            lvUndraftedPlayers.Items.Clear(); 
 
-            //IEnumerable<Player> filteredPlayers = FreeAgents.Where(player => IsPositionChecked(player.Position));
+           
 
             foreach (Player player in Draft.DraftedPlayers)
             {
-                ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
-                lvi.SubItems.Add(player.Name); // Second column
+                ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); 
+                lvi.SubItems.Add(player.Name);
                 lvi.SubItems.Add(player.FantasyTeam.Name);
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.Cost.ToString());
@@ -262,13 +257,13 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
-            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
+            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter, 0);
         }
         private void SetListViewToFreeAgents()
         {
             lvUndraftedPlayers.Items.Clear();
             lvUndraftedPlayers.Columns.Clear();
-            lvUndraftedPlayers.View = View.Details; // Ensure the view is set to details
+            lvUndraftedPlayers.View = View.Details;
             lvUndraftedPlayers.Columns.Add("Name", 125, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Value", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
@@ -276,25 +271,20 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Exp", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Notes", 100, HorizontalAlignment.Left);
+            lvUndraftedPlayers.ListViewItemSorter = lvUndraftedPlayersSorter;
+            lvUndraftedPlayers.ColumnClick += LvUndraftedPlayers_ColumnClick;
         }
         private void SetupListViewColumns()
         {
-            lvUndraftedPlayers.View = View.Details; // Ensure the view is set to details
-            lvUndraftedPlayers.Columns.Add("Name", 125, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Value", 50, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Team", 120, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Exp", 50, HorizontalAlignment.Left);
-            lvTeamRoster.View = View.Details; // Ensure the view is set to details
+            SetListViewToFreeAgents();
+            lvTeamRoster.View = View.Details; 
             lvTeamRoster.Columns.Add("Name", 125, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Cost", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Position", 65, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Team", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Bye", 50, HorizontalAlignment.Left);
             lvTeamRoster.Columns.Add("Surplus", 50, HorizontalAlignment.Left);
-            lvUndraftedPlayers.ListViewItemSorter = lvUndraftedPlayersSorter;
-            lvUndraftedPlayers.ColumnClick += LvUndraftedPlayers_ColumnClick;
+            
 
             lvTeamRoster.ListViewItemSorter = lvTeamRosterSorter;
             lvTeamRoster.ColumnClick += LvTeamRoster_ColumnClick;
@@ -313,10 +303,10 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             SortListView(e, lvTeamRoster, lvTeamRosterSorter);
         }
-        private void SortByValueDecending(ListView listView, ListViewColumnSorter sorter)
+        private void SortByValueDecending(ListView listView, ListViewColumnSorter sorter, int column)
         {
             sorter.Order = SortOrder.Descending;
-            sorter.SortColumn = 1;
+            sorter.SortColumn = column;
         }
         private void SortListView(ColumnClickEventArgs e, ListView listView, ListViewColumnSorter sorter)
         {
@@ -343,14 +333,14 @@ namespace FantasyFootballAuctionDraftAssistant
         private void UpdateListView()
         {
             SetListViewToFreeAgents();
-            lvUndraftedPlayers.Items.Clear(); // Clear existing items first
+            lvUndraftedPlayers.Items.Clear(); 
             lvTeamRoster.Items.Clear();
-            IEnumerable<Player> filteredPlayers = FreeAgents.Where(player => IsPositionChecked(player.Position));
+            IEnumerable<Player> filteredPlayers = Draft.FreeAgents.Where(player => IsPositionChecked(player.Position));
 
             foreach (Player player in filteredPlayers)
             {
-                ListViewItem lvi = new ListViewItem(player.Name); // First column
-                lvi.SubItems.Add(player.EstimatedValue.ToString()); // Second column
+                ListViewItem lvi = new ListViewItem(player.Name); 
+                lvi.SubItems.Add(player.EstimatedValue.ToString());
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.NflTeam);
                 lvi.SubItems.Add(player.ByeWeek.ToString());
@@ -367,48 +357,48 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
-            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
+            SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter, 1);
         }
         private void SetPlayerOnClockUI()
         {
-            lblPlayerOnClock.Text = playerOnClock.Name;
-            lblPlayerOnClockValue.Text = playerOnClock.EstimatedValue.ToString();
-            txtPlayerNotes.Text = playerOnClock.Notes;
+            lblPlayerOnClock.Text = Draft.PlayerOnTheClock.Name.ToString();
+            lblPlayerOnClockValue.Text = Draft.PlayerOnTheClock.EstimatedValue.ToString();
+            txtPlayerNotes.Text = Draft.PlayerOnTheClock.Notes;
         }
         private void UpdateDisplayTeam()
         {
-            SelectedPlayerOnRoster = null;
-            //lvTeamRoster.Clear();
-            foreach (Player player in DisplayedTeam.Players)
+            Draft.SelectedPlayerOnRoster = null;
+            
+            foreach (Player player in Draft.DisplayTeam.Players)
             {
-                ListViewItem lvi = new ListViewItem(player.Name); // First column
-                lvi.SubItems.Add(player.Cost.ToString()); // Second column
+                ListViewItem lvi = new ListViewItem(player.Name);
+                lvi.SubItems.Add(player.Cost.ToString()); 
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.NflTeam);
                 lvi.SubItems.Add(player.ByeWeek.ToString());
                 lvi.SubItems.Add(player.ValueDifference.ToString());
                 lvTeamRoster.Items.Add(lvi);
             }
-            lblDisplayTeamName.Text = DisplayedTeam.Name;
-            lblDisplayTeamBudget.Text = DisplayedTeam.Budget.ToString();
-            lblQBs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.QB).ToString();
-            lblRBs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.RB).ToString();
-            lblWRs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.WR).ToString();
-            lblTEs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.TE).ToString();
-            lblDEFs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.DEF).ToString();
-            lblKs.Text = DisplayedTeam.CountPosition(Player.PlayerPosition.K).ToString();
-            lblRosterSpots.Text = DisplayedTeam.RosterSpots.ToString();
-            lblRosterValueDifference.Text = DisplayedTeam.TeamValueDifference().ToString();
+            lblDisplayTeamName.Text = Draft.DisplayTeam.Name;
+            lblDisplayTeamBudget.Text = Draft.DisplayTeam.Budget.ToString();
+            lblQBs.Text = Draft.DisplayTeam.CountPosition(Player.PlayerPosition.QB).ToString();
+            lblRBs.Text = Draft.DisplayTeam.CountPosition(Player.PlayerPosition.RB).ToString();
+            lblWRs.Text = Draft.DisplayTeam.CountPosition(Player.PlayerPosition.WR).ToString();
+            lblTEs.Text = Draft.DisplayTeam.CountPosition(Player.PlayerPosition.TE).ToString();
+            lblDEFs.Text = Draft.DisplayTeam.CountPosition(Player.PlayerPosition.DEF).ToString();
+            lblKs.Text = Draft.DisplayTeam.CountPosition(Player.PlayerPosition.K).ToString();
+            lblRosterSpots.Text = Draft.DisplayTeam.RosterSpots.ToString();
+            lblRosterValueDifference.Text = Draft.DisplayTeam.TeamValueDifference().ToString();
             
-            if (DisplayedTeam.RosterSpots > 0)
+            if (Draft.DisplayTeam.RosterSpots > 0)
             {
-                lblAvgCapPerSpotLeft.Text = (DisplayedTeam.Budget / DisplayedTeam.RosterSpots).ToString();
+                lblAvgCapPerSpotLeft.Text = (Draft.DisplayTeam.Budget / Draft.DisplayTeam.RosterSpots).ToString();
             }
 
-            lblMaxBid.Text = (DisplayedTeam.Budget - DisplayedTeam.RosterSpots).ToString();
-            if (DisplayedTeam.Keeper != null)
+            lblMaxBid.Text = (Draft.DisplayTeam.Budget - Draft.DisplayTeam.RosterSpots).ToString();
+            if (Draft.DisplayTeam.Keeper != null)
             {
-                lblDisplayKeeper.Text = DisplayedTeam.Keeper.Name;
+                lblDisplayKeeper.Text = Draft.DisplayTeam.Keeper.Name;
             }
             else
             {
@@ -422,13 +412,13 @@ namespace FantasyFootballAuctionDraftAssistant
 
             if (lvUndraftedPlayers.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = lvUndraftedPlayers.SelectedItems[0]; // Get the first selected item
+                ListViewItem selectedItem = lvUndraftedPlayers.SelectedItems[0]; 
 
-                // Assuming the player's name uniquely identifies them:
+                
                 string selectedPlayerName = selectedItem.Text;
                 if (!cbDraftHistory.Checked)
                 {
-                    playerOnClock = playerList.FirstOrDefault(p => p.Name == selectedPlayerName);
+                    Draft.PlayerOnTheClock = Draft.AllPlayers.FirstOrDefault(p => p.Name == selectedPlayerName);
                     SetPlayerOnClockUI();
 
                 }
@@ -484,38 +474,38 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void cbQB_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbQB.Checked) { UpdateListView(); }
+            
             UpdateListView();
 
         }
 
         private void cbRB_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbRB.Checked) { UpdateListView(); }
+            
             UpdateListView();
         }
 
         private void cbWR_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbWR.Checked) { UpdateListView(); }
+           
             UpdateListView();
         }
 
         private void cbTE_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbTE.Checked) { UpdateListView(); }
+          
             UpdateListView();
         }
 
         private void cbDEF_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbDEF.Checked) { UpdateListView(); }
+          
             UpdateListView();
         }
 
         private void cbK_CheckedChanged(object sender, EventArgs e)
         {
-            //if (cbK.Checked) { UpdateListView(); }
+            
             UpdateListView();
         }
 
@@ -525,9 +515,10 @@ namespace FantasyFootballAuctionDraftAssistant
             if (IsValidNumber(txtCost.Text))
             {
 
-                DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
-                AddPlayerToTeam(DisplayedTeam);
-                Draft.RecordDraftPick(playerOnClock, DisplayedTeam);
+                //DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
+                Draft.DisplayTeam = Draft.MyTeam;
+                AddPlayerToTeam(Draft.DisplayTeam, Int32.Parse(txtCost.Text));
+                Draft.RecordDraftPick(Draft.MyTeam, Int32.Parse(txtCost.Text));
                 UpdateListView();
                 UpdateDisplayTeam();
                 UpdateSalaryCapLabels();
@@ -570,7 +561,7 @@ namespace FantasyFootballAuctionDraftAssistant
             webView.BringToFront();
             btnSearch.Visible = false;
             txtSearch.Visible = false;
-            //btnDraftHistory.Visible = false;
+          
             cbDraftHistory.Visible = false;
             cbKeepers.Visible = false;
             btnCloseBrowser.Visible = true;
@@ -592,11 +583,11 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private string GetYahooURL()
         {
-            string playerName = playerOnClock.Name;
+            string playerName = Draft.PlayerOnTheClock.Name;
             string escapedPlayerName = Uri.EscapeDataString(playerName);
 
 
-            // Construct the Google search query. Adjust as needed.
+       
             //string query = $"NFL {playerName} {lastYear} season stats";
             //string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
             string url = $"https://football.fantasysports.yahoo.com/f1/58184/playersearch?&search={escapedPlayerName}";
@@ -604,7 +595,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private string GetFantasyProsURL()  // Consider renaming this method since it doesn't return a Yahoo URL anymore
         {
-            string playerName = playerOnClock.Name;
+            string playerName = Draft.PlayerOnTheClock.Name;
             string escapedPlayerName = Uri.EscapeDataString(playerName);
 
             string url = $"https://www.fantasypros.com/nfl/players/{escapedPlayerName.ToLower().Replace(" ", "-")}.php";
@@ -612,7 +603,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private string GetFantasyDataSearchURL()
         {
-            string playerName = playerOnClock.Name;
+            string playerName = Draft.PlayerOnTheClock.Name;
             string query = $"site:fantasydata.com {playerName}";
             string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
             return url;
@@ -643,7 +634,7 @@ namespace FantasyFootballAuctionDraftAssistant
             txtSearch.Visible = true;
             cbKeepers.Visible = true;
             cbDraftHistory.Visible = true;
-            //btnDraftHistory.Visible = true;
+           
             btnCloseBrowser.Visible = false;
         }
 
@@ -655,9 +646,10 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnRemovePlayerFromTeam_Click(object sender, EventArgs e)
         {
-            DisplayedTeam.RemovePlayer(SelectedPlayerOnRoster);
-            FreeAgents.Add(SelectedPlayerOnRoster);
-            SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
+            Draft.UndraftPlayer();
+            //Draft.DisplayTeam.RemovePlayer(Draft.SelectedPlayerOnRoster);
+            //Draft.FreeAgents.Add(SelectedPlayerOnRoster);
+            //SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
             UpdateListView();
             UpdateDisplayTeam();
             UpdateSalaryCapLabels();
@@ -667,14 +659,14 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             if (lvTeamRoster.SelectedItems.Count > 0)
             {
-                ListViewItem selectedItem = lvTeamRoster.SelectedItems[0]; // Get the first selected item
+                ListViewItem selectedItem = lvTeamRoster.SelectedItems[0];
 
 
                 string selectedPlayerName = selectedItem.Text;
                 if (!cbDraftHistory.Checked)
                 {
-                    SelectedPlayerOnRoster = playerList.FirstOrDefault(p => p.Name == selectedPlayerName);
-                    SetPlayerOnClockUI();
+                    Draft.SelectedPlayerOnRoster = Draft.DraftedPlayers.FirstOrDefault(p => p.Name == selectedPlayerName);
+                    //SetPlayerOnClockUI();
                 }
 
             }
@@ -682,9 +674,9 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnSetKeeper_Click(object sender, EventArgs e)
         {
-            DisplayedTeam.SetKeeper(SelectedPlayerOnRoster);
-            SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
-            //lvTeamRoster.Clear();
+            Draft.DisplayTeam.SetKeeper(Draft.SelectedPlayerOnRoster);
+            SQLiteDataAccess.UpdatePlayer(Draft.SelectedPlayerOnRoster);
+        
             UpdateDisplayTeam();
         }
 
@@ -694,14 +686,14 @@ namespace FantasyFootballAuctionDraftAssistant
             string query = txtSearch.Text.ToLower();
             if (!cbKeepers.Checked && !cbDraftHistory.Checked)
             {
-                results = FreeAgents.Where(p => p.Name.ToLower().Contains(query)).ToList();             
+                results = Draft.FreeAgents.Where(p => p.Name.ToLower().Contains(query)).ToList();             
 
                 SetListViewToFreeAgents();
                 lvUndraftedPlayers.Items.Clear();
                 foreach (Player player in results)
                 {
-                    ListViewItem lvi = new ListViewItem(player.Name); // First column
-                    lvi.SubItems.Add(player.EstimatedValue.ToString()); // Second column
+                    ListViewItem lvi = new ListViewItem(player.Name); 
+                    lvi.SubItems.Add(player.EstimatedValue.ToString()); 
                     lvi.SubItems.Add(player.Position.ToString());
                     lvi.SubItems.Add(player.NflTeam);
                     lvi.SubItems.Add(player.ByeWeek.ToString());
@@ -726,8 +718,8 @@ namespace FantasyFootballAuctionDraftAssistant
                 lvUndraftedPlayers.Items.Clear();
                 foreach (Player player in results)
                 {
-                    ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
-                    lvi.SubItems.Add(player.Name); // Second column
+                    ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); 
+                    lvi.SubItems.Add(player.Name); 
                     lvi.SubItems.Add(player.FantasyTeam.Name);
                     lvi.SubItems.Add(player.Position.ToString());
                     lvi.SubItems.Add(player.Cost.ToString());
@@ -736,7 +728,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                     lvUndraftedPlayers.Items.Add(lvi);
                 }
-                SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
+                SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter, 0);
             }
             if (cbKeepers.Checked)
             {
@@ -745,8 +737,8 @@ namespace FantasyFootballAuctionDraftAssistant
                 lvUndraftedPlayers.Items.Clear();
                 foreach (Player player in results)
                 {
-                    ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); // First column
-                    lvi.SubItems.Add(player.Name); // Second column
+                    ListViewItem lvi = new ListViewItem(player.DraftPickNumber.ToString()); 
+                    lvi.SubItems.Add(player.Name); 
                     lvi.SubItems.Add(player.FantasyTeam.Name);
                     lvi.SubItems.Add(player.Position.ToString());
                     lvi.SubItems.Add(player.Cost.ToString());
@@ -755,7 +747,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                     lvUndraftedPlayers.Items.Add(lvi);
                 }
-                SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter);
+                SortByValueDecending(lvUndraftedPlayers, lvUndraftedPlayersSorter, 1);
             }
            
             
@@ -799,14 +791,13 @@ namespace FantasyFootballAuctionDraftAssistant
             webView.BringToFront();
             btnSearch.Visible = false;
             txtSearch.Visible = false;
-            //btnDraftHistory.Visible = false;
+            
             cbDraftHistory.Visible = false;
             cbKeepers.Visible = false;
             btnCloseBrowser.Visible = true;
             btnCloseBrowser.Enabled = true;
 
-            //string url = GetYahooURL();
-            //string url = GetFantasyProsURL();
+            
             string url = GetFantasyDataSearchURL();
             if (webView.CoreWebView2 != null)
             {
@@ -827,7 +818,7 @@ namespace FantasyFootballAuctionDraftAssistant
             webView.BringToFront();
             btnSearch.Visible = false;
             txtSearch.Visible = false;
-            //btnDraftHistory.Visible = false;
+           
             cbDraftHistory.Visible = false;
             cbKeepers.Visible = false;
             btnCloseBrowser.Visible = true;
@@ -850,8 +841,8 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnSaveNotes_Click(object sender, EventArgs e)
         {
-            playerOnClock.Notes = txtPlayerNotes.Text;
-            SQLiteDataAccess.UpdatePlayer(playerOnClock);
+            Draft.PlayerOnTheClock.Notes = txtPlayerNotes.Text;
+            SQLiteDataAccess.UpdatePlayer(Draft.PlayerOnTheClock);
         }
     }
 }
