@@ -265,7 +265,7 @@
             lblPlayerOnClock.BackColor = SystemColors.ControlText;
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblPlayerOnClock.ForeColor = SystemColors.MenuHighlight;
-            lblPlayerOnClock.Location = new Point(3, 21);
+            lblPlayerOnClock.Location = new Point(3, 25);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
             lblPlayerOnClock.Size = new Size(246, 35);
             lblPlayerOnClock.TabIndex = 2;
@@ -667,7 +667,7 @@
             // 
             lblAvgCapPerSpotLeft.AutoSize = true;
             lblAvgCapPerSpotLeft.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblAvgCapPerSpotLeft.Location = new Point(157, 36);
+            lblAvgCapPerSpotLeft.Location = new Point(151, 36);
             lblAvgCapPerSpotLeft.Name = "lblAvgCapPerSpotLeft";
             lblAvgCapPerSpotLeft.Size = new Size(16, 20);
             lblAvgCapPerSpotLeft.TabIndex = 11;
@@ -703,9 +703,9 @@
             label3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label3.Location = new Point(21, 4);
             label3.Name = "label3";
-            label3.Size = new Size(138, 22);
+            label3.Size = new Size(133, 22);
             label3.TabIndex = 7;
-            label3.Text = "Cap Space:  $";
+            label3.Text = "Cap Space: $";
             // 
             // lblRosterValueDifference
             // 
@@ -721,7 +721,7 @@
             // 
             lblDisplayTeamBudget.AutoSize = true;
             lblDisplayTeamBudget.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDisplayTeamBudget.Location = new Point(154, 4);
+            lblDisplayTeamBudget.Location = new Point(156, 4);
             lblDisplayTeamBudget.Name = "lblDisplayTeamBudget";
             lblDisplayTeamBudget.Size = new Size(43, 22);
             lblDisplayTeamBudget.TabIndex = 7;

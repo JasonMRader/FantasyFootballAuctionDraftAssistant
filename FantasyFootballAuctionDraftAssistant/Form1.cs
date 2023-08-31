@@ -7,7 +7,7 @@ namespace FantasyFootballAuctionDraftAssistant
     {
 
         DraftManager Draft = new DraftManager();
-
+        bool isProgrammaticUpdate = false;
 
         public Form1()
         {
@@ -489,6 +489,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void cbAllPositions_CheckedChanged(object sender, EventArgs e)
         {
+            isProgrammaticUpdate = true;
             if (cbAllPositions.Checked)
             {
                 cbDEF.Checked = true;
@@ -508,43 +509,49 @@ namespace FantasyFootballAuctionDraftAssistant
                 cbTE.Checked = false;
                 cbWR.Checked = false;
             }
-
+            isProgrammaticUpdate = false;
         }
 
         private void cbQB_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (isProgrammaticUpdate) { return; }
+            FirstClickOnPositionFilters(cbQB);
             UpdateListView();
 
         }
 
         private void cbRB_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (isProgrammaticUpdate) { return; }
+            FirstClickOnPositionFilters(cbRB);
             UpdateListView();
         }
 
         private void cbWR_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (isProgrammaticUpdate) { return; }
+            FirstClickOnPositionFilters(cbWR);
             UpdateListView();
         }
 
         private void cbTE_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (isProgrammaticUpdate) { return; }
+            FirstClickOnPositionFilters(cbTE);
             UpdateListView();
         }
 
         private void cbDEF_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (isProgrammaticUpdate) { return; }
+            FirstClickOnPositionFilters(cbDEF);
             UpdateListView();
         }
 
         private void cbK_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (isProgrammaticUpdate) { return; }
+            FirstClickOnPositionFilters(cbK);
             UpdateListView();
         }
 
@@ -861,5 +868,18 @@ namespace FantasyFootballAuctionDraftAssistant
             Draft.PlayerOnTheClock.Notes = txtPlayerNotes.Text;
             SQLiteDataAccess.UpdatePlayer(Draft.PlayerOnTheClock);
         }
+        private void FirstClickOnPositionFilters(CheckBox thisCheckBox)
+        {
+            if (cbAllPositions.Checked)
+            {
+                cbAllPositions.Checked = false;
+                thisCheckBox.Checked = true;
+               
+            }
+            else { return; }
+        }
+        
+
+        
     }
 }
