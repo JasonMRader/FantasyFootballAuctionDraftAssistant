@@ -170,9 +170,11 @@ namespace FantasyFootballAuctionDraftAssistant
                         UpdateDisplayTeam();
                         UpdateSalaryCapLabels();
 
-                        lblPlayerOnClock.Text = "Select A Player";
-                        lblPlayerOnClockValue.Text = "";
-                       
+                        RemovePlayerOnClock();
+
+                        //lblPlayerOnClock.Text = "Select A Player";
+                        //lblPlayerOnClockValue.Text = "";
+
                     }
                 }
             }
@@ -196,9 +198,10 @@ namespace FantasyFootballAuctionDraftAssistant
                     UpdateDisplayTeam();
                     UpdateSalaryCapLabels();
 
-                    lblPlayerOnClock.Text = "Select A Player";
-                    lblPlayerOnClockValue.Text = "";
-                    
+                    RemovePlayerOnClock();
+                    //lblPlayerOnClock.Text = "Select A Player";
+                    //lblPlayerOnClockValue.Text = "";
+
                 }
             }
 
@@ -218,9 +221,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
             UpdateListView();
             UpdateDisplayTeam();
-            lblPlayerOnClock.Text = "Select A Player";
-            lblPlayerOnClockValue.Text = "";
-            Draft.PlayerOnTheClock = null;
+
         }
         //private void AddPlayerToTeam(FantasyTeam Team, int cost)
         //{
@@ -408,9 +409,25 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void SetPlayerOnClockUI()
         {
+            pnlPlayerOnClockDisplay.Visible = true;
+            foreach (Control c in pnlOtherTeamsDraft.Controls)
+            {
+                c.Enabled = true;
+                btnWeDraftOnClock.Enabled = true;
+            }
             lblPlayerOnClock.Text = Draft.PlayerOnTheClock.Name.ToString();
             lblPlayerOnClockValue.Text = Draft.PlayerOnTheClock.EstimatedValue.ToString();
             txtPlayerNotes.Text = Draft.PlayerOnTheClock.Notes;
+        }
+        private void RemovePlayerOnClock()
+        {
+            pnlPlayerOnClockDisplay.Visible = false;
+
+            foreach (Control c in pnlOtherTeamsDraft.Controls)
+            {
+                btnWeDraftOnClock.Enabled = false;
+                c.Enabled = false;
+            }
         }
         private void UpdateDisplayTeam()
         {
@@ -572,10 +589,9 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnCancelOnClock_Click(object sender, EventArgs e)
         {
-            lblPlayerOnClock.Text = "Select A Player";
-            lblPlayerOnClockValue.Text = "";
+            RemovePlayerOnClock();
             Draft.PlayerOnTheClock = null;
-            
+
         }
         private bool IsValidNumber(string text)
         {
@@ -814,7 +830,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void lvUndraftedPlayers_DoubleClick(object sender, EventArgs e)
         {
-            
+
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -40,8 +40,6 @@
             lblPlayerOnClock = new Label();
             label1 = new Label();
             panel2 = new Panel();
-            btnSaveNotes = new Button();
-            txtPlayerNotes = new TextBox();
             pnlOtherTeamsDraft = new Panel();
             button14 = new Button();
             button13 = new Button();
@@ -59,6 +57,8 @@
             button1 = new Button();
             btnOtherDraftsOnClock = new Button();
             btnWeDraftOnClock = new Button();
+            btnSaveNotes = new Button();
+            txtPlayerNotes = new TextBox();
             btnCancelOnClock = new Button();
             lblPlayerOnClockValue = new Label();
             panel3 = new Panel();
@@ -117,6 +117,8 @@
             btnSearch = new Button();
             cbDraftHistory = new CheckBox();
             cbKeepers = new CheckBox();
+            pnlPlayerOnClockDisplay = new Panel();
+            label12 = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -126,6 +128,7 @@
             panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)webView).BeginInit();
             pnlTeamsToView.SuspendLayout();
+            pnlPlayerOnClockDisplay.SuspendLayout();
             SuspendLayout();
             // 
             // lvUndraftedPlayers
@@ -263,9 +266,9 @@
             lblPlayerOnClock.BackColor = SystemColors.ControlText;
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblPlayerOnClock.ForeColor = SystemColors.MenuHighlight;
-            lblPlayerOnClock.Location = new Point(3, 25);
+            lblPlayerOnClock.Location = new Point(3, 21);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
-            lblPlayerOnClock.Size = new Size(246, 35);
+            lblPlayerOnClock.Size = new Size(274, 35);
             lblPlayerOnClock.TabIndex = 2;
             lblPlayerOnClock.Text = "Choose Player";
             lblPlayerOnClock.TextAlign = ContentAlignment.MiddleCenter;
@@ -275,7 +278,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(17, 61);
+            label1.Location = new Point(37, 56);
             label1.Name = "label1";
             label1.Size = new Size(80, 25);
             label1.TabIndex = 3;
@@ -284,39 +287,12 @@
             // panel2
             // 
             panel2.BackColor = SystemColors.GradientActiveCaption;
-            panel2.Controls.Add(btnSaveNotes);
-            panel2.Controls.Add(txtPlayerNotes);
             panel2.Controls.Add(pnlOtherTeamsDraft);
             panel2.Controls.Add(btnWeDraftOnClock);
-            panel2.Controls.Add(btnCancelOnClock);
-            panel2.Controls.Add(lblPlayerOnClock);
-            panel2.Controls.Add(lblPlayerOnClockValue);
-            panel2.Controls.Add(label1);
-            panel2.Location = new Point(45, 9);
+            panel2.Location = new Point(30, 171);
             panel2.Name = "panel2";
-            panel2.Size = new Size(252, 915);
+            panel2.Size = new Size(234, 753);
             panel2.TabIndex = 4;
-            // 
-            // btnSaveNotes
-            // 
-            btnSaveNotes.BackColor = SystemColors.Info;
-            btnSaveNotes.FlatStyle = FlatStyle.Flat;
-            btnSaveNotes.Location = new Point(181, 117);
-            btnSaveNotes.Name = "btnSaveNotes";
-            btnSaveNotes.Size = new Size(42, 23);
-            btnSaveNotes.TabIndex = 10;
-            btnSaveNotes.Text = "Save";
-            btnSaveNotes.UseVisualStyleBackColor = false;
-            btnSaveNotes.Click += btnSaveNotes_Click;
-            // 
-            // txtPlayerNotes
-            // 
-            txtPlayerNotes.BackColor = SystemColors.Info;
-            txtPlayerNotes.Location = new Point(17, 89);
-            txtPlayerNotes.Multiline = true;
-            txtPlayerNotes.Name = "txtPlayerNotes";
-            txtPlayerNotes.Size = new Size(206, 51);
-            txtPlayerNotes.TabIndex = 9;
             // 
             // pnlOtherTeamsDraft
             // 
@@ -335,15 +311,16 @@
             pnlOtherTeamsDraft.Controls.Add(button3);
             pnlOtherTeamsDraft.Controls.Add(button1);
             pnlOtherTeamsDraft.Controls.Add(btnOtherDraftsOnClock);
-            pnlOtherTeamsDraft.Location = new Point(3, 227);
+            pnlOtherTeamsDraft.Location = new Point(13, 78);
             pnlOtherTeamsDraft.Name = "pnlOtherTeamsDraft";
-            pnlOtherTeamsDraft.Size = new Size(246, 676);
+            pnlOtherTeamsDraft.Size = new Size(209, 672);
             pnlOtherTeamsDraft.TabIndex = 7;
             // 
             // button14
             // 
+            button14.Enabled = false;
             button14.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button14.Location = new Point(14, 630);
+            button14.Location = new Point(0, 627);
             button14.Margin = new Padding(0, 0, 0, 10);
             button14.Name = "button14";
             button14.Size = new Size(206, 35);
@@ -354,8 +331,9 @@
             // 
             // button13
             // 
+            button13.Enabled = false;
             button13.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button13.Location = new Point(14, 585);
+            button13.Location = new Point(0, 582);
             button13.Margin = new Padding(0, 0, 0, 10);
             button13.Name = "button13";
             button13.Size = new Size(206, 35);
@@ -366,8 +344,9 @@
             // 
             // button11
             // 
+            button11.Enabled = false;
             button11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button11.Location = new Point(14, 495);
+            button11.Location = new Point(0, 492);
             button11.Margin = new Padding(0, 0, 0, 10);
             button11.Name = "button11";
             button11.Size = new Size(206, 35);
@@ -378,8 +357,9 @@
             // 
             // button10
             // 
+            button10.Enabled = false;
             button10.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button10.Location = new Point(14, 450);
+            button10.Location = new Point(0, 447);
             button10.Margin = new Padding(0, 0, 0, 10);
             button10.Name = "button10";
             button10.Size = new Size(206, 35);
@@ -390,8 +370,9 @@
             // 
             // button8
             // 
+            button8.Enabled = false;
             button8.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button8.Location = new Point(14, 360);
+            button8.Location = new Point(0, 357);
             button8.Margin = new Padding(0, 0, 0, 10);
             button8.Name = "button8";
             button8.Size = new Size(206, 35);
@@ -402,8 +383,9 @@
             // 
             // button7
             // 
+            button7.Enabled = false;
             button7.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button7.Location = new Point(14, 315);
+            button7.Location = new Point(0, 312);
             button7.Margin = new Padding(0, 0, 0, 10);
             button7.Name = "button7";
             button7.Size = new Size(206, 35);
@@ -414,8 +396,9 @@
             // 
             // button12
             // 
+            button12.Enabled = false;
             button12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button12.Location = new Point(14, 540);
+            button12.Location = new Point(0, 537);
             button12.Margin = new Padding(0, 0, 0, 10);
             button12.Name = "button12";
             button12.Size = new Size(206, 35);
@@ -426,8 +409,9 @@
             // 
             // button5
             // 
+            button5.Enabled = false;
             button5.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button5.Location = new Point(14, 225);
+            button5.Location = new Point(0, 222);
             button5.Margin = new Padding(0, 0, 0, 10);
             button5.Name = "button5";
             button5.Size = new Size(206, 35);
@@ -438,8 +422,9 @@
             // 
             // button9
             // 
+            button9.Enabled = false;
             button9.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button9.Location = new Point(14, 405);
+            button9.Location = new Point(0, 402);
             button9.Margin = new Padding(0, 0, 0, 10);
             button9.Name = "button9";
             button9.Size = new Size(206, 35);
@@ -450,8 +435,9 @@
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button4.Location = new Point(14, 180);
+            button4.Location = new Point(0, 177);
             button4.Margin = new Padding(0, 0, 0, 10);
             button4.Name = "button4";
             button4.Size = new Size(206, 35);
@@ -462,8 +448,9 @@
             // 
             // button6
             // 
+            button6.Enabled = false;
             button6.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button6.Location = new Point(14, 270);
+            button6.Location = new Point(0, 267);
             button6.Margin = new Padding(0, 0, 0, 10);
             button6.Name = "button6";
             button6.Size = new Size(206, 35);
@@ -474,8 +461,9 @@
             // 
             // button2
             // 
+            button2.Enabled = false;
             button2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(14, 95);
+            button2.Location = new Point(0, 92);
             button2.Margin = new Padding(0, 0, 0, 10);
             button2.Name = "button2";
             button2.Size = new Size(206, 35);
@@ -486,8 +474,9 @@
             // 
             // button3
             // 
+            button3.Enabled = false;
             button3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(14, 135);
+            button3.Location = new Point(0, 132);
             button3.Margin = new Padding(0, 0, 0, 10);
             button3.Name = "button3";
             button3.Size = new Size(206, 35);
@@ -498,8 +487,9 @@
             // 
             // button1
             // 
+            button1.Enabled = false;
             button1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            button1.Location = new Point(14, 50);
+            button1.Location = new Point(0, 47);
             button1.Margin = new Padding(0, 0, 0, 10);
             button1.Name = "button1";
             button1.Size = new Size(206, 35);
@@ -510,8 +500,9 @@
             // 
             // btnOtherDraftsOnClock
             // 
+            btnOtherDraftsOnClock.Enabled = false;
             btnOtherDraftsOnClock.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            btnOtherDraftsOnClock.Location = new Point(14, 5);
+            btnOtherDraftsOnClock.Location = new Point(0, 2);
             btnOtherDraftsOnClock.Margin = new Padding(0, 0, 0, 10);
             btnOtherDraftsOnClock.Name = "btnOtherDraftsOnClock";
             btnOtherDraftsOnClock.Size = new Size(206, 35);
@@ -522,8 +513,9 @@
             // 
             // btnWeDraftOnClock
             // 
+            btnWeDraftOnClock.Enabled = false;
             btnWeDraftOnClock.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnWeDraftOnClock.Location = new Point(17, 158);
+            btnWeDraftOnClock.Location = new Point(13, 5);
             btnWeDraftOnClock.Name = "btnWeDraftOnClock";
             btnWeDraftOnClock.Size = new Size(206, 52);
             btnWeDraftOnClock.TabIndex = 4;
@@ -531,13 +523,34 @@
             btnWeDraftOnClock.UseVisualStyleBackColor = true;
             btnWeDraftOnClock.Click += btnWeDraftOnClock_Click;
             // 
+            // btnSaveNotes
+            // 
+            btnSaveNotes.BackColor = SystemColors.Info;
+            btnSaveNotes.FlatStyle = FlatStyle.Flat;
+            btnSaveNotes.Location = new Point(235, 119);
+            btnSaveNotes.Name = "btnSaveNotes";
+            btnSaveNotes.Size = new Size(42, 23);
+            btnSaveNotes.TabIndex = 10;
+            btnSaveNotes.Text = "Save";
+            btnSaveNotes.UseVisualStyleBackColor = false;
+            btnSaveNotes.Click += btnSaveNotes_Click;
+            // 
+            // txtPlayerNotes
+            // 
+            txtPlayerNotes.BackColor = SystemColors.Info;
+            txtPlayerNotes.Location = new Point(3, 84);
+            txtPlayerNotes.Multiline = true;
+            txtPlayerNotes.Name = "txtPlayerNotes";
+            txtPlayerNotes.Size = new Size(274, 58);
+            txtPlayerNotes.TabIndex = 9;
+            // 
             // btnCancelOnClock
             // 
             btnCancelOnClock.FlatAppearance.BorderSize = 0;
             btnCancelOnClock.FlatStyle = FlatStyle.Flat;
-            btnCancelOnClock.Location = new Point(223, 1);
+            btnCancelOnClock.Location = new Point(248, 0);
             btnCancelOnClock.Name = "btnCancelOnClock";
-            btnCancelOnClock.Size = new Size(29, 23);
+            btnCancelOnClock.Size = new Size(29, 20);
             btnCancelOnClock.TabIndex = 4;
             btnCancelOnClock.Text = "X";
             btnCancelOnClock.UseVisualStyleBackColor = true;
@@ -547,7 +560,7 @@
             // 
             lblPlayerOnClockValue.AutoSize = true;
             lblPlayerOnClockValue.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClockValue.Location = new Point(92, 61);
+            lblPlayerOnClockValue.Location = new Point(112, 56);
             lblPlayerOnClockValue.Name = "lblPlayerOnClockValue";
             lblPlayerOnClockValue.Size = new Size(34, 25);
             lblPlayerOnClockValue.TabIndex = 3;
@@ -1260,20 +1273,47 @@
             cbKeepers.UseVisualStyleBackColor = true;
             cbKeepers.CheckedChanged += cbKeepers_CheckedChanged;
             // 
+            // pnlPlayerOnClockDisplay
+            // 
+            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(255, 128, 0);
+            pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClock);
+            pnlPlayerOnClockDisplay.Controls.Add(btnSaveNotes);
+            pnlPlayerOnClockDisplay.Controls.Add(label1);
+            pnlPlayerOnClockDisplay.Controls.Add(txtPlayerNotes);
+            pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClockValue);
+            pnlPlayerOnClockDisplay.Controls.Add(btnCancelOnClock);
+            pnlPlayerOnClockDisplay.Location = new Point(12, 4);
+            pnlPlayerOnClockDisplay.Name = "pnlPlayerOnClockDisplay";
+            pnlPlayerOnClockDisplay.Size = new Size(280, 161);
+            pnlPlayerOnClockDisplay.TabIndex = 11;
+            pnlPlayerOnClockDisplay.Visible = false;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(30, 60);
+            label12.Name = "label12";
+            label12.Size = new Size(252, 23);
+            label12.TabIndex = 18;
+            label12.Text = "Select A Player To View Or Draft!";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1520, 951);
+            Controls.Add(panel2);
+            Controls.Add(pnlPlayerOnClockDisplay);
             Controls.Add(cbKeepers);
             Controls.Add(cbDraftHistory);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
+            Controls.Add(label12);
             Controls.Add(pnlTeamsToView);
             Controls.Add(btnOpenSettings);
             Controls.Add(btnCloseBrowser);
             Controls.Add(panel3);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Controls.Add(lvUndraftedPlayers);
             Controls.Add(webView);
@@ -1284,7 +1324,6 @@
             Load += Form1_Load;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
-            panel2.PerformLayout();
             pnlOtherTeamsDraft.ResumeLayout(false);
             panel3.ResumeLayout(false);
             panel3.PerformLayout();
@@ -1296,6 +1335,8 @@
             panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)webView).EndInit();
             pnlTeamsToView.ResumeLayout(false);
+            pnlPlayerOnClockDisplay.ResumeLayout(false);
+            pnlPlayerOnClockDisplay.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -1391,5 +1432,7 @@
         private CheckBox cbKeepers;
         private Button btnSaveNotes;
         private TextBox txtPlayerNotes;
+        private Panel pnlPlayerOnClockDisplay;
+        private Label label12;
     }
 }
