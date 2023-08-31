@@ -42,7 +42,6 @@
             panel2 = new Panel();
             btnSaveNotes = new Button();
             txtPlayerNotes = new TextBox();
-            label12 = new Label();
             pnlOtherTeamsDraft = new Panel();
             button14 = new Button();
             button13 = new Button();
@@ -60,7 +59,6 @@
             button1 = new Button();
             btnOtherDraftsOnClock = new Button();
             btnWeDraftOnClock = new Button();
-            txtCost = new TextBox();
             btnCancelOnClock = new Button();
             lblPlayerOnClockValue = new Label();
             panel3 = new Panel();
@@ -288,10 +286,8 @@
             panel2.BackColor = SystemColors.GradientActiveCaption;
             panel2.Controls.Add(btnSaveNotes);
             panel2.Controls.Add(txtPlayerNotes);
-            panel2.Controls.Add(label12);
             panel2.Controls.Add(pnlOtherTeamsDraft);
             panel2.Controls.Add(btnWeDraftOnClock);
-            panel2.Controls.Add(txtCost);
             panel2.Controls.Add(btnCancelOnClock);
             panel2.Controls.Add(lblPlayerOnClock);
             panel2.Controls.Add(lblPlayerOnClockValue);
@@ -322,16 +318,6 @@
             txtPlayerNotes.Size = new Size(206, 51);
             txtPlayerNotes.TabIndex = 9;
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(17, 144);
-            label12.Name = "label12";
-            label12.Size = new Size(50, 25);
-            label12.TabIndex = 8;
-            label12.Text = "Cost";
-            // 
             // pnlOtherTeamsDraft
             // 
             pnlOtherTeamsDraft.Controls.Add(button14);
@@ -349,7 +335,7 @@
             pnlOtherTeamsDraft.Controls.Add(button3);
             pnlOtherTeamsDraft.Controls.Add(button1);
             pnlOtherTeamsDraft.Controls.Add(btnOtherDraftsOnClock);
-            pnlOtherTeamsDraft.Location = new Point(3, 233);
+            pnlOtherTeamsDraft.Location = new Point(3, 227);
             pnlOtherTeamsDraft.Name = "pnlOtherTeamsDraft";
             pnlOtherTeamsDraft.Size = new Size(246, 676);
             pnlOtherTeamsDraft.TabIndex = 7;
@@ -537,20 +523,13 @@
             // btnWeDraftOnClock
             // 
             btnWeDraftOnClock.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            btnWeDraftOnClock.Location = new Point(17, 175);
+            btnWeDraftOnClock.Location = new Point(17, 158);
             btnWeDraftOnClock.Name = "btnWeDraftOnClock";
             btnWeDraftOnClock.Size = new Size(206, 52);
             btnWeDraftOnClock.TabIndex = 4;
             btnWeDraftOnClock.Text = "We Draft";
             btnWeDraftOnClock.UseVisualStyleBackColor = true;
             btnWeDraftOnClock.Click += btnWeDraftOnClock_Click;
-            // 
-            // txtCost
-            // 
-            txtCost.Location = new Point(69, 146);
-            txtCost.Name = "txtCost";
-            txtCost.Size = new Size(154, 23);
-            txtCost.TabIndex = 5;
             // 
             // btnCancelOnClock
             // 
@@ -1357,7 +1336,6 @@
         private ListView lvTeamRoster;
         private Label lblDisplayTeamBudget;
         private Label label3;
-        private TextBox txtCost;
         private Panel panel7;
         private Label lblRosterSpots;
         private Label label11;
@@ -1413,6 +1391,5 @@
         private CheckBox cbKeepers;
         private Button btnSaveNotes;
         private TextBox txtPlayerNotes;
-        private Label label12;
     }
 }

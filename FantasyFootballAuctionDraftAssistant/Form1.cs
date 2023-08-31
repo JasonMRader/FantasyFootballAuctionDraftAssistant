@@ -152,48 +152,56 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void DraftButton_Click(object? sender, EventArgs e)
         {
-            if (IsValidNumber(txtCost.Text))
+            if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
             {
-                if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
+                if (Draft.PlayerOnTheClock == null)
                 {
-                    Draft.RecordDraftPick(selectedTeam, Int32.Parse(txtCost.Text));
-                    //AddPlayerToTeam(selectedTeam, Int32.Parse(txtCost.Text));
-                    UpdateListView();
-                    UpdateDisplayTeam();
-                    UpdateSalaryCapLabels();
-                    lblPlayerOnClock.Text = "Select A Player";
-                    lblPlayerOnClockValue.Text = "";
-                    txtCost.Clear();
+                    MessageBox.Show("No Player is Selected To Draft");
+                    return;
                 }
+                using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name))
+                {
+                    if (inputCostForm.ShowDialog() == DialogResult.OK)
+                    {
 
+                        //Draft.DisplayTeam = Draft.MyTeam;
+                        Draft.RecordDraftPick(selectedTeam, inputCostForm.PlayerCost);
+                        UpdateListView();
+                        UpdateDisplayTeam();
+                        UpdateSalaryCapLabels();
+
+                        lblPlayerOnClock.Text = "Select A Player";
+                        lblPlayerOnClockValue.Text = "";
+                       
+                    }
+                }
             }
-            else
-            {
-                MessageBox.Show("Please enter player cost to draft");
-            }
+
         }
         private void btnWeDraftOnClock_Click(object sender, EventArgs e)
         {
-
-            if (IsValidNumber(txtCost.Text))
+            if (Draft.PlayerOnTheClock == null)
             {
-
-                //DisplayedTeam = FantasyTeamList.FirstOrDefault(team => team.Name == "Disappointing Monday");
-                Draft.DisplayTeam = Draft.MyTeam;
-                //AddPlayerToTeam(Draft.DisplayTeam, Int32.Parse(txtCost.Text));
-                Draft.RecordDraftPick(Draft.MyTeam, Int32.Parse(txtCost.Text));
-                UpdateListView();
-                UpdateDisplayTeam();
-                UpdateSalaryCapLabels();
-
-                lblPlayerOnClock.Text = "Select A Player";
-                lblPlayerOnClockValue.Text = "";
-                txtCost.Clear();
+                MessageBox.Show("No Player is Selected To Draft");
+                return;
             }
-            else
+            using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name))
             {
-                MessageBox.Show("Please enter player cost to draft");
+                if (inputCostForm.ShowDialog() == DialogResult.OK)
+                {
+
+                    Draft.DisplayTeam = Draft.MyTeam;
+                    Draft.RecordDraftPick(Draft.MyTeam, inputCostForm.PlayerCost);
+                    UpdateListView();
+                    UpdateDisplayTeam();
+                    UpdateSalaryCapLabels();
+
+                    lblPlayerOnClock.Text = "Select A Player";
+                    lblPlayerOnClockValue.Text = "";
+                    
+                }
             }
+
         }
         private void RadioButton_Click(object sender, EventArgs e)
         {
@@ -212,7 +220,7 @@ namespace FantasyFootballAuctionDraftAssistant
             UpdateDisplayTeam();
             lblPlayerOnClock.Text = "Select A Player";
             lblPlayerOnClockValue.Text = "";
-            txtCost.Clear();
+            Draft.PlayerOnTheClock = null;
         }
         //private void AddPlayerToTeam(FantasyTeam Team, int cost)
         //{
@@ -566,7 +574,8 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             lblPlayerOnClock.Text = "Select A Player";
             lblPlayerOnClockValue.Text = "";
-            txtCost.Clear();
+            Draft.PlayerOnTheClock = null;
+            
         }
         private bool IsValidNumber(string text)
         {
@@ -805,7 +814,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void lvUndraftedPlayers_DoubleClick(object sender, EventArgs e)
         {
-            txtCost.Focus();
+            
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -874,12 +883,12 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 cbAllPositions.Checked = false;
                 thisCheckBox.Checked = true;
-               
+
             }
             else { return; }
         }
-        
 
-        
+
+
     }
 }
