@@ -119,6 +119,7 @@
             cbKeepers = new CheckBox();
             pnlPlayerOnClockDisplay = new Panel();
             label12 = new Label();
+            btnCloseApp = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -133,7 +134,7 @@
             // 
             // lvUndraftedPlayers
             // 
-            lvUndraftedPlayers.Location = new Point(311, 79);
+            lvUndraftedPlayers.Location = new Point(311, 133);
             lvUndraftedPlayers.Name = "lvUndraftedPlayers";
             lvUndraftedPlayers.Size = new Size(575, 845);
             lvUndraftedPlayers.Sorting = SortOrder.Descending;
@@ -151,7 +152,7 @@
             panel1.Controls.Add(cbRB);
             panel1.Controls.Add(cbQB);
             panel1.Controls.Add(cbAllPositions);
-            panel1.Location = new Point(311, 44);
+            panel1.Location = new Point(311, 98);
             panel1.Name = "panel1";
             panel1.Size = new Size(575, 30);
             panel1.TabIndex = 1;
@@ -263,9 +264,9 @@
             // 
             // lblPlayerOnClock
             // 
-            lblPlayerOnClock.BackColor = SystemColors.ControlText;
+            lblPlayerOnClock.BackColor = Color.FromArgb(36, 2, 3);
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClock.ForeColor = SystemColors.MenuHighlight;
+            lblPlayerOnClock.ForeColor = Color.FromArgb(224, 224, 224);
             lblPlayerOnClock.Location = new Point(3, 21);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
             lblPlayerOnClock.Size = new Size(274, 35);
@@ -278,6 +279,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(224, 224, 224);
             label1.Location = new Point(37, 56);
             label1.Name = "label1";
             label1.Size = new Size(80, 25);
@@ -286,10 +288,10 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.GradientActiveCaption;
+            panel2.BackColor = Color.FromArgb(36, 2, 3);
             panel2.Controls.Add(pnlOtherTeamsDraft);
             panel2.Controls.Add(btnWeDraftOnClock);
-            panel2.Location = new Point(30, 171);
+            panel2.Location = new Point(30, 225);
             panel2.Name = "panel2";
             panel2.Size = new Size(234, 753);
             panel2.TabIndex = 4;
@@ -318,7 +320,10 @@
             // 
             // button14
             // 
+            button14.BackColor = Color.FromArgb(176, 209, 176);
             button14.Enabled = false;
+            button14.FlatAppearance.BorderSize = 0;
+            button14.FlatStyle = FlatStyle.Flat;
             button14.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button14.Location = new Point(0, 627);
             button14.Margin = new Padding(0, 0, 0, 10);
@@ -326,12 +331,15 @@
             button14.Size = new Size(206, 35);
             button14.TabIndex = 4;
             button14.Text = "Other Team Drafted";
-            button14.UseVisualStyleBackColor = true;
+            button14.UseVisualStyleBackColor = false;
             button14.Click += btnOtherDraftsOnClock_Click;
             // 
             // button13
             // 
+            button13.BackColor = Color.FromArgb(176, 209, 176);
             button13.Enabled = false;
+            button13.FlatAppearance.BorderSize = 0;
+            button13.FlatStyle = FlatStyle.Flat;
             button13.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button13.Location = new Point(0, 582);
             button13.Margin = new Padding(0, 0, 0, 10);
@@ -339,12 +347,15 @@
             button13.Size = new Size(206, 35);
             button13.TabIndex = 4;
             button13.Text = "Other Team Drafted";
-            button13.UseVisualStyleBackColor = true;
+            button13.UseVisualStyleBackColor = false;
             button13.Click += btnOtherDraftsOnClock_Click;
             // 
             // button11
             // 
+            button11.BackColor = Color.FromArgb(176, 209, 176);
             button11.Enabled = false;
+            button11.FlatAppearance.BorderSize = 0;
+            button11.FlatStyle = FlatStyle.Flat;
             button11.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button11.Location = new Point(0, 492);
             button11.Margin = new Padding(0, 0, 0, 10);
@@ -352,12 +363,15 @@
             button11.Size = new Size(206, 35);
             button11.TabIndex = 4;
             button11.Text = "Other Team Drafted";
-            button11.UseVisualStyleBackColor = true;
+            button11.UseVisualStyleBackColor = false;
             button11.Click += btnOtherDraftsOnClock_Click;
             // 
             // button10
             // 
+            button10.BackColor = Color.FromArgb(176, 209, 176);
             button10.Enabled = false;
+            button10.FlatAppearance.BorderSize = 0;
+            button10.FlatStyle = FlatStyle.Flat;
             button10.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button10.Location = new Point(0, 447);
             button10.Margin = new Padding(0, 0, 0, 10);
@@ -365,12 +379,15 @@
             button10.Size = new Size(206, 35);
             button10.TabIndex = 4;
             button10.Text = "Other Team Drafted";
-            button10.UseVisualStyleBackColor = true;
+            button10.UseVisualStyleBackColor = false;
             button10.Click += btnOtherDraftsOnClock_Click;
             // 
             // button8
             // 
+            button8.BackColor = Color.FromArgb(176, 209, 176);
             button8.Enabled = false;
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
             button8.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button8.Location = new Point(0, 357);
             button8.Margin = new Padding(0, 0, 0, 10);
@@ -378,12 +395,15 @@
             button8.Size = new Size(206, 35);
             button8.TabIndex = 4;
             button8.Text = "Other Team Drafted";
-            button8.UseVisualStyleBackColor = true;
+            button8.UseVisualStyleBackColor = false;
             button8.Click += btnOtherDraftsOnClock_Click;
             // 
             // button7
             // 
+            button7.BackColor = Color.FromArgb(176, 209, 176);
             button7.Enabled = false;
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
             button7.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button7.Location = new Point(0, 312);
             button7.Margin = new Padding(0, 0, 0, 10);
@@ -391,12 +411,15 @@
             button7.Size = new Size(206, 35);
             button7.TabIndex = 4;
             button7.Text = "Other Team Drafted";
-            button7.UseVisualStyleBackColor = true;
+            button7.UseVisualStyleBackColor = false;
             button7.Click += btnOtherDraftsOnClock_Click;
             // 
             // button12
             // 
+            button12.BackColor = Color.FromArgb(176, 209, 176);
             button12.Enabled = false;
+            button12.FlatAppearance.BorderSize = 0;
+            button12.FlatStyle = FlatStyle.Flat;
             button12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button12.Location = new Point(0, 537);
             button12.Margin = new Padding(0, 0, 0, 10);
@@ -404,12 +427,15 @@
             button12.Size = new Size(206, 35);
             button12.TabIndex = 4;
             button12.Text = "Other Team Drafted";
-            button12.UseVisualStyleBackColor = true;
+            button12.UseVisualStyleBackColor = false;
             button12.Click += btnOtherDraftsOnClock_Click;
             // 
             // button5
             // 
+            button5.BackColor = Color.FromArgb(176, 209, 176);
             button5.Enabled = false;
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
             button5.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button5.Location = new Point(0, 222);
             button5.Margin = new Padding(0, 0, 0, 10);
@@ -417,12 +443,15 @@
             button5.Size = new Size(206, 35);
             button5.TabIndex = 4;
             button5.Text = "Other Team Drafted";
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             button5.Click += btnOtherDraftsOnClock_Click;
             // 
             // button9
             // 
+            button9.BackColor = Color.FromArgb(176, 209, 176);
             button9.Enabled = false;
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
             button9.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button9.Location = new Point(0, 402);
             button9.Margin = new Padding(0, 0, 0, 10);
@@ -430,12 +459,15 @@
             button9.Size = new Size(206, 35);
             button9.TabIndex = 4;
             button9.Text = "Other Team Drafted";
-            button9.UseVisualStyleBackColor = true;
+            button9.UseVisualStyleBackColor = false;
             button9.Click += btnOtherDraftsOnClock_Click;
             // 
             // button4
             // 
+            button4.BackColor = Color.FromArgb(176, 209, 176);
             button4.Enabled = false;
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
             button4.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button4.Location = new Point(0, 177);
             button4.Margin = new Padding(0, 0, 0, 10);
@@ -443,12 +475,15 @@
             button4.Size = new Size(206, 35);
             button4.TabIndex = 4;
             button4.Text = "Other Team Drafted";
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += btnOtherDraftsOnClock_Click;
             // 
             // button6
             // 
+            button6.BackColor = Color.FromArgb(176, 209, 176);
             button6.Enabled = false;
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
             button6.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button6.Location = new Point(0, 267);
             button6.Margin = new Padding(0, 0, 0, 10);
@@ -456,12 +491,15 @@
             button6.Size = new Size(206, 35);
             button6.TabIndex = 4;
             button6.Text = "Other Team Drafted";
-            button6.UseVisualStyleBackColor = true;
+            button6.UseVisualStyleBackColor = false;
             button6.Click += btnOtherDraftsOnClock_Click;
             // 
             // button2
             // 
+            button2.BackColor = Color.FromArgb(176, 209, 176);
             button2.Enabled = false;
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
             button2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button2.Location = new Point(0, 92);
             button2.Margin = new Padding(0, 0, 0, 10);
@@ -469,12 +507,15 @@
             button2.Size = new Size(206, 35);
             button2.TabIndex = 4;
             button2.Text = "Other Team Drafted";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += btnOtherDraftsOnClock_Click;
             // 
             // button3
             // 
+            button3.BackColor = Color.FromArgb(176, 209, 176);
             button3.Enabled = false;
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
             button3.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button3.Location = new Point(0, 132);
             button3.Margin = new Padding(0, 0, 0, 10);
@@ -482,12 +523,15 @@
             button3.Size = new Size(206, 35);
             button3.TabIndex = 4;
             button3.Text = "Other Team Drafted";
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += btnOtherDraftsOnClock_Click;
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(176, 209, 176);
             button1.Enabled = false;
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
             button1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             button1.Location = new Point(0, 47);
             button1.Margin = new Padding(0, 0, 0, 10);
@@ -495,12 +539,15 @@
             button1.Size = new Size(206, 35);
             button1.TabIndex = 4;
             button1.Text = "Other Team Drafted";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += btnOtherDraftsOnClock_Click;
             // 
             // btnOtherDraftsOnClock
             // 
+            btnOtherDraftsOnClock.BackColor = Color.FromArgb(176, 209, 176);
             btnOtherDraftsOnClock.Enabled = false;
+            btnOtherDraftsOnClock.FlatAppearance.BorderSize = 0;
+            btnOtherDraftsOnClock.FlatStyle = FlatStyle.Flat;
             btnOtherDraftsOnClock.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnOtherDraftsOnClock.Location = new Point(0, 2);
             btnOtherDraftsOnClock.Margin = new Padding(0, 0, 0, 10);
@@ -508,19 +555,22 @@
             btnOtherDraftsOnClock.Size = new Size(206, 35);
             btnOtherDraftsOnClock.TabIndex = 4;
             btnOtherDraftsOnClock.Text = "Other Team Drafted";
-            btnOtherDraftsOnClock.UseVisualStyleBackColor = true;
+            btnOtherDraftsOnClock.UseVisualStyleBackColor = false;
             btnOtherDraftsOnClock.Click += btnOtherDraftsOnClock_Click;
             // 
             // btnWeDraftOnClock
             // 
+            btnWeDraftOnClock.BackColor = Color.FromArgb(156, 230, 156);
             btnWeDraftOnClock.Enabled = false;
+            btnWeDraftOnClock.FlatAppearance.BorderSize = 0;
+            btnWeDraftOnClock.FlatStyle = FlatStyle.Flat;
             btnWeDraftOnClock.Font = new Font("Segoe UI Semibold", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             btnWeDraftOnClock.Location = new Point(13, 5);
             btnWeDraftOnClock.Name = "btnWeDraftOnClock";
             btnWeDraftOnClock.Size = new Size(206, 52);
             btnWeDraftOnClock.TabIndex = 4;
             btnWeDraftOnClock.Text = "We Draft";
-            btnWeDraftOnClock.UseVisualStyleBackColor = true;
+            btnWeDraftOnClock.UseVisualStyleBackColor = false;
             btnWeDraftOnClock.Click += btnWeDraftOnClock_Click;
             // 
             // btnSaveNotes
@@ -560,6 +610,7 @@
             // 
             lblPlayerOnClockValue.AutoSize = true;
             lblPlayerOnClockValue.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPlayerOnClockValue.ForeColor = Color.FromArgb(224, 224, 224);
             lblPlayerOnClockValue.Location = new Point(112, 56);
             lblPlayerOnClockValue.Name = "lblPlayerOnClockValue";
             lblPlayerOnClockValue.Size = new Size(34, 25);
@@ -568,7 +619,7 @@
             // 
             // panel3
             // 
-            panel3.BackColor = Color.FromArgb(192, 255, 192);
+            panel3.BackColor = Color.FromArgb(36, 2, 3);
             panel3.Controls.Add(lblDisplayKeeper);
             panel3.Controls.Add(label14);
             panel3.Controls.Add(btnSetKeeper);
@@ -578,7 +629,7 @@
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(lvTeamRoster);
             panel3.Controls.Add(lblDisplayTeamName);
-            panel3.Location = new Point(919, 331);
+            panel3.Location = new Point(919, 385);
             panel3.Name = "panel3";
             panel3.Size = new Size(531, 593);
             panel3.TabIndex = 5;
@@ -625,7 +676,7 @@
             // 
             // panel7
             // 
-            panel7.BackColor = Color.FromArgb(128, 255, 128);
+            panel7.BackColor = Color.FromArgb(41, 122, 38);
             panel7.Controls.Add(lblRosterSpots);
             panel7.Controls.Add(label11);
             panel7.Controls.Add(lblAvgCapPerSpotLeft);
@@ -639,6 +690,7 @@
             // 
             lblRosterSpots.AutoSize = true;
             lblRosterSpots.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRosterSpots.ForeColor = Color.White;
             lblRosterSpots.Location = new Point(144, 5);
             lblRosterSpots.Name = "lblRosterSpots";
             lblRosterSpots.Size = new Size(32, 22);
@@ -649,6 +701,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.White;
             label11.Location = new Point(3, 5);
             label11.Name = "label11";
             label11.Size = new Size(135, 22);
@@ -659,6 +712,7 @@
             // 
             lblAvgCapPerSpotLeft.AutoSize = true;
             lblAvgCapPerSpotLeft.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAvgCapPerSpotLeft.ForeColor = Color.White;
             lblAvgCapPerSpotLeft.Location = new Point(151, 36);
             lblAvgCapPerSpotLeft.Name = "lblAvgCapPerSpotLeft";
             lblAvgCapPerSpotLeft.Size = new Size(16, 20);
@@ -669,6 +723,7 @@
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.ForeColor = Color.White;
             label13.Location = new Point(3, 36);
             label13.Name = "label13";
             label13.Size = new Size(148, 20);
@@ -677,7 +732,7 @@
             // 
             // panel6
             // 
-            panel6.BackColor = Color.FromArgb(128, 255, 128);
+            panel6.BackColor = Color.FromArgb(41, 122, 38);
             panel6.Controls.Add(label3);
             panel6.Controls.Add(lblRosterValueDifference);
             panel6.Controls.Add(lblDisplayTeamBudget);
@@ -693,6 +748,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.White;
             label3.Location = new Point(21, 4);
             label3.Name = "label3";
             label3.Size = new Size(133, 22);
@@ -703,6 +759,7 @@
             // 
             lblRosterValueDifference.AutoSize = true;
             lblRosterValueDifference.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRosterValueDifference.ForeColor = Color.White;
             lblRosterValueDifference.Location = new Point(159, 55);
             lblRosterValueDifference.Name = "lblRosterValueDifference";
             lblRosterValueDifference.Size = new Size(16, 20);
@@ -713,6 +770,7 @@
             // 
             lblDisplayTeamBudget.AutoSize = true;
             lblDisplayTeamBudget.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayTeamBudget.ForeColor = Color.White;
             lblDisplayTeamBudget.Location = new Point(156, 4);
             lblDisplayTeamBudget.Name = "lblDisplayTeamBudget";
             lblDisplayTeamBudget.Size = new Size(43, 22);
@@ -723,6 +781,7 @@
             // 
             lblMaxBid.AutoSize = true;
             lblMaxBid.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMaxBid.ForeColor = Color.White;
             lblMaxBid.Location = new Point(159, 35);
             lblMaxBid.Name = "lblMaxBid";
             lblMaxBid.Size = new Size(16, 20);
@@ -733,6 +792,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = Color.White;
             label2.Location = new Point(76, 35);
             label2.Name = "label2";
             label2.Size = new Size(77, 20);
@@ -743,6 +803,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = Color.White;
             label4.Location = new Point(46, 55);
             label4.Name = "label4";
             label4.Size = new Size(107, 20);
@@ -751,7 +812,7 @@
             // 
             // panel4
             // 
-            panel4.BackColor = Color.FromArgb(128, 255, 128);
+            panel4.BackColor = Color.FromArgb(41, 122, 38);
             panel4.Controls.Add(lblKs);
             panel4.Controls.Add(lblDEFs);
             panel4.Controls.Add(lblTEs);
@@ -764,6 +825,7 @@
             panel4.Controls.Add(label9);
             panel4.Controls.Add(label6);
             panel4.Controls.Add(label7);
+            panel4.ForeColor = Color.White;
             panel4.Location = new Point(2, 145);
             panel4.Name = "panel4";
             panel4.Size = new Size(525, 51);
@@ -773,6 +835,7 @@
             // 
             lblKs.AutoSize = true;
             lblKs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblKs.ForeColor = Color.White;
             lblKs.Location = new Point(474, 15);
             lblKs.Name = "lblKs";
             lblKs.Size = new Size(19, 21);
@@ -783,6 +846,7 @@
             // 
             lblDEFs.AutoSize = true;
             lblDEFs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDEFs.ForeColor = Color.White;
             lblDEFs.Location = new Point(376, 15);
             lblDEFs.Name = "lblDEFs";
             lblDEFs.Size = new Size(19, 21);
@@ -793,6 +857,7 @@
             // 
             lblTEs.AutoSize = true;
             lblTEs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTEs.ForeColor = Color.White;
             lblTEs.Location = new Point(289, 16);
             lblTEs.Name = "lblTEs";
             lblTEs.Size = new Size(19, 21);
@@ -803,6 +868,7 @@
             // 
             lblWRs.AutoSize = true;
             lblWRs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblWRs.ForeColor = Color.White;
             lblWRs.Location = new Point(202, 16);
             lblWRs.Name = "lblWRs";
             lblWRs.Size = new Size(19, 21);
@@ -813,6 +879,7 @@
             // 
             lblRBs.AutoSize = true;
             lblRBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRBs.ForeColor = Color.White;
             lblRBs.Location = new Point(108, 15);
             lblRBs.Name = "lblRBs";
             lblRBs.Size = new Size(19, 21);
@@ -823,6 +890,7 @@
             // 
             lblQBs.AutoSize = true;
             lblQBs.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblQBs.ForeColor = Color.White;
             lblQBs.Location = new Point(22, 15);
             lblQBs.Name = "lblQBs";
             lblQBs.Size = new Size(19, 21);
@@ -832,6 +900,7 @@
             // label8
             // 
             label8.AutoSize = true;
+            label8.ForeColor = Color.White;
             label8.Location = new Point(289, 0);
             label8.Name = "label8";
             label8.Size = new Size(28, 15);
@@ -841,6 +910,7 @@
             // label10
             // 
             label10.AutoSize = true;
+            label10.ForeColor = Color.White;
             label10.Location = new Point(471, 0);
             label10.Name = "label10";
             label10.Size = new Size(22, 15);
@@ -850,6 +920,7 @@
             // label5
             // 
             label5.AutoSize = true;
+            label5.ForeColor = Color.White;
             label5.Location = new Point(16, 0);
             label5.Name = "label5";
             label5.Size = new Size(31, 15);
@@ -859,6 +930,7 @@
             // label9
             // 
             label9.AutoSize = true;
+            label9.ForeColor = Color.White;
             label9.Location = new Point(376, 0);
             label9.Name = "label9";
             label9.Size = new Size(35, 15);
@@ -868,6 +940,7 @@
             // label6
             // 
             label6.AutoSize = true;
+            label6.ForeColor = Color.White;
             label6.Location = new Point(107, 0);
             label6.Name = "label6";
             label6.Size = new Size(29, 15);
@@ -877,6 +950,7 @@
             // label7
             // 
             label7.AutoSize = true;
+            label7.ForeColor = Color.White;
             label7.Location = new Point(196, 1);
             label7.Name = "label7";
             label7.Size = new Size(33, 15);
@@ -895,6 +969,7 @@
             // lblDisplayTeamName
             // 
             lblDisplayTeamName.Font = new Font("Rockwell Extra Bold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayTeamName.ForeColor = Color.FromArgb(224, 224, 224);
             lblDisplayTeamName.Location = new Point(3, 0);
             lblDisplayTeamName.Name = "lblDisplayTeamName";
             lblDisplayTeamName.Size = new Size(524, 38);
@@ -908,7 +983,7 @@
             webView.CreationProperties = null;
             webView.DefaultBackgroundColor = Color.White;
             webView.Enabled = false;
-            webView.Location = new Point(311, 30);
+            webView.Location = new Point(311, 84);
             webView.Name = "webView";
             webView.Size = new Size(1177, 891);
             webView.TabIndex = 8;
@@ -918,18 +993,18 @@
             // btnCloseBrowser
             // 
             btnCloseBrowser.Enabled = false;
-            btnCloseBrowser.Location = new Point(1123, 1);
+            btnCloseBrowser.Location = new Point(1109, 12);
             btnCloseBrowser.Name = "btnCloseBrowser";
             btnCloseBrowser.Size = new Size(207, 23);
             btnCloseBrowser.TabIndex = 9;
-            btnCloseBrowser.Text = "Close Window";
+            btnCloseBrowser.Text = "Close Browser";
             btnCloseBrowser.UseVisualStyleBackColor = true;
             btnCloseBrowser.Visible = false;
             btnCloseBrowser.Click += btnCloseBrowser_Click;
             // 
             // btnOpenSettings
             // 
-            btnOpenSettings.Location = new Point(1014, 1);
+            btnOpenSettings.Location = new Point(1320, 12);
             btnOpenSettings.Name = "btnOpenSettings";
             btnOpenSettings.Size = new Size(103, 23);
             btnOpenSettings.TabIndex = 10;
@@ -955,7 +1030,7 @@
             pnlTeamsToView.Controls.Add(radioButton5);
             pnlTeamsToView.Controls.Add(radioButton2);
             pnlTeamsToView.Controls.Add(radioButton1);
-            pnlTeamsToView.Location = new Point(919, 47);
+            pnlTeamsToView.Location = new Point(919, 101);
             pnlTeamsToView.Name = "pnlTeamsToView";
             pnlTeamsToView.Size = new Size(570, 278);
             pnlTeamsToView.TabIndex = 11;
@@ -963,7 +1038,7 @@
             // radioButton16
             // 
             radioButton16.Appearance = Appearance.Button;
-            radioButton16.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton16.BackColor = Color.FromArgb(176, 209, 176);
             radioButton16.FlatAppearance.BorderSize = 0;
             radioButton16.FlatStyle = FlatStyle.Flat;
             radioButton16.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -979,7 +1054,7 @@
             // radioButton15
             // 
             radioButton15.Appearance = Appearance.Button;
-            radioButton15.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton15.BackColor = Color.FromArgb(176, 209, 176);
             radioButton15.FlatAppearance.BorderSize = 0;
             radioButton15.FlatStyle = FlatStyle.Flat;
             radioButton15.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -996,7 +1071,7 @@
             // radioButton12
             // 
             radioButton12.Appearance = Appearance.Button;
-            radioButton12.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton12.BackColor = Color.FromArgb(176, 209, 176);
             radioButton12.FlatAppearance.BorderSize = 0;
             radioButton12.FlatStyle = FlatStyle.Flat;
             radioButton12.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1013,7 +1088,7 @@
             // radioButton11
             // 
             radioButton11.Appearance = Appearance.Button;
-            radioButton11.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton11.BackColor = Color.FromArgb(176, 209, 176);
             radioButton11.FlatAppearance.BorderSize = 0;
             radioButton11.FlatStyle = FlatStyle.Flat;
             radioButton11.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1030,7 +1105,7 @@
             // radioButton8
             // 
             radioButton8.Appearance = Appearance.Button;
-            radioButton8.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton8.BackColor = Color.FromArgb(176, 209, 176);
             radioButton8.FlatAppearance.BorderSize = 0;
             radioButton8.FlatStyle = FlatStyle.Flat;
             radioButton8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1047,7 +1122,7 @@
             // radioButton14
             // 
             radioButton14.Appearance = Appearance.Button;
-            radioButton14.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton14.BackColor = Color.FromArgb(176, 209, 176);
             radioButton14.FlatAppearance.BorderSize = 0;
             radioButton14.FlatStyle = FlatStyle.Flat;
             radioButton14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1064,7 +1139,7 @@
             // radioButton7
             // 
             radioButton7.Appearance = Appearance.Button;
-            radioButton7.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton7.BackColor = Color.FromArgb(176, 209, 176);
             radioButton7.FlatAppearance.BorderSize = 0;
             radioButton7.FlatStyle = FlatStyle.Flat;
             radioButton7.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1081,7 +1156,7 @@
             // radioButton10
             // 
             radioButton10.Appearance = Appearance.Button;
-            radioButton10.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton10.BackColor = Color.FromArgb(176, 209, 176);
             radioButton10.FlatAppearance.BorderSize = 0;
             radioButton10.FlatStyle = FlatStyle.Flat;
             radioButton10.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1098,7 +1173,7 @@
             // radioButton4
             // 
             radioButton4.Appearance = Appearance.Button;
-            radioButton4.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton4.BackColor = Color.FromArgb(176, 209, 176);
             radioButton4.FlatAppearance.BorderSize = 0;
             radioButton4.FlatStyle = FlatStyle.Flat;
             radioButton4.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1115,7 +1190,7 @@
             // radioButton13
             // 
             radioButton13.Appearance = Appearance.Button;
-            radioButton13.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton13.BackColor = Color.FromArgb(176, 209, 176);
             radioButton13.FlatAppearance.BorderSize = 0;
             radioButton13.FlatStyle = FlatStyle.Flat;
             radioButton13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1132,7 +1207,7 @@
             // radioButton6
             // 
             radioButton6.Appearance = Appearance.Button;
-            radioButton6.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton6.BackColor = Color.FromArgb(176, 209, 176);
             radioButton6.FlatAppearance.BorderSize = 0;
             radioButton6.FlatStyle = FlatStyle.Flat;
             radioButton6.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1149,7 +1224,7 @@
             // radioButton9
             // 
             radioButton9.Appearance = Appearance.Button;
-            radioButton9.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton9.BackColor = Color.FromArgb(176, 209, 176);
             radioButton9.FlatAppearance.BorderSize = 0;
             radioButton9.FlatStyle = FlatStyle.Flat;
             radioButton9.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1166,7 +1241,7 @@
             // radioButton3
             // 
             radioButton3.Appearance = Appearance.Button;
-            radioButton3.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton3.BackColor = Color.FromArgb(176, 209, 176);
             radioButton3.FlatAppearance.BorderSize = 0;
             radioButton3.FlatStyle = FlatStyle.Flat;
             radioButton3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1183,7 +1258,7 @@
             // radioButton5
             // 
             radioButton5.Appearance = Appearance.Button;
-            radioButton5.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton5.BackColor = Color.FromArgb(176, 209, 176);
             radioButton5.FlatAppearance.BorderSize = 0;
             radioButton5.FlatStyle = FlatStyle.Flat;
             radioButton5.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1200,7 +1275,7 @@
             // radioButton2
             // 
             radioButton2.Appearance = Appearance.Button;
-            radioButton2.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton2.BackColor = Color.FromArgb(176, 209, 176);
             radioButton2.FlatAppearance.BorderSize = 0;
             radioButton2.FlatStyle = FlatStyle.Flat;
             radioButton2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1217,7 +1292,7 @@
             // radioButton1
             // 
             radioButton1.Appearance = Appearance.Button;
-            radioButton1.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton1.BackColor = Color.FromArgb(176, 209, 176);
             radioButton1.FlatAppearance.BorderSize = 0;
             radioButton1.FlatStyle = FlatStyle.Flat;
             radioButton1.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
@@ -1233,7 +1308,7 @@
             // 
             // txtSearch
             // 
-            txtSearch.Location = new Point(314, 10);
+            txtSearch.Location = new Point(314, 64);
             txtSearch.Name = "txtSearch";
             txtSearch.PlaceholderText = "Search by Name";
             txtSearch.Size = new Size(237, 23);
@@ -1241,48 +1316,60 @@
             // 
             // btnSearch
             // 
-            btnSearch.Location = new Point(566, 9);
+            btnSearch.BackColor = SystemColors.Control;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Location = new Point(566, 63);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(92, 23);
             btnSearch.TabIndex = 13;
             btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
             // 
             // cbDraftHistory
             // 
             cbDraftHistory.Appearance = Appearance.Button;
-            cbDraftHistory.Location = new Point(664, 9);
+            cbDraftHistory.BackColor = SystemColors.Control;
+            cbDraftHistory.FlatAppearance.BorderSize = 0;
+            cbDraftHistory.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbDraftHistory.FlatStyle = FlatStyle.Flat;
+            cbDraftHistory.Location = new Point(664, 63);
             cbDraftHistory.Name = "cbDraftHistory";
             cbDraftHistory.Size = new Size(104, 24);
             cbDraftHistory.TabIndex = 16;
             cbDraftHistory.Text = "Draft History";
             cbDraftHistory.TextAlign = ContentAlignment.MiddleCenter;
-            cbDraftHistory.UseVisualStyleBackColor = true;
+            cbDraftHistory.UseVisualStyleBackColor = false;
             cbDraftHistory.CheckedChanged += cbDraftHistory_CheckedChanged;
             // 
             // cbKeepers
             // 
             cbKeepers.Appearance = Appearance.Button;
-            cbKeepers.Location = new Point(774, 9);
+            cbKeepers.BackColor = SystemColors.Control;
+            cbKeepers.FlatAppearance.BorderSize = 0;
+            cbKeepers.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbKeepers.FlatStyle = FlatStyle.Flat;
+            cbKeepers.Location = new Point(774, 63);
             cbKeepers.Name = "cbKeepers";
             cbKeepers.Size = new Size(104, 24);
             cbKeepers.TabIndex = 17;
             cbKeepers.Text = "Keepers";
             cbKeepers.TextAlign = ContentAlignment.MiddleCenter;
-            cbKeepers.UseVisualStyleBackColor = true;
+            cbKeepers.UseVisualStyleBackColor = false;
             cbKeepers.CheckedChanged += cbKeepers_CheckedChanged;
             // 
             // pnlPlayerOnClockDisplay
             // 
-            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(255, 128, 0);
+            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(41, 122, 38);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClock);
             pnlPlayerOnClockDisplay.Controls.Add(btnSaveNotes);
             pnlPlayerOnClockDisplay.Controls.Add(label1);
             pnlPlayerOnClockDisplay.Controls.Add(txtPlayerNotes);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClockValue);
             pnlPlayerOnClockDisplay.Controls.Add(btnCancelOnClock);
-            pnlPlayerOnClockDisplay.Location = new Point(12, 4);
+            pnlPlayerOnClockDisplay.Location = new Point(12, 58);
             pnlPlayerOnClockDisplay.Name = "pnlPlayerOnClockDisplay";
             pnlPlayerOnClockDisplay.Size = new Size(280, 161);
             pnlPlayerOnClockDisplay.TabIndex = 11;
@@ -1291,18 +1378,35 @@
             // label12
             // 
             label12.AutoSize = true;
+            label12.BackColor = Color.FromArgb(29, 29, 54);
             label12.Font = new Font("Arial Narrow", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(30, 60);
+            label12.ForeColor = Color.FromArgb(224, 224, 224);
+            label12.Location = new Point(30, 114);
             label12.Name = "label12";
             label12.Size = new Size(252, 23);
             label12.TabIndex = 18;
             label12.Text = "Select A Player To View Or Draft!";
             // 
+            // btnCloseApp
+            // 
+            btnCloseApp.FlatAppearance.BorderSize = 0;
+            btnCloseApp.FlatStyle = FlatStyle.Flat;
+            btnCloseApp.ForeColor = Color.FromArgb(224, 224, 224);
+            btnCloseApp.Location = new Point(1481, 12);
+            btnCloseApp.Name = "btnCloseApp";
+            btnCloseApp.Size = new Size(26, 23);
+            btnCloseApp.TabIndex = 19;
+            btnCloseApp.Text = "X";
+            btnCloseApp.UseVisualStyleBackColor = true;
+            btnCloseApp.Click += btnCloseApp_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1520, 951);
+            BackColor = Color.FromArgb(39, 39, 54);
+            ClientSize = new Size(1519, 990);
+            Controls.Add(btnCloseApp);
             Controls.Add(panel2);
             Controls.Add(pnlPlayerOnClockDisplay);
             Controls.Add(cbKeepers);
@@ -1318,10 +1422,14 @@
             Controls.Add(lvUndraftedPlayers);
             Controls.Add(webView);
             Font = new Font("Segoe UI Historic", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
+            MouseDown += Form1_MouseDown;
+            MouseMove += Form1_MouseMove;
+            MouseUp += Form1_MouseUo;
             panel1.ResumeLayout(false);
             panel2.ResumeLayout(false);
             pnlOtherTeamsDraft.ResumeLayout(false);
@@ -1434,5 +1542,6 @@
         private TextBox txtPlayerNotes;
         private Panel pnlPlayerOnClockDisplay;
         private Label label12;
+        private Button btnCloseApp;
     }
 }

@@ -8,6 +8,28 @@ namespace FantasyFootballAuctionDraftAssistant
 
         DraftManager Draft = new DraftManager();
         bool isProgrammaticUpdate = false;
+        private bool isDragging = false;
+        private Point lastLocation;
+        private void Form1_MouseDown(object sender, MouseEventArgs e)
+        {
+            isDragging = true;
+            lastLocation = e.Location;
+        }
+        private void Form1_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                this.Location = new Point(
+                    (this.Location.X - lastLocation.X) + e.X,
+                    (this.Location.Y - lastLocation.Y) + e.Y);
+                this.Update();
+            }
+        }
+        private void Form1_MouseUo(object sender, MouseEventArgs e)
+        {
+            isDragging = false;
+        }
+
 
         public Form1()
         {
@@ -84,6 +106,7 @@ namespace FantasyFootballAuctionDraftAssistant
             salaryLabel.Location = new Point(radioButton.Location.X + radioButton.Width + 15, radioButton.Location.Y + 3);
             salaryLabel.Tag = team;
             salaryLabel.Font = new Font("Arial Narrow", 14, FontStyle.Bold);
+            salaryLabel.ForeColor = Color.LightGray;
             pnlTeamsToView.Controls.Add(salaryLabel);
         }
         private void UpdateSalaryCapLabels()
@@ -245,6 +268,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void SetListViewToRosterMoves()
         {
+            lvUndraftedPlayers.ListViewItemSorter = null;
             lvUndraftedPlayers.Items.Clear();
             lvUndraftedPlayers.Columns.Clear();
             lvUndraftedPlayers.View = View.Details;
@@ -255,6 +279,7 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Cost", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Value", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.ListViewItemSorter = lvDraftedPlayersSorter;
 
         }
         private void SetViewToKeepers()
@@ -299,7 +324,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
-            SortByValue(lvUndraftedPlayersSorter, 1);
+            SortByValue(lvDraftedPlayersSorter, 1);
         }
         private void SetListViewToFreeAgents()
         {
@@ -313,6 +338,7 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Exp", 50, HorizontalAlignment.Left);
             lvUndraftedPlayers.Columns.Add("Notes", 100, HorizontalAlignment.Left);
+            lvUndraftedPlayers.ListViewItemSorter = null;
             lvUndraftedPlayers.ListViewItemSorter = lvUndraftedPlayersSorter;
             lvUndraftedPlayers.ColumnClick += LvUndraftedPlayers_ColumnClick;
         }
@@ -332,6 +358,8 @@ namespace FantasyFootballAuctionDraftAssistant
             lvTeamRoster.ColumnClick += LvTeamRoster_ColumnClick;
         }
         private ListViewColumnSorter lvUndraftedPlayersSorter = new ListViewColumnSorter();
+        private ListViewColumnSorter lvDraftedPlayersSorter = new ListViewColumnSorter();
+        private ListViewColumnSorter lvKeepersPlayersSorter = new ListViewColumnSorter();
         private ListViewColumnSorter lvTeamRosterSorter = new ListViewColumnSorter();
 
 
@@ -904,7 +932,9 @@ namespace FantasyFootballAuctionDraftAssistant
             else { return; }
         }
 
-
-
+        private void btnCloseApp_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
