@@ -40,6 +40,9 @@
             lblPlayerOnClock = new Label();
             label1 = new Label();
             panel2 = new Panel();
+            btnSaveNotes = new Button();
+            txtPlayerNotes = new TextBox();
+            label12 = new Label();
             pnlOtherTeamsDraft = new Panel();
             button14 = new Button();
             button13 = new Button();
@@ -116,9 +119,6 @@
             btnSearch = new Button();
             cbDraftHistory = new CheckBox();
             cbKeepers = new CheckBox();
-            label12 = new Label();
-            txtPlayerNotes = new TextBox();
-            btnSaveNotes = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -300,6 +300,37 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(252, 915);
             panel2.TabIndex = 4;
+            // 
+            // btnSaveNotes
+            // 
+            btnSaveNotes.BackColor = SystemColors.Info;
+            btnSaveNotes.FlatStyle = FlatStyle.Flat;
+            btnSaveNotes.Location = new Point(181, 117);
+            btnSaveNotes.Name = "btnSaveNotes";
+            btnSaveNotes.Size = new Size(42, 23);
+            btnSaveNotes.TabIndex = 10;
+            btnSaveNotes.Text = "Save";
+            btnSaveNotes.UseVisualStyleBackColor = false;
+            btnSaveNotes.Click += btnSaveNotes_Click;
+            // 
+            // txtPlayerNotes
+            // 
+            txtPlayerNotes.BackColor = SystemColors.Info;
+            txtPlayerNotes.Location = new Point(17, 89);
+            txtPlayerNotes.Multiline = true;
+            txtPlayerNotes.Name = "txtPlayerNotes";
+            txtPlayerNotes.Size = new Size(206, 51);
+            txtPlayerNotes.TabIndex = 9;
+            // 
+            // label12
+            // 
+            label12.AutoSize = true;
+            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label12.Location = new Point(17, 144);
+            label12.Name = "label12";
+            label12.Size = new Size(50, 25);
+            label12.TabIndex = 8;
+            label12.Text = "Cost";
             // 
             // pnlOtherTeamsDraft
             // 
@@ -563,18 +594,20 @@
             // lblDisplayKeeper
             // 
             lblDisplayKeeper.AutoSize = true;
-            lblDisplayKeeper.Location = new Point(135, 117);
+            lblDisplayKeeper.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayKeeper.Location = new Point(256, 122);
             lblDisplayKeeper.Name = "lblDisplayKeeper";
-            lblDisplayKeeper.Size = new Size(36, 15);
+            lblDisplayKeeper.Size = new Size(41, 20);
             lblDisplayKeeper.TabIndex = 17;
             lblDisplayKeeper.Text = "None";
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(71, 117);
+            label14.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.Location = new Point(204, 122);
             label14.Name = "label14";
-            label14.Size = new Size(46, 15);
+            label14.Size = new Size(56, 20);
             label14.TabIndex = 17;
             label14.Text = "Keeper:";
             // 
@@ -605,48 +638,50 @@
             panel7.Controls.Add(label11);
             panel7.Controls.Add(lblAvgCapPerSpotLeft);
             panel7.Controls.Add(label13);
-            panel7.Location = new Point(236, 28);
+            panel7.Location = new Point(274, 38);
             panel7.Name = "panel7";
-            panel7.Size = new Size(177, 81);
+            panel7.Size = new Size(230, 81);
             panel7.TabIndex = 14;
             // 
             // lblRosterSpots
             // 
             lblRosterSpots.AutoSize = true;
-            lblRosterSpots.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblRosterSpots.Location = new Point(115, 5);
+            lblRosterSpots.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRosterSpots.Location = new Point(144, 5);
             lblRosterSpots.Name = "lblRosterSpots";
-            lblRosterSpots.Size = new Size(25, 21);
+            lblRosterSpots.Size = new Size(32, 22);
             lblRosterSpots.TabIndex = 8;
             lblRosterSpots.Text = "16";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             label11.Location = new Point(3, 5);
             label11.Name = "label11";
-            label11.Size = new Size(106, 21);
+            label11.Size = new Size(135, 22);
             label11.TabIndex = 8;
             label11.Text = "Empty Spots:";
             // 
             // lblAvgCapPerSpotLeft
             // 
             lblAvgCapPerSpotLeft.AutoSize = true;
-            lblAvgCapPerSpotLeft.Location = new Point(119, 34);
+            lblAvgCapPerSpotLeft.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblAvgCapPerSpotLeft.Location = new Point(157, 36);
             lblAvgCapPerSpotLeft.Name = "lblAvgCapPerSpotLeft";
-            lblAvgCapPerSpotLeft.Size = new Size(13, 15);
+            lblAvgCapPerSpotLeft.Size = new Size(16, 20);
             lblAvgCapPerSpotLeft.TabIndex = 11;
             lblAvgCapPerSpotLeft.Text = "0";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(3, 34);
+            label13.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label13.Location = new Point(3, 36);
             label13.Name = "label13";
-            label13.Size = new Size(110, 15);
+            label13.Size = new Size(148, 20);
             label13.TabIndex = 11;
-            label13.Text = "Avg Cap Per Player:";
+            label13.Text = "Avg Cap Per Player:  $";
             // 
             // panel6
             // 
@@ -657,66 +692,70 @@
             panel6.Controls.Add(lblMaxBid);
             panel6.Controls.Add(label2);
             panel6.Controls.Add(label4);
-            panel6.Location = new Point(18, 28);
+            panel6.Location = new Point(16, 39);
             panel6.Name = "panel6";
-            panel6.Size = new Size(195, 80);
+            panel6.Size = new Size(232, 80);
             panel6.TabIndex = 13;
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(21, 5);
+            label3.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.Location = new Point(21, 4);
             label3.Name = "label3";
-            label3.Size = new Size(90, 21);
+            label3.Size = new Size(138, 22);
             label3.TabIndex = 7;
-            label3.Text = "Cap Space:";
+            label3.Text = "Cap Space:  $";
             // 
             // lblRosterValueDifference
             // 
             lblRosterValueDifference.AutoSize = true;
-            lblRosterValueDifference.Location = new Point(117, 55);
+            lblRosterValueDifference.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblRosterValueDifference.Location = new Point(159, 55);
             lblRosterValueDifference.Name = "lblRosterValueDifference";
-            lblRosterValueDifference.Size = new Size(13, 15);
+            lblRosterValueDifference.Size = new Size(16, 20);
             lblRosterValueDifference.TabIndex = 12;
             lblRosterValueDifference.Text = "0";
             // 
             // lblDisplayTeamBudget
             // 
             lblDisplayTeamBudget.AutoSize = true;
-            lblDisplayTeamBudget.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDisplayTeamBudget.Location = new Point(117, 5);
+            lblDisplayTeamBudget.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayTeamBudget.Location = new Point(154, 4);
             lblDisplayTeamBudget.Name = "lblDisplayTeamBudget";
-            lblDisplayTeamBudget.Size = new Size(37, 21);
+            lblDisplayTeamBudget.Size = new Size(43, 22);
             lblDisplayTeamBudget.TabIndex = 7;
             lblDisplayTeamBudget.Text = "200";
             // 
             // lblMaxBid
             // 
             lblMaxBid.AutoSize = true;
-            lblMaxBid.Location = new Point(117, 34);
+            lblMaxBid.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblMaxBid.Location = new Point(159, 35);
             lblMaxBid.Name = "lblMaxBid";
-            lblMaxBid.Size = new Size(13, 15);
+            lblMaxBid.Size = new Size(16, 20);
             lblMaxBid.TabIndex = 11;
             lblMaxBid.Text = "0";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(53, 33);
+            label2.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Location = new Point(76, 35);
             label2.Name = "label2";
-            label2.Size = new Size(53, 15);
+            label2.Size = new Size(77, 20);
             label2.TabIndex = 11;
-            label2.Text = "Max Bid:";
+            label2.Text = "Max Bid:  $";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(37, 55);
+            label4.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.Location = new Point(46, 55);
             label4.Name = "label4";
-            label4.Size = new Size(74, 15);
+            label4.Size = new Size(107, 20);
             label4.TabIndex = 11;
-            label4.Text = "Roster Value:";
+            label4.Text = "Roster Value:  $";
             // 
             // panel4
             // 
@@ -803,7 +842,7 @@
             label8.AutoSize = true;
             label8.Location = new Point(289, 0);
             label8.Name = "label8";
-            label8.Size = new Size(27, 15);
+            label8.Size = new Size(28, 15);
             label8.TabIndex = 9;
             label8.Text = "TEs:";
             // 
@@ -863,10 +902,10 @@
             // 
             // lblDisplayTeamName
             // 
-            lblDisplayTeamName.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblDisplayTeamName.Location = new Point(47, 0);
+            lblDisplayTeamName.Font = new Font("Rockwell Extra Bold", 18F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayTeamName.Location = new Point(3, 0);
             lblDisplayTeamName.Name = "lblDisplayTeamName";
-            lblDisplayTeamName.Size = new Size(440, 25);
+            lblDisplayTeamName.Size = new Size(524, 38);
             lblDisplayTeamName.TabIndex = 6;
             lblDisplayTeamName.Text = "Disappointing Monday";
             lblDisplayTeamName.TextAlign = ContentAlignment.MiddleCenter;
@@ -926,215 +965,279 @@
             pnlTeamsToView.Controls.Add(radioButton1);
             pnlTeamsToView.Location = new Point(919, 47);
             pnlTeamsToView.Name = "pnlTeamsToView";
-            pnlTeamsToView.Size = new Size(569, 278);
+            pnlTeamsToView.Size = new Size(570, 278);
             pnlTeamsToView.TabIndex = 11;
             // 
             // radioButton16
             // 
             radioButton16.Appearance = Appearance.Button;
-            radioButton16.Location = new Point(5, 235);
+            radioButton16.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton16.FlatAppearance.BorderSize = 0;
+            radioButton16.FlatStyle = FlatStyle.Flat;
+            radioButton16.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton16.Location = new Point(5, 210);
             radioButton16.Name = "radioButton16";
-            radioButton16.Size = new Size(466, 40);
+            radioButton16.Size = new Size(170, 30);
             radioButton16.TabIndex = 0;
             radioButton16.TabStop = true;
             radioButton16.Text = "radioButton1";
             radioButton16.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton16.UseVisualStyleBackColor = true;
+            radioButton16.UseVisualStyleBackColor = false;
             // 
             // radioButton15
             // 
             radioButton15.Appearance = Appearance.Button;
-            radioButton15.Location = new Point(377, 182);
+            radioButton15.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton15.FlatAppearance.BorderSize = 0;
+            radioButton15.FlatStyle = FlatStyle.Flat;
+            radioButton15.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton15.Location = new Point(5, 244);
             radioButton15.Margin = new Padding(0, 0, 0, 2);
             radioButton15.Name = "radioButton15";
-            radioButton15.Size = new Size(135, 30);
+            radioButton15.Size = new Size(170, 30);
             radioButton15.TabIndex = 0;
             radioButton15.TabStop = true;
             radioButton15.Text = "radioButton1";
             radioButton15.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton15.UseVisualStyleBackColor = true;
+            radioButton15.UseVisualStyleBackColor = false;
             // 
             // radioButton12
             // 
             radioButton12.Appearance = Appearance.Button;
-            radioButton12.Location = new Point(5, 94);
+            radioButton12.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton12.FlatAppearance.BorderSize = 0;
+            radioButton12.FlatStyle = FlatStyle.Flat;
+            radioButton12.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton12.Location = new Point(5, 108);
             radioButton12.Margin = new Padding(0, 0, 0, 2);
             radioButton12.Name = "radioButton12";
-            radioButton12.Size = new Size(135, 30);
+            radioButton12.Size = new Size(170, 30);
             radioButton12.TabIndex = 0;
             radioButton12.TabStop = true;
             radioButton12.Text = "radioButton1";
             radioButton12.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton12.UseVisualStyleBackColor = true;
+            radioButton12.UseVisualStyleBackColor = false;
             // 
             // radioButton11
             // 
             radioButton11.Appearance = Appearance.Button;
-            radioButton11.Location = new Point(377, 138);
+            radioButton11.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton11.FlatAppearance.BorderSize = 0;
+            radioButton11.FlatStyle = FlatStyle.Flat;
+            radioButton11.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton11.Location = new Point(285, 244);
             radioButton11.Margin = new Padding(0, 0, 0, 2);
             radioButton11.Name = "radioButton11";
-            radioButton11.Size = new Size(135, 30);
+            radioButton11.Size = new Size(170, 30);
             radioButton11.TabIndex = 0;
             radioButton11.TabStop = true;
             radioButton11.Text = "radioButton1";
             radioButton11.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton11.UseVisualStyleBackColor = true;
+            radioButton11.UseVisualStyleBackColor = false;
             // 
             // radioButton8
             // 
             radioButton8.Appearance = Appearance.Button;
-            radioButton8.Location = new Point(200, 94);
+            radioButton8.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton8.FlatAppearance.BorderSize = 0;
+            radioButton8.FlatStyle = FlatStyle.Flat;
+            radioButton8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton8.Location = new Point(285, 142);
             radioButton8.Margin = new Padding(0, 0, 0, 2);
             radioButton8.Name = "radioButton8";
-            radioButton8.Size = new Size(135, 30);
+            radioButton8.Size = new Size(170, 30);
             radioButton8.TabIndex = 0;
             radioButton8.TabStop = true;
             radioButton8.Text = "radioButton1";
             radioButton8.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton8.UseVisualStyleBackColor = true;
+            radioButton8.UseVisualStyleBackColor = false;
             // 
             // radioButton14
             // 
             radioButton14.Appearance = Appearance.Button;
-            radioButton14.Location = new Point(200, 182);
+            radioButton14.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton14.FlatAppearance.BorderSize = 0;
+            radioButton14.FlatStyle = FlatStyle.Flat;
+            radioButton14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton14.Location = new Point(285, 210);
             radioButton14.Margin = new Padding(0, 0, 0, 2);
             radioButton14.Name = "radioButton14";
-            radioButton14.Size = new Size(135, 30);
+            radioButton14.Size = new Size(170, 30);
             radioButton14.TabIndex = 0;
             radioButton14.TabStop = true;
             radioButton14.Text = "radioButton1";
             radioButton14.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton14.UseVisualStyleBackColor = true;
+            radioButton14.UseVisualStyleBackColor = false;
             // 
             // radioButton7
             // 
             radioButton7.Appearance = Appearance.Button;
-            radioButton7.Location = new Point(377, 50);
+            radioButton7.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton7.FlatAppearance.BorderSize = 0;
+            radioButton7.FlatStyle = FlatStyle.Flat;
+            radioButton7.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton7.Location = new Point(285, 74);
             radioButton7.Margin = new Padding(0, 0, 0, 2);
             radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(135, 30);
+            radioButton7.Size = new Size(170, 30);
             radioButton7.TabIndex = 0;
             radioButton7.TabStop = true;
             radioButton7.Text = "radioButton1";
             radioButton7.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton7.UseVisualStyleBackColor = true;
+            radioButton7.UseVisualStyleBackColor = false;
             // 
             // radioButton10
             // 
             radioButton10.Appearance = Appearance.Button;
-            radioButton10.Location = new Point(200, 138);
+            radioButton10.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton10.FlatAppearance.BorderSize = 0;
+            radioButton10.FlatStyle = FlatStyle.Flat;
+            radioButton10.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton10.Location = new Point(285, 176);
             radioButton10.Margin = new Padding(0, 0, 0, 2);
             radioButton10.Name = "radioButton10";
-            radioButton10.Size = new Size(135, 30);
+            radioButton10.Size = new Size(170, 30);
             radioButton10.TabIndex = 0;
             radioButton10.TabStop = true;
             radioButton10.Text = "radioButton1";
             radioButton10.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton10.UseVisualStyleBackColor = true;
+            radioButton10.UseVisualStyleBackColor = false;
             // 
             // radioButton4
             // 
             radioButton4.Appearance = Appearance.Button;
-            radioButton4.Location = new Point(377, 94);
+            radioButton4.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton4.FlatAppearance.BorderSize = 0;
+            radioButton4.FlatStyle = FlatStyle.Flat;
+            radioButton4.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton4.Location = new Point(285, 108);
             radioButton4.Margin = new Padding(0, 0, 0, 2);
             radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(135, 30);
+            radioButton4.Size = new Size(170, 30);
             radioButton4.TabIndex = 0;
             radioButton4.TabStop = true;
             radioButton4.Text = "radioButton1";
             radioButton4.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton4.UseVisualStyleBackColor = true;
+            radioButton4.UseVisualStyleBackColor = false;
             // 
             // radioButton13
             // 
             radioButton13.Appearance = Appearance.Button;
-            radioButton13.Location = new Point(5, 182);
+            radioButton13.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton13.FlatAppearance.BorderSize = 0;
+            radioButton13.FlatStyle = FlatStyle.Flat;
+            radioButton13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton13.Location = new Point(5, 176);
             radioButton13.Margin = new Padding(0, 0, 0, 2);
             radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(135, 30);
+            radioButton13.Size = new Size(170, 30);
             radioButton13.TabIndex = 0;
             radioButton13.TabStop = true;
             radioButton13.Text = "radioButton1";
             radioButton13.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton13.UseVisualStyleBackColor = true;
+            radioButton13.UseVisualStyleBackColor = false;
             // 
             // radioButton6
             // 
             radioButton6.Appearance = Appearance.Button;
-            radioButton6.Location = new Point(200, 50);
+            radioButton6.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton6.FlatAppearance.BorderSize = 0;
+            radioButton6.FlatStyle = FlatStyle.Flat;
+            radioButton6.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton6.Location = new Point(5, 74);
             radioButton6.Margin = new Padding(0, 0, 0, 2);
             radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(135, 30);
+            radioButton6.Size = new Size(170, 30);
             radioButton6.TabIndex = 0;
             radioButton6.TabStop = true;
             radioButton6.Text = "radioButton1";
             radioButton6.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton6.UseVisualStyleBackColor = true;
+            radioButton6.UseVisualStyleBackColor = false;
             // 
             // radioButton9
             // 
             radioButton9.Appearance = Appearance.Button;
-            radioButton9.Location = new Point(5, 138);
+            radioButton9.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton9.FlatAppearance.BorderSize = 0;
+            radioButton9.FlatStyle = FlatStyle.Flat;
+            radioButton9.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton9.Location = new Point(5, 142);
             radioButton9.Margin = new Padding(0, 0, 0, 2);
             radioButton9.Name = "radioButton9";
-            radioButton9.Size = new Size(135, 30);
+            radioButton9.Size = new Size(170, 30);
             radioButton9.TabIndex = 0;
             radioButton9.TabStop = true;
             radioButton9.Text = "radioButton1";
             radioButton9.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton9.UseVisualStyleBackColor = true;
+            radioButton9.UseVisualStyleBackColor = false;
             // 
             // radioButton3
             // 
             radioButton3.Appearance = Appearance.Button;
-            radioButton3.Location = new Point(377, 6);
+            radioButton3.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton3.FlatAppearance.BorderSize = 0;
+            radioButton3.FlatStyle = FlatStyle.Flat;
+            radioButton3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton3.Location = new Point(5, 40);
             radioButton3.Margin = new Padding(0, 0, 0, 2);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(135, 30);
+            radioButton3.Size = new Size(170, 30);
             radioButton3.TabIndex = 0;
             radioButton3.TabStop = true;
             radioButton3.Text = "radioButton1";
             radioButton3.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton3.UseVisualStyleBackColor = true;
+            radioButton3.UseVisualStyleBackColor = false;
             // 
             // radioButton5
             // 
             radioButton5.Appearance = Appearance.Button;
-            radioButton5.Location = new Point(5, 50);
+            radioButton5.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton5.FlatAppearance.BorderSize = 0;
+            radioButton5.FlatStyle = FlatStyle.Flat;
+            radioButton5.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton5.Location = new Point(285, 40);
             radioButton5.Margin = new Padding(0, 0, 0, 2);
             radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(135, 30);
+            radioButton5.Size = new Size(170, 30);
             radioButton5.TabIndex = 0;
             radioButton5.TabStop = true;
             radioButton5.Text = "radioButton1";
             radioButton5.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton5.UseVisualStyleBackColor = true;
+            radioButton5.UseVisualStyleBackColor = false;
             // 
             // radioButton2
             // 
             radioButton2.Appearance = Appearance.Button;
-            radioButton2.Location = new Point(200, 6);
+            radioButton2.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton2.FlatAppearance.BorderSize = 0;
+            radioButton2.FlatStyle = FlatStyle.Flat;
+            radioButton2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton2.Location = new Point(285, 6);
             radioButton2.Margin = new Padding(0, 0, 0, 2);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(135, 30);
+            radioButton2.Size = new Size(170, 30);
             radioButton2.TabIndex = 0;
             radioButton2.TabStop = true;
             radioButton2.Text = "radioButton1";
             radioButton2.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton2.UseVisualStyleBackColor = true;
+            radioButton2.UseVisualStyleBackColor = false;
             // 
             // radioButton1
             // 
             radioButton1.Appearance = Appearance.Button;
+            radioButton1.BackColor = Color.FromArgb(192, 192, 255);
+            radioButton1.FlatAppearance.BorderSize = 0;
+            radioButton1.FlatStyle = FlatStyle.Flat;
+            radioButton1.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             radioButton1.Location = new Point(5, 6);
             radioButton1.Margin = new Padding(0, 0, 0, 2);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(135, 30);
+            radioButton1.Size = new Size(170, 30);
             radioButton1.TabIndex = 0;
             radioButton1.TabStop = true;
             radioButton1.Text = "radioButton1";
             radioButton1.TextAlign = ContentAlignment.MiddleCenter;
-            radioButton1.UseVisualStyleBackColor = true;
+            radioButton1.UseVisualStyleBackColor = false;
             // 
             // txtSearch
             // 
@@ -1178,37 +1281,6 @@
             cbKeepers.UseVisualStyleBackColor = true;
             cbKeepers.CheckedChanged += cbKeepers_CheckedChanged;
             // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label12.Location = new Point(17, 144);
-            label12.Name = "label12";
-            label12.Size = new Size(50, 25);
-            label12.TabIndex = 8;
-            label12.Text = "Cost";
-            // 
-            // txtPlayerNotes
-            // 
-            txtPlayerNotes.BackColor = SystemColors.Info;
-            txtPlayerNotes.Location = new Point(17, 89);
-            txtPlayerNotes.Multiline = true;
-            txtPlayerNotes.Name = "txtPlayerNotes";
-            txtPlayerNotes.Size = new Size(206, 51);
-            txtPlayerNotes.TabIndex = 9;
-            // 
-            // btnSaveNotes
-            // 
-            btnSaveNotes.BackColor = SystemColors.Info;
-            btnSaveNotes.FlatStyle = FlatStyle.Flat;
-            btnSaveNotes.Location = new Point(181, 117);
-            btnSaveNotes.Name = "btnSaveNotes";
-            btnSaveNotes.Size = new Size(42, 23);
-            btnSaveNotes.TabIndex = 10;
-            btnSaveNotes.Text = "Save";
-            btnSaveNotes.UseVisualStyleBackColor = false;
-            btnSaveNotes.Click += btnSaveNotes_Click;
-            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -1226,6 +1298,7 @@
             Controls.Add(panel1);
             Controls.Add(lvUndraftedPlayers);
             Controls.Add(webView);
+            Font = new Font("Segoe UI Historic", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "Form1";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
