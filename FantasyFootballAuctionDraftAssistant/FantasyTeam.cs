@@ -48,6 +48,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         public void RemovePlayer(Player player)
         {
+            
             player.Cost = 0;
             player.Drafted = false;
             player.FantasyTeam = null;

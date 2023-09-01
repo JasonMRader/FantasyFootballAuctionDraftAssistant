@@ -61,6 +61,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 FreeAgents.Remove(player);
                 currentPickNumber ++;
             }
+            //CorrectDraftOrder();
             FreeAgents.AddRange(this.AllPlayers.Where(p => !p.Keeper && !p.Drafted));
         }
         public void RecordDraftPick(FantasyTeam team, int cost)
@@ -88,6 +89,22 @@ namespace FantasyFootballAuctionDraftAssistant
             }
 
            
+        }
+        private void CorrectDraftOrder()
+        {
+            currentPickNumber = 1;
+            this.DraftedPlayers = this.DraftedPlayers.OrderBy(p => p.DraftPickNumber).ToList();
+            for (int i = 0; i < this.DraftedPlayers.Count; i++)
+            {
+                
+                if (DraftedPlayers[i].DraftPickNumber != currentPickNumber)
+                {
+                    DraftedPlayers[i].DraftPickNumber = currentPickNumber;
+                }
+                currentPickNumber++;
+            }
+            
+            
         }
         public void RecordMove(Player player, FantasyTeam team, bool keeper, int pickNo)
         {
@@ -126,6 +143,7 @@ namespace FantasyFootballAuctionDraftAssistant
             this.SelectedPlayerOnRoster.Drafted = false;
             this.FreeAgents.Add(SelectedPlayerOnRoster);
             this.DraftedPlayers.Remove(SelectedPlayerOnRoster);
+            CorrectDraftOrder();
             SQLiteDataAccess.UpdatePlayer(SelectedPlayerOnRoster);
         }
         public void UndoLastMove()

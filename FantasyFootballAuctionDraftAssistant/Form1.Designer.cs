@@ -134,6 +134,7 @@
             // 
             // lvUndraftedPlayers
             // 
+            lvUndraftedPlayers.BackColor = Color.Silver;
             lvUndraftedPlayers.Location = new Point(311, 133);
             lvUndraftedPlayers.Name = "lvUndraftedPlayers";
             lvUndraftedPlayers.Size = new Size(575, 845);
@@ -267,7 +268,7 @@
             lblPlayerOnClock.BackColor = Color.FromArgb(36, 2, 3);
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblPlayerOnClock.ForeColor = Color.FromArgb(224, 224, 224);
-            lblPlayerOnClock.Location = new Point(3, 21);
+            lblPlayerOnClock.Location = new Point(3, 6);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
             lblPlayerOnClock.Size = new Size(274, 35);
             lblPlayerOnClock.TabIndex = 2;
@@ -598,9 +599,11 @@
             // 
             btnCancelOnClock.FlatAppearance.BorderSize = 0;
             btnCancelOnClock.FlatStyle = FlatStyle.Flat;
-            btnCancelOnClock.Location = new Point(248, 0);
+            btnCancelOnClock.Font = new Font("Segoe UI Historic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCancelOnClock.ForeColor = Color.White;
+            btnCancelOnClock.Location = new Point(263, 24);
             btnCancelOnClock.Name = "btnCancelOnClock";
-            btnCancelOnClock.Size = new Size(29, 20);
+            btnCancelOnClock.Size = new Size(29, 37);
             btnCancelOnClock.TabIndex = 4;
             btnCancelOnClock.Text = "X";
             btnCancelOnClock.UseVisualStyleBackColor = true;
@@ -638,6 +641,7 @@
             // 
             lblDisplayKeeper.AutoSize = true;
             lblDisplayKeeper.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            lblDisplayKeeper.ForeColor = Color.FromArgb(224, 224, 224);
             lblDisplayKeeper.Location = new Point(256, 122);
             lblDisplayKeeper.Name = "lblDisplayKeeper";
             lblDisplayKeeper.Size = new Size(41, 20);
@@ -648,6 +652,7 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label14.ForeColor = Color.FromArgb(224, 224, 224);
             label14.Location = new Point(204, 122);
             label14.Name = "label14";
             label14.Size = new Size(56, 20);
@@ -656,6 +661,7 @@
             // 
             // btnSetKeeper
             // 
+            btnSetKeeper.Enabled = false;
             btnSetKeeper.Location = new Point(183, 530);
             btnSetKeeper.Name = "btnSetKeeper";
             btnSetKeeper.Size = new Size(133, 23);
@@ -666,6 +672,7 @@
             // 
             // btnRemovePlayerFromTeam
             // 
+            btnRemovePlayerFromTeam.Enabled = false;
             btnRemovePlayerFromTeam.Location = new Point(322, 530);
             btnRemovePlayerFromTeam.Name = "btnRemovePlayerFromTeam";
             btnRemovePlayerFromTeam.Size = new Size(205, 23);
@@ -959,6 +966,7 @@
             // 
             // lvTeamRoster
             // 
+            lvTeamRoster.BackColor = Color.Silver;
             lvTeamRoster.Location = new Point(2, 200);
             lvTeamRoster.Name = "lvTeamRoster";
             lvTeamRoster.Size = new Size(526, 324);
@@ -1368,7 +1376,6 @@
             pnlPlayerOnClockDisplay.Controls.Add(label1);
             pnlPlayerOnClockDisplay.Controls.Add(txtPlayerNotes);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClockValue);
-            pnlPlayerOnClockDisplay.Controls.Add(btnCancelOnClock);
             pnlPlayerOnClockDisplay.Location = new Point(12, 58);
             pnlPlayerOnClockDisplay.Name = "pnlPlayerOnClockDisplay";
             pnlPlayerOnClockDisplay.Size = new Size(280, 161);
@@ -1411,6 +1418,7 @@
             Controls.Add(pnlPlayerOnClockDisplay);
             Controls.Add(cbKeepers);
             Controls.Add(cbDraftHistory);
+            Controls.Add(btnCancelOnClock);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
             Controls.Add(label12);
