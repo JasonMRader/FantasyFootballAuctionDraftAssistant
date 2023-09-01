@@ -324,7 +324,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
-            SortByValue(lvDraftedPlayersSorter, 1);
+            SortByValue(lvDraftedPlayersSorter, 0);
         }
         private void SetListViewToFreeAgents()
         {
