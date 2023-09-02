@@ -118,8 +118,11 @@
             cbDraftHistory = new CheckBox();
             cbKeepers = new CheckBox();
             pnlPlayerOnClockDisplay = new Panel();
+            btnFantasyStats = new Button();
+            btnInjuryNews = new Button();
             label12 = new Label();
             btnCloseApp = new Button();
+            lblTitle = new Label();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -265,10 +268,10 @@
             // 
             // lblPlayerOnClock
             // 
-            lblPlayerOnClock.BackColor = Color.FromArgb(36, 2, 3);
+            lblPlayerOnClock.BackColor = Color.FromArgb(41, 122, 38);
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblPlayerOnClock.ForeColor = Color.FromArgb(224, 224, 224);
-            lblPlayerOnClock.Location = new Point(3, 6);
+            lblPlayerOnClock.Location = new Point(3, 39);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
             lblPlayerOnClock.Size = new Size(274, 35);
             lblPlayerOnClock.TabIndex = 2;
@@ -279,11 +282,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.FromArgb(224, 224, 224);
-            label1.Location = new Point(37, 56);
+            label1.Font = new Font("Arial Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.Black;
+            label1.Location = new Point(46, 85);
             label1.Name = "label1";
-            label1.Size = new Size(80, 25);
+            label1.Size = new Size(105, 30);
             label1.TabIndex = 3;
             label1.Text = "Value: $";
             // 
@@ -578,7 +581,7 @@
             // 
             btnSaveNotes.BackColor = SystemColors.Info;
             btnSaveNotes.FlatStyle = FlatStyle.Flat;
-            btnSaveNotes.Location = new Point(235, 119);
+            btnSaveNotes.Location = new Point(235, 153);
             btnSaveNotes.Name = "btnSaveNotes";
             btnSaveNotes.Size = new Size(42, 23);
             btnSaveNotes.TabIndex = 10;
@@ -589,7 +592,7 @@
             // txtPlayerNotes
             // 
             txtPlayerNotes.BackColor = SystemColors.Info;
-            txtPlayerNotes.Location = new Point(3, 84);
+            txtPlayerNotes.Location = new Point(3, 118);
             txtPlayerNotes.Multiline = true;
             txtPlayerNotes.Name = "txtPlayerNotes";
             txtPlayerNotes.Size = new Size(274, 58);
@@ -601,7 +604,7 @@
             btnCancelOnClock.FlatStyle = FlatStyle.Flat;
             btnCancelOnClock.Font = new Font("Segoe UI Historic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelOnClock.ForeColor = Color.White;
-            btnCancelOnClock.Location = new Point(263, 24);
+            btnCancelOnClock.Location = new Point(251, -1);
             btnCancelOnClock.Name = "btnCancelOnClock";
             btnCancelOnClock.Size = new Size(29, 37);
             btnCancelOnClock.TabIndex = 4;
@@ -612,11 +615,11 @@
             // lblPlayerOnClockValue
             // 
             lblPlayerOnClockValue.AutoSize = true;
-            lblPlayerOnClockValue.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClockValue.ForeColor = Color.FromArgb(224, 224, 224);
-            lblPlayerOnClockValue.Location = new Point(112, 56);
+            lblPlayerOnClockValue.Font = new Font("Arial Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPlayerOnClockValue.ForeColor = Color.Black;
+            lblPlayerOnClockValue.Location = new Point(157, 85);
             lblPlayerOnClockValue.Name = "lblPlayerOnClockValue";
-            lblPlayerOnClockValue.Size = new Size(34, 25);
+            lblPlayerOnClockValue.Size = new Size(41, 30);
             lblPlayerOnClockValue.TabIndex = 3;
             lblPlayerOnClockValue.Text = "$$";
             // 
@@ -991,9 +994,9 @@
             webView.CreationProperties = null;
             webView.DefaultBackgroundColor = Color.White;
             webView.Enabled = false;
-            webView.Location = new Point(311, 84);
+            webView.Location = new Point(311, 63);
             webView.Name = "webView";
-            webView.Size = new Size(1177, 891);
+            webView.Size = new Size(1177, 912);
             webView.TabIndex = 8;
             webView.Visible = false;
             webView.ZoomFactor = 1D;
@@ -1001,9 +1004,9 @@
             // btnCloseBrowser
             // 
             btnCloseBrowser.Enabled = false;
-            btnCloseBrowser.Location = new Point(1109, 12);
+            btnCloseBrowser.Location = new Point(1142, 12);
             btnCloseBrowser.Name = "btnCloseBrowser";
-            btnCloseBrowser.Size = new Size(207, 23);
+            btnCloseBrowser.Size = new Size(174, 23);
             btnCloseBrowser.TabIndex = 9;
             btnCloseBrowser.Text = "Close Browser";
             btnCloseBrowser.UseVisualStyleBackColor = true;
@@ -1370,17 +1373,46 @@
             // 
             // pnlPlayerOnClockDisplay
             // 
-            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(41, 122, 38);
+            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(213, 160, 33);
+            pnlPlayerOnClockDisplay.Controls.Add(btnFantasyStats);
+            pnlPlayerOnClockDisplay.Controls.Add(btnInjuryNews);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClock);
             pnlPlayerOnClockDisplay.Controls.Add(btnSaveNotes);
             pnlPlayerOnClockDisplay.Controls.Add(label1);
             pnlPlayerOnClockDisplay.Controls.Add(txtPlayerNotes);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClockValue);
-            pnlPlayerOnClockDisplay.Location = new Point(12, 58);
+            pnlPlayerOnClockDisplay.Controls.Add(btnCancelOnClock);
+            pnlPlayerOnClockDisplay.Location = new Point(12, 40);
             pnlPlayerOnClockDisplay.Name = "pnlPlayerOnClockDisplay";
-            pnlPlayerOnClockDisplay.Size = new Size(280, 161);
+            pnlPlayerOnClockDisplay.Size = new Size(280, 179);
             pnlPlayerOnClockDisplay.TabIndex = 11;
             pnlPlayerOnClockDisplay.Visible = false;
+            // 
+            // btnFantasyStats
+            // 
+            btnFantasyStats.BackColor = Color.FromArgb(176, 209, 176);
+            btnFantasyStats.FlatAppearance.BorderSize = 0;
+            btnFantasyStats.FlatStyle = FlatStyle.Flat;
+            btnFantasyStats.Location = new Point(126, 3);
+            btnFantasyStats.Name = "btnFantasyStats";
+            btnFantasyStats.Size = new Size(119, 32);
+            btnFantasyStats.TabIndex = 11;
+            btnFantasyStats.Text = "Fantasy Stats";
+            btnFantasyStats.UseVisualStyleBackColor = false;
+            btnFantasyStats.Click += btnFantasyStats_Click;
+            // 
+            // btnInjuryNews
+            // 
+            btnInjuryNews.BackColor = Color.FromArgb(176, 209, 176);
+            btnInjuryNews.FlatAppearance.BorderSize = 0;
+            btnInjuryNews.FlatStyle = FlatStyle.Flat;
+            btnInjuryNews.Location = new Point(3, 3);
+            btnInjuryNews.Name = "btnInjuryNews";
+            btnInjuryNews.Size = new Size(119, 32);
+            btnInjuryNews.TabIndex = 11;
+            btnInjuryNews.Text = "Injury News";
+            btnInjuryNews.UseVisualStyleBackColor = false;
+            btnInjuryNews.Click += btnInjuryNews_Click;
             // 
             // label12
             // 
@@ -1407,18 +1439,32 @@
             btnCloseApp.UseVisualStyleBackColor = true;
             btnCloseApp.Click += btnCloseApp_Click;
             // 
+            // lblTitle
+            // 
+            lblTitle.Font = new Font("Snap ITC", 26.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblTitle.ForeColor = Color.FromArgb(213, 160, 33);
+            lblTitle.Location = new Point(314, 1);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(788, 59);
+            lblTitle.TabIndex = 20;
+            lblTitle.Text = "Super Cheater Auction Draft Helper App";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
+            lblTitle.MouseDown += Form1_MouseDown;
+            lblTitle.MouseMove += Form1_MouseMove;
+            lblTitle.MouseUp += Form1_MouseUo;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(39, 39, 54);
             ClientSize = new Size(1519, 990);
+            Controls.Add(lblTitle);
             Controls.Add(btnCloseApp);
             Controls.Add(panel2);
             Controls.Add(pnlPlayerOnClockDisplay);
             Controls.Add(cbKeepers);
             Controls.Add(cbDraftHistory);
-            Controls.Add(btnCancelOnClock);
             Controls.Add(btnSearch);
             Controls.Add(txtSearch);
             Controls.Add(label12);
@@ -1551,5 +1597,8 @@
         private Panel pnlPlayerOnClockDisplay;
         private Label label12;
         private Button btnCloseApp;
+        private Button btnFantasyStats;
+        private Button btnInjuryNews;
+        private Label lblTitle;
     }
 }

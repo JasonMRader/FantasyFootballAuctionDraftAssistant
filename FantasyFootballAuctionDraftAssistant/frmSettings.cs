@@ -15,6 +15,7 @@ namespace FantasyFootballAuctionDraftAssistant
     {
         List<Player> AllPlayerList = new List<Player>();
         List<FantasyTeam> teamList = new List<FantasyTeam>();
+        FantasyTeam teamSelected;
         public frmSettings()
         {
             InitializeComponent();
@@ -113,7 +114,7 @@ namespace FantasyFootballAuctionDraftAssistant
                             {
                                 player.AlternateValue = altValue;
                             }
-                            
+
                         }
                     }
                     if (cbPositionRank.Checked)
@@ -125,7 +126,7 @@ namespace FantasyFootballAuctionDraftAssistant
                             int posRank;
                             if (int.TryParse(cellValue, out posRank))
                             {
-                                player.AlternateValue = posRank;
+                                player.PositionRank = posRank;
                             }
 
                         }
@@ -216,6 +217,23 @@ namespace FantasyFootballAuctionDraftAssistant
         private void btnDeleteAllPlayers_Click(object sender, EventArgs e)
         {
             SQLiteDataAccess.DeleteAllPlayers();
+        }
+
+        private void lbFantasyTeams_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lbFantasyTeams.SelectedIndex > 0)
+            {
+                teamSelected = (FantasyTeam)lbFantasyTeams.SelectedItem;
+                txtFantasyName.Text = teamSelected.Name;
+                txtFantasyOwner.Text = teamSelected.Owner;
+            }
+        }
+
+        private void btnUpdateTeam_Click(object sender, EventArgs e)
+        {
+            teamSelected.Name = txtFantasyName.Text;
+            teamSelected.Owner = txtFantasyOwner.Text;
+            SQLiteDataAccess.UpdateTeam(teamSelected);
         }
     }
 }

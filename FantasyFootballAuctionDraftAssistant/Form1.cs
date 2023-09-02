@@ -142,12 +142,14 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
             {
+                //string teamName = selectedTeam.Name;
+                //int maxBid = selectedTeam.Budget - selectedTeam.RosterSpots;
                 if (Draft.PlayerOnTheClock == null)
                 {
                     MessageBox.Show("No Player is Selected To Draft");
                     return;
                 }
-                using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name))
+                using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, selectedTeam))
                 {
                     if (inputCostForm.ShowDialog() == DialogResult.OK)
                     {
@@ -175,7 +177,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 MessageBox.Show("No Player is Selected To Draft");
                 return;
             }
-            using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name))
+            using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, Draft.MyTeam))
             {
                 if (inputCostForm.ShowDialog() == DialogResult.OK)
                 {
@@ -211,6 +213,7 @@ namespace FantasyFootballAuctionDraftAssistant
             UpdateDisplayTeam();
 
         }
+        // List View Methods
 
         private void SetListViewToRosterMoves()
         {
@@ -278,12 +281,15 @@ namespace FantasyFootballAuctionDraftAssistant
             lvUndraftedPlayers.Columns.Clear();
             lvUndraftedPlayers.View = View.Details;
             lvUndraftedPlayers.Columns.Add("Name", 125, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Value", 50, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Position", 65, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Team", 120, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Bye", 50, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Exp", 50, HorizontalAlignment.Left);
-            lvUndraftedPlayers.Columns.Add("Notes", 100, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Avg", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("#1", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("#2", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Pos", 50, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Team", 40, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Bye", 40, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Exp", 30, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Notes", 70, HorizontalAlignment.Left);
+            lvUndraftedPlayers.Columns.Add("Rank", 40, HorizontalAlignment.Left);
             lvUndraftedPlayers.ListViewItemSorter = null;
             lvUndraftedPlayers.ListViewItemSorter = lvUndraftedPlayersSorter;
             lvUndraftedPlayers.ColumnClick += LvUndraftedPlayers_ColumnClick;
@@ -363,20 +369,23 @@ namespace FantasyFootballAuctionDraftAssistant
             foreach (Player player in filteredPlayers)
             {
                 ListViewItem lvi = new ListViewItem(player.Name);
+                lvi.SubItems.Add(player.AverageValue.ToString());
                 lvi.SubItems.Add(player.EstimatedValue.ToString());
+                lvi.SubItems.Add(player.AlternateValue.ToString());
                 lvi.SubItems.Add(player.Position.ToString());
                 lvi.SubItems.Add(player.NflTeam);
                 lvi.SubItems.Add(player.ByeWeek.ToString());
 
                 if (player.Year == 1)
                 {
-                    lvi.SubItems.Add("Rookie");
+                    lvi.SubItems.Add("R");
                 }
                 else
                 {
                     lvi.SubItems.Add("");
                 }
                 lvi.SubItems.Add(player.Notes);
+                lvi.SubItems.Add(player.PositionRank.ToString());
 
                 lvUndraftedPlayers.Items.Add(lvi);
             }
@@ -584,33 +593,33 @@ namespace FantasyFootballAuctionDraftAssistant
             return false;
         }
 
-        private void btnOpenOnlineInfo_Click(object sender, EventArgs e)
-        {
-            webView.Visible = true;
-            webView.Enabled = true;
-            webView.BringToFront();
-            btnSearch.Visible = false;
-            txtSearch.Visible = false;
+        //private void btnOpenOnlineInfo_Click(object sender, EventArgs e)
+        //{
+        //    webView.Visible = true;
+        //    webView.Enabled = true;
+        //    webView.BringToFront();
+        //    btnSearch.Visible = false;
+        //    txtSearch.Visible = false;
 
-            cbDraftHistory.Visible = false;
-            cbKeepers.Visible = false;
-            btnCloseBrowser.Visible = true;
-            btnCloseBrowser.Enabled = true;
+        //    cbDraftHistory.Visible = false;
+        //    cbKeepers.Visible = false;
+        //    btnCloseBrowser.Visible = true;
+        //    btnCloseBrowser.Enabled = true;
 
-            //string url = GetYahooURL();
-            //string url = GetFantasyProsURL();
-            string url = GetFantasyDataSearchURL();
-            if (webView.CoreWebView2 != null)
-            {
-                webView.CoreWebView2.Navigate(url);
-            }
-            else
-            {
-                MessageBox.Show("WebView2 is not ready. Please try again later.");
-            }
-            //webView.CoreWebView2.Navigate(url);
-            //OpenUrl(url);
-        }
+        //    //string url = GetYahooURL();
+        //    //string url = GetFantasyProsURL();
+        //    string url = BasicSearchURL();
+        //    if (webView.CoreWebView2 != null)
+        //    {
+        //        webView.CoreWebView2.Navigate(url);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("WebView2 is not ready. Please try again later.");
+        //    }
+        //    //webView.CoreWebView2.Navigate(url);
+        //    //OpenUrl(url);
+        //}
         private string GetYahooURL()
         {
             string playerName = Draft.PlayerOnTheClock.Name;
@@ -631,13 +640,28 @@ namespace FantasyFootballAuctionDraftAssistant
             string url = $"https://www.fantasypros.com/nfl/players/{escapedPlayerName.ToLower().Replace(" ", "-")}.php";
             return url;
         }
-        private string GetFantasyDataSearchURL()
+        private string BasicSearchURL()
         {
             string playerName = Draft.PlayerOnTheClock.Name;
-            string query = $"site:fantasydata.com {playerName}";
+            string query = $"{playerName}";
             string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
             return url;
         }
+        private string GetInjuryNewsURL()
+        {
+            string playerName = Draft.PlayerOnTheClock.Name;
+            string query = $"Injury News {playerName}";
+            string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
+            return url;
+        }
+        private string GetFantasyStatsURL()
+        {
+            string playerName = Draft.PlayerOnTheClock.Name;
+            string query = $"Fantasy Stats {playerName}";
+            string url = "https://www.google.com/search?q=" + Uri.EscapeDataString(query);
+            return url;
+        }
+
         private void OpenUrl(string url)
         {
             try
@@ -711,7 +735,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 {
                     btnRemovePlayerFromTeam.Enabled = true;
                     btnSetKeeper.Enabled = true;
-                }                
+                }
                 else
                 {
                     btnRemovePlayerFromTeam.Enabled = false;
@@ -747,20 +771,23 @@ namespace FantasyFootballAuctionDraftAssistant
                 foreach (Player player in results)
                 {
                     ListViewItem lvi = new ListViewItem(player.Name);
+                    lvi.SubItems.Add(player.AverageValue.ToString());
                     lvi.SubItems.Add(player.EstimatedValue.ToString());
+                    lvi.SubItems.Add(player.AlternateValue.ToString());
                     lvi.SubItems.Add(player.Position.ToString());
                     lvi.SubItems.Add(player.NflTeam);
                     lvi.SubItems.Add(player.ByeWeek.ToString());
 
                     if (player.Year == 1)
                     {
-                        lvi.SubItems.Add("Rookie");
+                        lvi.SubItems.Add("R");
                     }
                     else
                     {
                         lvi.SubItems.Add("");
                     }
                     lvi.SubItems.Add(player.Notes);
+                    lvi.SubItems.Add(player.PositionRank.ToString());
 
                     lvUndraftedPlayers.Items.Add(lvi);
                 }
@@ -838,32 +865,32 @@ namespace FantasyFootballAuctionDraftAssistant
 
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            webView.Visible = true;
-            webView.Enabled = true;
-            webView.BringToFront();
-            btnSearch.Visible = false;
-            txtSearch.Visible = false;
+        //private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        //{
+        //    webView.Visible = true;
+        //    webView.Enabled = true;
+        //    webView.BringToFront();
+        //    btnSearch.Visible = false;
+        //    txtSearch.Visible = false;
 
-            cbDraftHistory.Visible = false;
-            cbKeepers.Visible = false;
-            btnCloseBrowser.Visible = true;
-            btnCloseBrowser.Enabled = true;
+        //    cbDraftHistory.Visible = false;
+        //    cbKeepers.Visible = false;
+        //    btnCloseBrowser.Visible = true;
+        //    btnCloseBrowser.Enabled = true;
 
 
-            string url = GetFantasyDataSearchURL();
-            if (webView.CoreWebView2 != null)
-            {
-                webView.CoreWebView2.Navigate(url);
-            }
-            else
-            {
-                MessageBox.Show("WebView2 is not ready. Please try again later.");
-            }
-            //webView.CoreWebView2.Navigate(url);
-            //OpenUrl(url);
-        }
+        //    string url = BasicSearchURL();
+        //    if (webView.CoreWebView2 != null)
+        //    {
+        //        webView.CoreWebView2.Navigate(url);
+        //    }
+        //    else
+        //    {
+        //        MessageBox.Show("WebView2 is not ready. Please try again later.");
+        //    }
+        //    //webView.CoreWebView2.Navigate(url);
+        //    //OpenUrl(url);
+        //}
 
         private void lblPlayerOnClock_Click(object sender, EventArgs e)
         {
@@ -880,7 +907,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
             //string url = GetYahooURL();
             //string url = GetFantasyProsURL();
-            string url = GetFantasyDataSearchURL();
+            string url = BasicSearchURL();
             if (webView.CoreWebView2 != null)
             {
                 webView.CoreWebView2.Navigate(url);
@@ -912,6 +939,62 @@ namespace FantasyFootballAuctionDraftAssistant
         private void btnCloseApp_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnInjuryNews_Click(object sender, EventArgs e)
+        {
+            webView.Visible = true;
+            webView.Enabled = true;
+            webView.BringToFront();
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
+
+            cbDraftHistory.Visible = false;
+            cbKeepers.Visible = false;
+            btnCloseBrowser.Visible = true;
+            btnCloseBrowser.Enabled = true;
+
+            //string url = GetYahooURL();
+            //string url = GetFantasyProsURL();
+            string url = GetInjuryNewsURL();
+            if (webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.Navigate(url);
+            }
+            else
+            {
+                MessageBox.Show("WebView2 is not ready. Please try again later.");
+            }
+            //webView.CoreWebView2.Navigate(url);
+            //OpenUrl(url);
+        }
+
+        private void btnFantasyStats_Click(object sender, EventArgs e)
+        {
+            webView.Visible = true;
+            webView.Enabled = true;
+            webView.BringToFront();
+            btnSearch.Visible = false;
+            txtSearch.Visible = false;
+
+            cbDraftHistory.Visible = false;
+            cbKeepers.Visible = false;
+            btnCloseBrowser.Visible = true;
+            btnCloseBrowser.Enabled = true;
+
+            //string url = GetYahooURL();
+            //string url = GetFantasyProsURL();
+            string url = GetFantasyStatsURL();
+            if (webView.CoreWebView2 != null)
+            {
+                webView.CoreWebView2.Navigate(url);
+            }
+            else
+            {
+                MessageBox.Show("WebView2 is not ready. Please try again later.");
+            }
+            //webView.CoreWebView2.Navigate(url);
+            //OpenUrl(url);
         }
     }
 }

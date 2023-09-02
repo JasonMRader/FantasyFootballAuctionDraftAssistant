@@ -54,6 +54,13 @@ namespace FantasyFootballAuctionDraftAssistant
                     ", Notes = @Notes, AlternateValue = @AlternateValue, PositionRank = @PositionRank WHERE ID = @ID", player);
             }
         }
+        public static void UpdateTeam(FantasyTeam team)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("UPDATE FantasyTeams SET Name = @Name, Owner = @Owner WHERE ID = @ID", team);
+            }
+        }
 
         public static void SaveFantasyTeam(FantasyTeam team)
         {

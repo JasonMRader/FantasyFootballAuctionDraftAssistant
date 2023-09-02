@@ -14,19 +14,32 @@ namespace FantasyFootballAuctionDraftAssistant
     {
         //public string PlayerCostString => txtPlayerCost.Text;
         private string PlayerName;
+        int MaxBid;
+        string FantasyTeamName;
         public int PlayerCost => Int32.Parse(txtPlayerCost.Text);
-        public frmInputCost(string playerName)
+        public frmInputCost(string playerName, FantasyTeam fantasyTeam)
         {
             InitializeComponent();
             PlayerName = playerName;
+            MaxBid = fantasyTeam.Budget - fantasyTeam.RosterSpots;
+            FantasyTeamName = fantasyTeam.Name;
         }
 
         private void btnDraft_Click(object sender, EventArgs e)
         {
             if (IsValidNumber(txtPlayerCost.Text))
             {
-                this.DialogResult = DialogResult.OK;
-                this.Close();
+                if (int.Parse(txtPlayerCost.Text) <= MaxBid)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    lblWarningText.Text = "This Team Cannot Bid That Much";
+                    lblWarningText.ForeColor = Color.Red;
+                }
+
             }
             else
             {
@@ -45,6 +58,8 @@ namespace FantasyFootballAuctionDraftAssistant
         private void frmInputCost_Load(object sender, EventArgs e)
         {
             lblPlayerName.Text = PlayerName;
+            lblTeamName.Text = FantasyTeamName;
+            lblMaxBid.Text = "($" + MaxBid.ToString() + " MAX)";
         }
         private bool IsValidNumber(string text)
         {

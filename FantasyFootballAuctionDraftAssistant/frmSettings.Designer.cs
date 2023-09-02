@@ -51,6 +51,7 @@
             nudName = new NumericUpDown();
             cbYear = new CheckBox();
             panel7 = new Panel();
+            btnUpdateTeam = new Button();
             label2 = new Label();
             label1 = new Label();
             btnDelete = new Button();
@@ -158,6 +159,7 @@
             lbFantasyTeams.Name = "lbFantasyTeams";
             lbFantasyTeams.Size = new Size(184, 319);
             lbFantasyTeams.TabIndex = 4;
+            lbFantasyTeams.SelectedIndexChanged += lbFantasyTeams_SelectedIndexChanged;
             // 
             // panel6
             // 
@@ -326,6 +328,7 @@
             // panel7
             // 
             panel7.BackColor = Color.FromArgb(224, 224, 224);
+            panel7.Controls.Add(btnUpdateTeam);
             panel7.Controls.Add(label2);
             panel7.Controls.Add(label1);
             panel7.Controls.Add(btnDelete);
@@ -337,6 +340,16 @@
             panel7.Name = "panel7";
             panel7.Size = new Size(363, 351);
             panel7.TabIndex = 6;
+            // 
+            // btnUpdateTeam
+            // 
+            btnUpdateTeam.Location = new Point(13, 178);
+            btnUpdateTeam.Name = "btnUpdateTeam";
+            btnUpdateTeam.Size = new Size(130, 43);
+            btnUpdateTeam.TabIndex = 8;
+            btnUpdateTeam.Text = "Update Team";
+            btnUpdateTeam.UseVisualStyleBackColor = true;
+            btnUpdateTeam.Click += btnUpdateTeam_Click;
             // 
             // label2
             // 
@@ -358,7 +371,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(13, 189);
+            btnDelete.Location = new Point(13, 300);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(130, 32);
             btnDelete.TabIndex = 6;
@@ -367,11 +380,11 @@
             // 
             // btnSaveFantasyTeam
             // 
-            btnSaveFantasyTeam.Location = new Point(13, 151);
+            btnSaveFantasyTeam.Location = new Point(13, 262);
             btnSaveFantasyTeam.Name = "btnSaveFantasyTeam";
             btnSaveFantasyTeam.Size = new Size(130, 32);
             btnSaveFantasyTeam.TabIndex = 6;
-            btnSaveFantasyTeam.Text = "Save Team";
+            btnSaveFantasyTeam.Text = "Add Team";
             btnSaveFantasyTeam.UseVisualStyleBackColor = true;
             btnSaveFantasyTeam.Click += btnSaveFantasyTeam_Click;
             // 
@@ -445,5 +458,6 @@
         private CheckBox cbNotes;
         private CheckBox cbPositionRank;
         private CheckBox cbAltValue;
+        private Button btnUpdateTeam;
     }
 }
