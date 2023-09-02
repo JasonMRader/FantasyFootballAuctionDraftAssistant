@@ -707,15 +707,15 @@ namespace FantasyFootballAuctionDraftAssistant
                 string selectedPlayerName = selectedItem.Text;
                 Draft.SelectedPlayerOnRoster = Draft.DisplayTeam.Players.FirstOrDefault(p => p.Name == selectedPlayerName);
 
-                if (Draft.SelectedPlayerOnRoster != null)
+                if (Draft.SelectedPlayerOnRoster != null && Draft.SelectedPlayerOnRoster.Keeper == false)
                 {
                     btnRemovePlayerFromTeam.Enabled = true;
-                    btnSetKeeper.Enabled = false;
-                }
+                    btnSetKeeper.Enabled = true;
+                }                
                 else
                 {
                     btnRemovePlayerFromTeam.Enabled = false;
-                    btnSetKeeper.Enabled = true;
+                    btnSetKeeper.Enabled = false;
                 }
 
             }

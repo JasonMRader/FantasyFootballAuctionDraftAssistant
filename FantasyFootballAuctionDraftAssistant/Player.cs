@@ -13,6 +13,22 @@ namespace FantasyFootballAuctionDraftAssistant
         // make enum
         //public PlayerPosition Position { get; set; }
         public int EstimatedValue { get; set; }
+        public int AlternateValue { get; set; }
+        public int PositionRank { get; set; }
+        public int AverageValue 
+        {
+            get
+            {
+                if (AlternateValue > 0)
+                {
+                    return (AlternateValue + EstimatedValue)/2;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
         public string NflTeam { get; set; }
         public int ByeWeek { get; set; }
         public bool Drafted { get; set; }

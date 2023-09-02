@@ -26,8 +26,8 @@ namespace FantasyFootballAuctionDraftAssistant
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("insert into Players (Name, EstimatedValue, Position, NflTeam, ByeWeek, Drafted, " +
-                    "FantasyTeamID, Cost, Year) values (@Name, @EstimatedValue, @Position, @NflTeam, @ByeWeek, @Drafted," +
-                    " @FantasyTeamID, @Cost, @Year)", player);
+                    "FantasyTeamID, Cost, Year, AlternateValue, PositionRank, Notes) values (@Name, @EstimatedValue, @Position, @NflTeam, @ByeWeek, @Drafted," +
+                    " @FantasyTeamID, @Cost, @Year, @AlternateValue, @PositionRank, @Notes)", player);
             }
         }
         public static void DeletePlayer(int playerId)
@@ -50,7 +50,8 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 cnn.Execute("UPDATE Players SET Name = @Name, EstimatedValue = @EstimatedValue, Position = @Position, " +
                     "NflTeam = @NflTeam, ByeWeek = @ByeWeek, Drafted = @Drafted, FantasyTeamID = @FantasyTeamID, " +
-                    "Cost = @Cost, Year = @Year, Keeper = @Keeper, DraftPickNumber = @DraftPickNumber, Notes = @Notes WHERE ID = @ID", player);
+                    "Cost = @Cost, Year = @Year, Keeper = @Keeper, DraftPickNumber = @DraftPickNumber" +
+                    ", Notes = @Notes, AlternateValue = @AlternateValue, PositionRank = @PositionRank WHERE ID = @ID", player);
             }
         }
 

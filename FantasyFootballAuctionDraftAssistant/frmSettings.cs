@@ -101,6 +101,40 @@ namespace FantasyFootballAuctionDraftAssistant
                         int year = int.Parse(worksheet.Cells[row, Convert.ToInt32(nudYear.Value)].Text);
                         player.Year = year;
                     }
+                    if (cbAltValue.Checked)
+                    {
+
+                        string cellValue = worksheet.Cells[row, Convert.ToInt32(nudAltValue.Value)].Text;
+
+                        if (!string.IsNullOrWhiteSpace(cellValue))
+                        {
+                            int altValue;
+                            if (int.TryParse(cellValue, out altValue))
+                            {
+                                player.AlternateValue = altValue;
+                            }
+                            
+                        }
+                    }
+                    if (cbPositionRank.Checked)
+                    {
+                        string cellValue = worksheet.Cells[row, Convert.ToInt32(nudPosRank.Value)].Text;
+
+                        if (!string.IsNullOrWhiteSpace(cellValue))
+                        {
+                            int posRank;
+                            if (int.TryParse(cellValue, out posRank))
+                            {
+                                player.AlternateValue = posRank;
+                            }
+
+                        }
+                    }
+                    if (cbNotes.Checked)
+                    {
+                        string notes = worksheet.Cells[row, Convert.ToInt32(nudNotes.Value)].Text;
+                        player.Notes = notes;
+                    }
 
                     playersToAdd.Add(player);
                     SQLiteDataAccess.SavePlayer(player);
@@ -110,7 +144,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void btnSaveFantasyTeam_Click(object sender, EventArgs e)
         {
-            
+
             FantasyTeam team = new FantasyTeam(txtFantasyName.Text, txtFantasyOwner.Text);
             SQLiteDataAccess.SaveFantasyTeam(team);
             txtFantasyName.Clear();

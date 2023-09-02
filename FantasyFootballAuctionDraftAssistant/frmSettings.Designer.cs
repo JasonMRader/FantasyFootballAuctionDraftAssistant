@@ -36,6 +36,13 @@
             cbValue = new CheckBox();
             lbFantasyTeams = new ListBox();
             panel6 = new Panel();
+            nudNotes = new NumericUpDown();
+            nudPosRank = new NumericUpDown();
+            nudAltValue = new NumericUpDown();
+            cbNotes = new CheckBox();
+            cbPositionRank = new CheckBox();
+            cbAltValue = new CheckBox();
+            btnDeleteAllPlayers = new Button();
             nudYear = new NumericUpDown();
             nudValue = new NumericUpDown();
             nudBye = new NumericUpDown();
@@ -50,8 +57,10 @@
             btnSaveFantasyTeam = new Button();
             txtFantasyOwner = new TextBox();
             txtFantasyName = new TextBox();
-            btnDeleteAllPlayers = new Button();
             panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)nudNotes).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudPosRank).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudAltValue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudYear).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudValue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudBye).BeginInit();
@@ -63,7 +72,7 @@
             // 
             // btnLoadExcelData
             // 
-            btnLoadExcelData.Location = new Point(13, 268);
+            btnLoadExcelData.Location = new Point(13, 279);
             btnLoadExcelData.Name = "btnLoadExcelData";
             btnLoadExcelData.Size = new Size(193, 40);
             btnLoadExcelData.TabIndex = 0;
@@ -76,7 +85,7 @@
             cbName.Appearance = Appearance.Button;
             cbName.Checked = true;
             cbName.CheckState = CheckState.Checked;
-            cbName.Location = new Point(13, 21);
+            cbName.Location = new Point(13, 3);
             cbName.Name = "cbName";
             cbName.Size = new Size(75, 23);
             cbName.TabIndex = 3;
@@ -90,7 +99,7 @@
             cbPosition.Appearance = Appearance.Button;
             cbPosition.Checked = true;
             cbPosition.CheckState = CheckState.Checked;
-            cbPosition.Location = new Point(13, 59);
+            cbPosition.Location = new Point(13, 32);
             cbPosition.Name = "cbPosition";
             cbPosition.Size = new Size(75, 23);
             cbPosition.TabIndex = 3;
@@ -104,7 +113,7 @@
             cbTeam.Appearance = Appearance.Button;
             cbTeam.Checked = true;
             cbTeam.CheckState = CheckState.Checked;
-            cbTeam.Location = new Point(13, 97);
+            cbTeam.Location = new Point(13, 61);
             cbTeam.Name = "cbTeam";
             cbTeam.Size = new Size(75, 23);
             cbTeam.TabIndex = 3;
@@ -118,7 +127,7 @@
             cbBye.Appearance = Appearance.Button;
             cbBye.Checked = true;
             cbBye.CheckState = CheckState.Checked;
-            cbBye.Location = new Point(13, 135);
+            cbBye.Location = new Point(13, 90);
             cbBye.Name = "cbBye";
             cbBye.Size = new Size(75, 23);
             cbBye.TabIndex = 3;
@@ -132,7 +141,7 @@
             cbValue.Appearance = Appearance.Button;
             cbValue.Checked = true;
             cbValue.CheckState = CheckState.Checked;
-            cbValue.Location = new Point(13, 173);
+            cbValue.Location = new Point(13, 119);
             cbValue.Name = "cbValue";
             cbValue.Size = new Size(75, 23);
             cbValue.TabIndex = 3;
@@ -153,6 +162,12 @@
             // panel6
             // 
             panel6.BackColor = Color.FromArgb(224, 224, 224);
+            panel6.Controls.Add(nudNotes);
+            panel6.Controls.Add(nudPosRank);
+            panel6.Controls.Add(nudAltValue);
+            panel6.Controls.Add(cbNotes);
+            panel6.Controls.Add(cbPositionRank);
+            panel6.Controls.Add(cbAltValue);
             panel6.Controls.Add(btnDeleteAllPlayers);
             panel6.Controls.Add(nudYear);
             panel6.Controls.Add(nudValue);
@@ -172,47 +187,126 @@
             panel6.Size = new Size(224, 351);
             panel6.TabIndex = 5;
             // 
+            // nudNotes
+            // 
+            nudNotes.Location = new Point(109, 238);
+            nudNotes.Name = "nudNotes";
+            nudNotes.Size = new Size(67, 23);
+            nudNotes.TabIndex = 8;
+            nudNotes.Value = new decimal(new int[] { 9, 0, 0, 0 });
+            // 
+            // nudPosRank
+            // 
+            nudPosRank.Location = new Point(109, 209);
+            nudPosRank.Name = "nudPosRank";
+            nudPosRank.Size = new Size(67, 23);
+            nudPosRank.TabIndex = 8;
+            nudPosRank.Value = new decimal(new int[] { 8, 0, 0, 0 });
+            // 
+            // nudAltValue
+            // 
+            nudAltValue.Location = new Point(109, 179);
+            nudAltValue.Name = "nudAltValue";
+            nudAltValue.Size = new Size(67, 23);
+            nudAltValue.TabIndex = 8;
+            nudAltValue.Value = new decimal(new int[] { 7, 0, 0, 0 });
+            // 
+            // cbNotes
+            // 
+            cbNotes.Appearance = Appearance.Button;
+            cbNotes.Checked = true;
+            cbNotes.CheckState = CheckState.Checked;
+            cbNotes.Location = new Point(13, 238);
+            cbNotes.Name = "cbNotes";
+            cbNotes.Size = new Size(74, 24);
+            cbNotes.TabIndex = 7;
+            cbNotes.Text = "Notes";
+            cbNotes.TextAlign = ContentAlignment.MiddleCenter;
+            cbNotes.UseVisualStyleBackColor = true;
+            // 
+            // cbPositionRank
+            // 
+            cbPositionRank.Appearance = Appearance.Button;
+            cbPositionRank.Checked = true;
+            cbPositionRank.CheckState = CheckState.Checked;
+            cbPositionRank.Location = new Point(13, 208);
+            cbPositionRank.Name = "cbPositionRank";
+            cbPositionRank.Size = new Size(74, 24);
+            cbPositionRank.TabIndex = 7;
+            cbPositionRank.Text = "Pos Rank";
+            cbPositionRank.TextAlign = ContentAlignment.MiddleCenter;
+            cbPositionRank.UseVisualStyleBackColor = true;
+            // 
+            // cbAltValue
+            // 
+            cbAltValue.Appearance = Appearance.Button;
+            cbAltValue.Checked = true;
+            cbAltValue.CheckState = CheckState.Checked;
+            cbAltValue.Location = new Point(14, 178);
+            cbAltValue.Name = "cbAltValue";
+            cbAltValue.Size = new Size(74, 24);
+            cbAltValue.TabIndex = 7;
+            cbAltValue.Text = "Alt Value";
+            cbAltValue.TextAlign = ContentAlignment.MiddleCenter;
+            cbAltValue.UseVisualStyleBackColor = true;
+            // 
+            // btnDeleteAllPlayers
+            // 
+            btnDeleteAllPlayers.Location = new Point(13, 325);
+            btnDeleteAllPlayers.Name = "btnDeleteAllPlayers";
+            btnDeleteAllPlayers.Size = new Size(65, 23);
+            btnDeleteAllPlayers.TabIndex = 6;
+            btnDeleteAllPlayers.Text = "Delete All Players";
+            btnDeleteAllPlayers.UseVisualStyleBackColor = true;
+            btnDeleteAllPlayers.Click += btnDeleteAllPlayers_Click;
+            // 
             // nudYear
             // 
-            nudYear.Location = new Point(109, 211);
+            nudYear.Location = new Point(109, 148);
             nudYear.Name = "nudYear";
             nudYear.Size = new Size(67, 23);
             nudYear.TabIndex = 5;
+            nudYear.Value = new decimal(new int[] { 6, 0, 0, 0 });
             // 
             // nudValue
             // 
-            nudValue.Location = new Point(109, 173);
+            nudValue.Location = new Point(109, 119);
             nudValue.Name = "nudValue";
             nudValue.Size = new Size(67, 23);
             nudValue.TabIndex = 5;
+            nudValue.Value = new decimal(new int[] { 1, 0, 0, 0 });
             // 
             // nudBye
             // 
-            nudBye.Location = new Point(109, 135);
+            nudBye.Location = new Point(109, 90);
             nudBye.Name = "nudBye";
             nudBye.Size = new Size(67, 23);
             nudBye.TabIndex = 5;
+            nudBye.Value = new decimal(new int[] { 5, 0, 0, 0 });
             // 
             // nudTeam
             // 
-            nudTeam.Location = new Point(109, 97);
+            nudTeam.Location = new Point(109, 61);
             nudTeam.Name = "nudTeam";
             nudTeam.Size = new Size(67, 23);
             nudTeam.TabIndex = 5;
+            nudTeam.Value = new decimal(new int[] { 4, 0, 0, 0 });
             // 
             // nudPosition
             // 
-            nudPosition.Location = new Point(109, 59);
+            nudPosition.Location = new Point(109, 32);
             nudPosition.Name = "nudPosition";
             nudPosition.Size = new Size(67, 23);
             nudPosition.TabIndex = 5;
+            nudPosition.Value = new decimal(new int[] { 3, 0, 0, 0 });
             // 
             // nudName
             // 
-            nudName.Location = new Point(109, 21);
+            nudName.Location = new Point(109, 3);
             nudName.Name = "nudName";
             nudName.Size = new Size(67, 23);
             nudName.TabIndex = 5;
+            nudName.Value = new decimal(new int[] { 2, 0, 0, 0 });
             // 
             // cbYear
             // 
@@ -220,7 +314,7 @@
             cbYear.CheckAlign = ContentAlignment.TopRight;
             cbYear.Checked = true;
             cbYear.CheckState = CheckState.Checked;
-            cbYear.Location = new Point(13, 211);
+            cbYear.Location = new Point(13, 148);
             cbYear.Name = "cbYear";
             cbYear.Size = new Size(75, 23);
             cbYear.TabIndex = 4;
@@ -295,16 +389,6 @@
             txtFantasyName.Size = new Size(130, 23);
             txtFantasyName.TabIndex = 5;
             // 
-            // btnDeleteAllPlayers
-            // 
-            btnDeleteAllPlayers.Location = new Point(13, 325);
-            btnDeleteAllPlayers.Name = "btnDeleteAllPlayers";
-            btnDeleteAllPlayers.Size = new Size(65, 23);
-            btnDeleteAllPlayers.TabIndex = 6;
-            btnDeleteAllPlayers.Text = "Delete All Players";
-            btnDeleteAllPlayers.UseVisualStyleBackColor = true;
-            btnDeleteAllPlayers.Click += btnDeleteAllPlayers_Click;
-            // 
             // frmSettings
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -316,6 +400,9 @@
             Text = "frmSettings";
             Load += frmSettings_Load;
             panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)nudNotes).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudPosRank).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudAltValue).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudYear).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudValue).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudBye).EndInit();
@@ -352,5 +439,11 @@
         private CheckBox cbYear;
         private Button btnDelete;
         private Button btnDeleteAllPlayers;
+        private NumericUpDown nudNotes;
+        private NumericUpDown nudPosRank;
+        private NumericUpDown nudAltValue;
+        private CheckBox cbNotes;
+        private CheckBox cbPositionRank;
+        private CheckBox cbAltValue;
     }
 }

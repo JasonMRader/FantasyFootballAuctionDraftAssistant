@@ -61,7 +61,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 FreeAgents.Remove(player);
                 currentPickNumber ++;
             }
-            //CorrectDraftOrder();
+            CorrectDraftOrder();
             FreeAgents.AddRange(this.AllPlayers.Where(p => !p.Keeper && !p.Drafted));
         }
         public void RecordDraftPick(FantasyTeam team, int cost)
