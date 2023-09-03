@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Diagnostics.Eventing.Reader;
 using static FantasyFootballAuctionDraftAssistant.Player;
 
 namespace FantasyFootballAuctionDraftAssistant
@@ -10,6 +11,8 @@ namespace FantasyFootballAuctionDraftAssistant
         bool isProgrammaticUpdate = false;
         private bool isDragging = false;
         private Point lastLocation;
+        
+
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
             isDragging = true;
@@ -39,7 +42,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private async void Form1_Load(object sender, EventArgs e)
         {
-
+            this.KeyPreview = true;
             await webView.EnsureCoreWebView2Async();
 
             cbAllPositions.Checked = true;
@@ -69,6 +72,7 @@ namespace FantasyFootballAuctionDraftAssistant
                     if (control.Text == "Disappointing Monday")
                     {
                         control.BackColor = Color.LightGreen;
+
                     }
 
                     control.Click += RadioButton_Click;
@@ -151,6 +155,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
                 using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, selectedTeam))
                 {
+                    inputCostForm.TopMost = true;
                     if (inputCostForm.ShowDialog() == DialogResult.OK)
                     {
 
@@ -179,6 +184,7 @@ namespace FantasyFootballAuctionDraftAssistant
             }
             using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, Draft.MyTeam))
             {
+                inputCostForm.TopMost = true;
                 if (inputCostForm.ShowDialog() == DialogResult.OK)
                 {
 
@@ -995,6 +1001,46 @@ namespace FantasyFootballAuctionDraftAssistant
             }
             //webView.CoreWebView2.Navigate(url);
             //OpenUrl(url);
+        }
+
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Maximized)
+            {
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
+
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                this.TopMost = true;
+            }
+        }
+
+        private void btnMin_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnSetToUs_Click(object sender, EventArgs e)
+        {
+            Draft.DisplayTeam = Draft.AllFantasyTeams.FirstOrDefault(team => team.Name == "Disappointing Monday");
+
+
+            //SetupTeamRosterListViewColumns();
+            //UpdateListView();
+            UpdateDisplayTeam();
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                txtSearch.Clear();
+                btnSearch.PerformClick();
+            }
         }
     }
 }

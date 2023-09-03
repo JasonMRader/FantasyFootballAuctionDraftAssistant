@@ -123,6 +123,9 @@
             label12 = new Label();
             btnCloseApp = new Button();
             lblTitle = new Label();
+            btnMax = new Button();
+            btnMin = new Button();
+            btnSetToUs = new Button();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -1004,9 +1007,9 @@
             // btnCloseBrowser
             // 
             btnCloseBrowser.Enabled = false;
-            btnCloseBrowser.Location = new Point(1142, 12);
+            btnCloseBrowser.Location = new Point(1141, 34);
             btnCloseBrowser.Name = "btnCloseBrowser";
-            btnCloseBrowser.Size = new Size(174, 23);
+            btnCloseBrowser.Size = new Size(282, 23);
             btnCloseBrowser.TabIndex = 9;
             btnCloseBrowser.Text = "Close Browser";
             btnCloseBrowser.UseVisualStyleBackColor = true;
@@ -1015,7 +1018,7 @@
             // 
             // btnOpenSettings
             // 
-            btnOpenSettings.Location = new Point(1320, 12);
+            btnOpenSettings.Location = new Point(1320, 2);
             btnOpenSettings.Name = "btnOpenSettings";
             btnOpenSettings.Size = new Size(103, 23);
             btnOpenSettings.TabIndex = 10;
@@ -1431,7 +1434,7 @@
             btnCloseApp.FlatAppearance.BorderSize = 0;
             btnCloseApp.FlatStyle = FlatStyle.Flat;
             btnCloseApp.ForeColor = Color.FromArgb(224, 224, 224);
-            btnCloseApp.Location = new Point(1481, 12);
+            btnCloseApp.Location = new Point(1494, 1);
             btnCloseApp.Name = "btnCloseApp";
             btnCloseApp.Size = new Size(26, 23);
             btnCloseApp.TabIndex = 19;
@@ -1453,12 +1456,55 @@
             lblTitle.MouseMove += Form1_MouseMove;
             lblTitle.MouseUp += Form1_MouseUo;
             // 
+            // btnMax
+            // 
+            btnMax.FlatAppearance.BorderSize = 0;
+            btnMax.FlatStyle = FlatStyle.Flat;
+            btnMax.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMax.ForeColor = Color.White;
+            btnMax.Location = new Point(1462, 1);
+            btnMax.Name = "btnMax";
+            btnMax.Size = new Size(27, 23);
+            btnMax.TabIndex = 21;
+            btnMax.Text = "+";
+            btnMax.UseVisualStyleBackColor = true;
+            btnMax.Click += btnMax_Click;
+            // 
+            // btnMin
+            // 
+            btnMin.FlatAppearance.BorderSize = 0;
+            btnMin.FlatStyle = FlatStyle.Flat;
+            btnMin.Font = new Font("Segoe UI Historic", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMin.ForeColor = Color.White;
+            btnMin.Location = new Point(1429, 0);
+            btnMin.Name = "btnMin";
+            btnMin.Size = new Size(27, 23);
+            btnMin.TabIndex = 21;
+            btnMin.Text = "-";
+            btnMin.UseVisualStyleBackColor = true;
+            btnMin.Click += btnMin_Click;
+            // 
+            // btnSetToUs
+            // 
+            btnSetToUs.Location = new Point(263, 435);
+            btnSetToUs.Name = "btnSetToUs";
+            btnSetToUs.Size = new Size(45, 23);
+            btnSetToUs.TabIndex = 22;
+            btnSetToUs.Text = "Set";
+            btnSetToUs.UseVisualStyleBackColor = true;
+            btnSetToUs.Visible = false;
+            btnSetToUs.Click += btnSetToUs_Click;
+            // 
             // Form1
             // 
+            AcceptButton = btnSearch;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(39, 39, 54);
             ClientSize = new Size(1519, 990);
+            Controls.Add(btnSetToUs);
+            Controls.Add(btnMin);
+            Controls.Add(btnMax);
             Controls.Add(lblTitle);
             Controls.Add(btnCloseApp);
             Controls.Add(panel2);
@@ -1481,6 +1527,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             Load += Form1_Load;
+            KeyDown += Form1_KeyDown;
             MouseDown += Form1_MouseDown;
             MouseMove += Form1_MouseMove;
             MouseUp += Form1_MouseUo;
@@ -1600,5 +1647,8 @@
         private Button btnFantasyStats;
         private Button btnInjuryNews;
         private Label lblTitle;
+        private Button btnMax;
+        private Button btnMin;
+        private Button btnSetToUs;
     }
 }

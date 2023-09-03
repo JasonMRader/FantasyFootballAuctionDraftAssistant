@@ -64,7 +64,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         public void RecalculateRosterSpots()
         {
-            _rosterSpots = 16 - Players.Count();
+            _rosterSpots = 16 - Players.Count()+1;
         }
         public int CountPosition(Player.PlayerPosition position)
         {
