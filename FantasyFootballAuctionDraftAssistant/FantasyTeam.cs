@@ -64,7 +64,11 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         public void RecalculateRosterSpots()
         {
-            _rosterSpots = 16 - Players.Count()+1;
+            _rosterSpots = 16 - Players.Count();
+        }
+        public int CalculateMaxBid()
+        {
+            return _budget - _rosterSpots +1;
         }
         public int CountPosition(Player.PlayerPosition position)
         {
@@ -99,6 +103,27 @@ namespace FantasyFootballAuctionDraftAssistant
             // Set the new keeper
             newKeeper.Keeper = true;
             Keeper = newKeeper;
+        }
+        public void RemoveKeeper(Player oldKeeper)
+        {
+            // If the player is not already part of the team, throw an exception or handle it accordingly
+            if (!Players.Any(p => p.ID == oldKeeper.ID))
+            {
+                throw new InvalidOperationException("The provided player is not part of this fantasy team.");
+            }
+
+            // Unset any existing keeper on the team
+            foreach (var player in Players)
+            {
+                if (player.Keeper)
+                {
+                    player.Keeper = false;
+                }
+            }
+
+            
+            
+            Keeper = null;
         }
 
 

@@ -422,6 +422,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void UpdateDisplayTeam()
         {
+            lvTeamRoster.Items.Clear();
             Draft.SelectedPlayerOnRoster = null;
 
             foreach (Player player in Draft.DisplayTeam.Players)
@@ -455,7 +456,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 lblAvgCapPerSpotLeft.Text = (Draft.DisplayTeam.Budget / Draft.DisplayTeam.RosterSpots).ToString();
             }
 
-            lblMaxBid.Text = (Draft.DisplayTeam.Budget - Draft.DisplayTeam.RosterSpots).ToString();
+            lblMaxBid.Text = Draft.DisplayTeam.CalculateMaxBid().ToString();
             if (Draft.DisplayTeam.Keeper != null)
             {
                 lblDisplayKeeper.Text = Draft.DisplayTeam.Keeper.Name;
@@ -729,7 +730,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void lvTeamRoster_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lvTeamRoster.SelectedItems.Count > 0)
+            if (lvTeamRoster.SelectedItems.Count >= 0)
             {
                 ListViewItem selectedItem = lvTeamRoster.SelectedItems[0];
 
@@ -741,11 +742,18 @@ namespace FantasyFootballAuctionDraftAssistant
                 {
                     btnRemovePlayerFromTeam.Enabled = true;
                     btnSetKeeper.Enabled = true;
+                    btnSetKeeper.Text = "Set Keeper";
+                }
+                if (Draft.SelectedPlayerOnRoster != null && Draft.SelectedPlayerOnRoster.Keeper == true)
+                {
+                    btnSetKeeper.Enabled = true;
+                    btnSetKeeper.Text = "Remove Keeper";
                 }
                 else
                 {
                     btnRemovePlayerFromTeam.Enabled = false;
                     btnSetKeeper.Enabled = false;
+                    btnSetKeeper.Text = "Set Keeper";
                 }
 
             }
@@ -753,15 +761,27 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 btnSetKeeper.Enabled = false;
                 btnRemovePlayerFromTeam.Enabled = false;
+                btnSetKeeper.Text = "Set Keeper";
             }
         }
 
         private void btnSetKeeper_Click(object sender, EventArgs e)
         {
-            Draft.DisplayTeam.SetKeeper(Draft.SelectedPlayerOnRoster);
-            SQLiteDataAccess.UpdatePlayer(Draft.SelectedPlayerOnRoster);
+            if (Draft.SelectedPlayerOnRoster.Keeper == false)
+            {
+                Draft.DisplayTeam.SetKeeper(Draft.SelectedPlayerOnRoster);
+                SQLiteDataAccess.UpdatePlayer(Draft.SelectedPlayerOnRoster);
+            }
+            if (Draft.SelectedPlayerOnRoster.Keeper == true)
+            {
+                Draft.DisplayTeam.RemoveKeeper(Draft.SelectedPlayerOnRoster);
+                SQLiteDataAccess.UpdatePlayer(Draft.SelectedPlayerOnRoster);
+               
 
+
+            }
             UpdateDisplayTeam();
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)

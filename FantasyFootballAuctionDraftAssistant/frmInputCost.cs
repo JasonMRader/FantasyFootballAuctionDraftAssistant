@@ -21,7 +21,7 @@ namespace FantasyFootballAuctionDraftAssistant
         {
             InitializeComponent();
             PlayerName = playerName;
-            MaxBid = fantasyTeam.Budget - fantasyTeam.RosterSpots;
+            MaxBid = fantasyTeam.CalculateMaxBid();
             FantasyTeamName = fantasyTeam.Name;
         }
 
@@ -69,6 +69,11 @@ namespace FantasyFootballAuctionDraftAssistant
                 return true;
             }
             return false;
+        }
+
+        private void lblTeamName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

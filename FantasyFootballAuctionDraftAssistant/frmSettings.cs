@@ -19,6 +19,7 @@ namespace FantasyFootballAuctionDraftAssistant
         public frmSettings()
         {
             InitializeComponent();
+            this.TopMost = true;
         }
         List<Player> playersToAdd = new List<Player>();
         //private void btnLoadExcelData_Click(object sender, EventArgs e)

@@ -117,6 +117,7 @@
             lblTeamName.TabIndex = 5;
             lblTeamName.Text = "label1";
             lblTeamName.TextAlign = ContentAlignment.MiddleCenter;
+            lblTeamName.Click += lblTeamName_Click;
             // 
             // lblMaxBid
             // 
