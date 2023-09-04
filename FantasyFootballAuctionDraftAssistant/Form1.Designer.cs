@@ -126,6 +126,7 @@
             btnMax = new Button();
             btnMin = new Button();
             btnSetToUs = new Button();
+            cbLeagueDetailsForm = new CheckBox();
             panel1.SuspendLayout();
             panel2.SuspendLayout();
             pnlOtherTeamsDraft.SuspendLayout();
@@ -141,6 +142,7 @@
             // lvUndraftedPlayers
             // 
             lvUndraftedPlayers.BackColor = Color.Silver;
+            lvUndraftedPlayers.Font = new Font("Arial", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lvUndraftedPlayers.Location = new Point(311, 133);
             lvUndraftedPlayers.Name = "lvUndraftedPlayers";
             lvUndraftedPlayers.Size = new Size(575, 845);
@@ -1007,7 +1009,7 @@
             // btnCloseBrowser
             // 
             btnCloseBrowser.Enabled = false;
-            btnCloseBrowser.Location = new Point(1141, 34);
+            btnCloseBrowser.Location = new Point(1141, 27);
             btnCloseBrowser.Name = "btnCloseBrowser";
             btnCloseBrowser.Size = new Size(282, 23);
             btnCloseBrowser.TabIndex = 9;
@@ -1495,6 +1497,22 @@
             btnSetToUs.Visible = false;
             btnSetToUs.Click += btnSetToUs_Click;
             // 
+            // cbLeagueDetailsForm
+            // 
+            cbLeagueDetailsForm.Appearance = Appearance.Button;
+            cbLeagueDetailsForm.BackColor = Color.FromArgb(176, 209, 176);
+            cbLeagueDetailsForm.FlatAppearance.BorderSize = 0;
+            cbLeagueDetailsForm.FlatAppearance.CheckedBackColor = Color.FromArgb(192, 255, 192);
+            cbLeagueDetailsForm.FlatStyle = FlatStyle.Flat;
+            cbLeagueDetailsForm.Location = new Point(919, 62);
+            cbLeagueDetailsForm.Name = "cbLeagueDetailsForm";
+            cbLeagueDetailsForm.Size = new Size(569, 24);
+            cbLeagueDetailsForm.TabIndex = 17;
+            cbLeagueDetailsForm.Text = "Show League Overview";
+            cbLeagueDetailsForm.TextAlign = ContentAlignment.MiddleCenter;
+            cbLeagueDetailsForm.UseVisualStyleBackColor = false;
+            cbLeagueDetailsForm.CheckedChanged += cbLeagueDetailsForm_CheckedChanged;
+            // 
             // Form1
             // 
             AcceptButton = btnSearch;
@@ -1509,6 +1527,7 @@
             Controls.Add(btnCloseApp);
             Controls.Add(panel2);
             Controls.Add(pnlPlayerOnClockDisplay);
+            Controls.Add(cbLeagueDetailsForm);
             Controls.Add(cbKeepers);
             Controls.Add(cbDraftHistory);
             Controls.Add(btnSearch);
@@ -1650,5 +1669,6 @@
         private Button btnMax;
         private Button btnMin;
         private Button btnSetToUs;
+        private CheckBox cbLeagueDetailsForm;
     }
 }

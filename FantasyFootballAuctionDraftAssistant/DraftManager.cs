@@ -165,6 +165,25 @@ namespace FantasyFootballAuctionDraftAssistant
                 Moves.Remove(lastMove);
             }
         }
+        public delegate void DraftChangedEventHandler(object sender, EventArgs e);
+
+        // The event
+        public event DraftChangedEventHandler DraftChanged;
+
+        // Method to raise the event
+        protected virtual void OnDraftChanged()
+        {
+            DraftChanged?.Invoke(this, EventArgs.Empty);
+        }
+
+        // Imagine there's a method that modifies the draft
+        public void ModifyDraft()
+        {
+            // Code to modify the draft...
+
+            // Once modified, notify subscribers
+            OnDraftChanged();
+        }
     }
 
 

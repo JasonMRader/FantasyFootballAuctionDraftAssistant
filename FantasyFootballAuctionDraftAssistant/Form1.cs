@@ -11,7 +11,7 @@ namespace FantasyFootballAuctionDraftAssistant
         bool isProgrammaticUpdate = false;
         private bool isDragging = false;
         private Point lastLocation;
-        
+        frmDetailedLeagueOverview frmDetailedOverview = new frmDetailedLeagueOverview();
 
         private void Form1_MouseDown(object sender, MouseEventArgs e)
         {
@@ -56,6 +56,7 @@ namespace FantasyFootballAuctionDraftAssistant
             SetupTeamRosterListViewColumns();
             UpdateListView();
             UpdateDisplayTeam();
+            frmDetailedOverview = new frmDetailedLeagueOverview(Draft);
         }
         private void SetRadioButtonsToFantasyTeams()
         {
@@ -730,7 +731,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void lvTeamRoster_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lvTeamRoster.SelectedItems.Count >= 0)
+            if (lvTeamRoster.SelectedItems.Count > 0)
             {
                 ListViewItem selectedItem = lvTeamRoster.SelectedItems[0];
 
@@ -776,7 +777,7 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 Draft.DisplayTeam.RemoveKeeper(Draft.SelectedPlayerOnRoster);
                 SQLiteDataAccess.UpdatePlayer(Draft.SelectedPlayerOnRoster);
-               
+
 
 
             }
@@ -1060,6 +1061,28 @@ namespace FantasyFootballAuctionDraftAssistant
             {
                 txtSearch.Clear();
                 btnSearch.PerformClick();
+            }
+        }
+
+        private void cbLeagueDetailsForm_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbLeagueDetailsForm.Checked)
+            {
+                //frmDetailedLeagueOverview frmDetailedLeagueOverview = new frmDetailedLeagueOverview();
+                int offsetX = 919;
+                int offsetY = 101;
+
+                frmDetailedOverview.StartPosition = FormStartPosition.Manual;
+                frmDetailedOverview.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
+
+                cbLeagueDetailsForm.Text = "Hide League Overview";
+                frmDetailedOverview.Draft = this.Draft;
+                frmDetailedOverview.Show();
+            }
+            else
+            {
+                cbLeagueDetailsForm.Text = "Show League Overview";
+                frmDetailedOverview.Hide();
             }
         }
     }
