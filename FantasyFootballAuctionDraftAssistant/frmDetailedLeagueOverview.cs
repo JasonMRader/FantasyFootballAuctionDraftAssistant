@@ -256,6 +256,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void frmDetailedLeagueOverview_Shown(object sender, EventArgs e)
         {
+            //this.TopMost = true;
             //SetPanelsToFantasyTeams();
         }
     }

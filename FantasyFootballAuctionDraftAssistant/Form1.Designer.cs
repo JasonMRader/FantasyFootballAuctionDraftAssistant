@@ -118,6 +118,8 @@
             cbDraftHistory = new CheckBox();
             cbKeepers = new CheckBox();
             pnlPlayerOnClockDisplay = new Panel();
+            label15 = new Label();
+            lblPlayerOnClockTeamPosition = new Label();
             btnFantasyStats = new Button();
             btnInjuryNews = new Button();
             label12 = new Label();
@@ -273,12 +275,11 @@
             // 
             // lblPlayerOnClock
             // 
-            lblPlayerOnClock.BackColor = Color.FromArgb(41, 122, 38);
             lblPlayerOnClock.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClock.ForeColor = Color.FromArgb(224, 224, 224);
-            lblPlayerOnClock.Location = new Point(3, 39);
+            lblPlayerOnClock.ForeColor = Color.FromArgb(213, 160, 33);
+            lblPlayerOnClock.Location = new Point(6, 55);
             lblPlayerOnClock.Name = "lblPlayerOnClock";
-            lblPlayerOnClock.Size = new Size(274, 35);
+            lblPlayerOnClock.Size = new Size(274, 31);
             lblPlayerOnClock.TabIndex = 2;
             lblPlayerOnClock.Text = "Choose Player";
             lblPlayerOnClock.TextAlign = ContentAlignment.MiddleCenter;
@@ -287,11 +288,11 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Arial Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.ForeColor = Color.Black;
-            label1.Location = new Point(46, 85);
+            label1.Font = new Font("Arial Black", 17.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = Color.FromArgb(41, 182, 38);
+            label1.Location = new Point(60, 102);
             label1.Name = "label1";
-            label1.Size = new Size(105, 30);
+            label1.Size = new Size(115, 32);
             label1.TabIndex = 3;
             label1.Text = "Value: $";
             // 
@@ -586,7 +587,7 @@
             // 
             btnSaveNotes.BackColor = SystemColors.Info;
             btnSaveNotes.FlatStyle = FlatStyle.Flat;
-            btnSaveNotes.Location = new Point(235, 153);
+            btnSaveNotes.Location = new Point(235, 180);
             btnSaveNotes.Name = "btnSaveNotes";
             btnSaveNotes.Size = new Size(42, 23);
             btnSaveNotes.TabIndex = 10;
@@ -597,10 +598,10 @@
             // txtPlayerNotes
             // 
             txtPlayerNotes.BackColor = SystemColors.Info;
-            txtPlayerNotes.Location = new Point(3, 118);
+            txtPlayerNotes.Location = new Point(3, 151);
             txtPlayerNotes.Multiline = true;
             txtPlayerNotes.Name = "txtPlayerNotes";
-            txtPlayerNotes.Size = new Size(274, 58);
+            txtPlayerNotes.Size = new Size(274, 52);
             txtPlayerNotes.TabIndex = 9;
             // 
             // btnCancelOnClock
@@ -609,9 +610,9 @@
             btnCancelOnClock.FlatStyle = FlatStyle.Flat;
             btnCancelOnClock.Font = new Font("Segoe UI Historic", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
             btnCancelOnClock.ForeColor = Color.White;
-            btnCancelOnClock.Location = new Point(251, -1);
+            btnCancelOnClock.Location = new Point(251, 0);
             btnCancelOnClock.Name = "btnCancelOnClock";
-            btnCancelOnClock.Size = new Size(29, 37);
+            btnCancelOnClock.Size = new Size(29, 31);
             btnCancelOnClock.TabIndex = 4;
             btnCancelOnClock.Text = "X";
             btnCancelOnClock.UseVisualStyleBackColor = true;
@@ -620,11 +621,11 @@
             // lblPlayerOnClockValue
             // 
             lblPlayerOnClockValue.AutoSize = true;
-            lblPlayerOnClockValue.Font = new Font("Arial Black", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClockValue.ForeColor = Color.Black;
-            lblPlayerOnClockValue.Location = new Point(157, 85);
+            lblPlayerOnClockValue.Font = new Font("Arial Black", 17.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPlayerOnClockValue.ForeColor = Color.FromArgb(41, 182, 38);
+            lblPlayerOnClockValue.Location = new Point(171, 102);
             lblPlayerOnClockValue.Name = "lblPlayerOnClockValue";
-            lblPlayerOnClockValue.Size = new Size(41, 30);
+            lblPlayerOnClockValue.Size = new Size(44, 32);
             lblPlayerOnClockValue.TabIndex = 3;
             lblPlayerOnClockValue.Text = "$$";
             // 
@@ -640,7 +641,7 @@
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(lvTeamRoster);
             panel3.Controls.Add(lblDisplayTeamName);
-            panel3.Location = new Point(919, 230);
+            panel3.Location = new Point(1, 129);
             panel3.Name = "panel3";
             panel3.Size = new Size(569, 748);
             panel3.TabIndex = 5;
@@ -1046,9 +1047,10 @@
             pnlTeamsToView.Controls.Add(radioButton5);
             pnlTeamsToView.Controls.Add(radioButton2);
             pnlTeamsToView.Controls.Add(radioButton1);
+            pnlTeamsToView.Controls.Add(panel3);
             pnlTeamsToView.Location = new Point(919, 101);
             pnlTeamsToView.Name = "pnlTeamsToView";
-            pnlTeamsToView.Size = new Size(570, 118);
+            pnlTeamsToView.Size = new Size(579, 877);
             pnlTeamsToView.TabIndex = 11;
             // 
             // radioButton16
@@ -1237,6 +1239,7 @@
             radioButton6.Text = "radioButton1";
             radioButton6.TextAlign = ContentAlignment.MiddleCenter;
             radioButton6.UseVisualStyleBackColor = false;
+            radioButton6.CheckedChanged += radioButton6_CheckedChanged;
             // 
             // radioButton9
             // 
@@ -1379,7 +1382,9 @@
             // 
             // pnlPlayerOnClockDisplay
             // 
-            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(213, 160, 33);
+            pnlPlayerOnClockDisplay.BackColor = Color.FromArgb(36, 2, 3);
+            pnlPlayerOnClockDisplay.Controls.Add(label15);
+            pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClockTeamPosition);
             pnlPlayerOnClockDisplay.Controls.Add(btnFantasyStats);
             pnlPlayerOnClockDisplay.Controls.Add(btnInjuryNews);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClock);
@@ -1388,22 +1393,44 @@
             pnlPlayerOnClockDisplay.Controls.Add(txtPlayerNotes);
             pnlPlayerOnClockDisplay.Controls.Add(lblPlayerOnClockValue);
             pnlPlayerOnClockDisplay.Controls.Add(btnCancelOnClock);
-            pnlPlayerOnClockDisplay.Location = new Point(12, 40);
+            pnlPlayerOnClockDisplay.Location = new Point(12, 12);
             pnlPlayerOnClockDisplay.Name = "pnlPlayerOnClockDisplay";
-            pnlPlayerOnClockDisplay.Size = new Size(280, 179);
+            pnlPlayerOnClockDisplay.Size = new Size(280, 207);
             pnlPlayerOnClockDisplay.TabIndex = 11;
             pnlPlayerOnClockDisplay.Visible = false;
+            // 
+            // label15
+            // 
+            label15.AutoSize = true;
+            label15.Font = new Font("Arial", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label15.ForeColor = Color.White;
+            label15.Location = new Point(89, 10);
+            label15.Name = "label15";
+            label15.Size = new Size(136, 22);
+            label15.TabIndex = 12;
+            label15.Text = "On The Clock";
+            // 
+            // lblPlayerOnClockTeamPosition
+            // 
+            lblPlayerOnClockTeamPosition.AutoSize = true;
+            lblPlayerOnClockTeamPosition.Font = new Font("Arial", 11.25F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPlayerOnClockTeamPosition.ForeColor = Color.White;
+            lblPlayerOnClockTeamPosition.Location = new Point(108, 34);
+            lblPlayerOnClockTeamPosition.Name = "lblPlayerOnClockTeamPosition";
+            lblPlayerOnClockTeamPosition.Size = new Size(67, 18);
+            lblPlayerOnClockTeamPosition.TabIndex = 12;
+            lblPlayerOnClockTeamPosition.Text = "PIT - RB";
             // 
             // btnFantasyStats
             // 
             btnFantasyStats.BackColor = Color.FromArgb(176, 209, 176);
             btnFantasyStats.FlatAppearance.BorderSize = 0;
             btnFantasyStats.FlatStyle = FlatStyle.Flat;
-            btnFantasyStats.Location = new Point(126, 3);
+            btnFantasyStats.Image = Resource1.Artwork_5;
+            btnFantasyStats.Location = new Point(7, 8);
             btnFantasyStats.Name = "btnFantasyStats";
-            btnFantasyStats.Size = new Size(119, 32);
+            btnFantasyStats.Size = new Size(30, 30);
             btnFantasyStats.TabIndex = 11;
-            btnFantasyStats.Text = "Fantasy Stats";
             btnFantasyStats.UseVisualStyleBackColor = false;
             btnFantasyStats.Click += btnFantasyStats_Click;
             // 
@@ -1412,11 +1439,11 @@
             btnInjuryNews.BackColor = Color.FromArgb(176, 209, 176);
             btnInjuryNews.FlatAppearance.BorderSize = 0;
             btnInjuryNews.FlatStyle = FlatStyle.Flat;
-            btnInjuryNews.Location = new Point(3, 3);
+            btnInjuryNews.Image = Resource1.Asset_1;
+            btnInjuryNews.Location = new Point(43, 8);
             btnInjuryNews.Name = "btnInjuryNews";
-            btnInjuryNews.Size = new Size(119, 32);
+            btnInjuryNews.Size = new Size(30, 30);
             btnInjuryNews.TabIndex = 11;
-            btnInjuryNews.Text = "Injury News";
             btnInjuryNews.UseVisualStyleBackColor = false;
             btnInjuryNews.Click += btnInjuryNews_Click;
             // 
@@ -1537,7 +1564,6 @@
             Controls.Add(pnlTeamsToView);
             Controls.Add(btnOpenSettings);
             Controls.Add(btnCloseBrowser);
-            Controls.Add(panel3);
             Controls.Add(panel1);
             Controls.Add(lvUndraftedPlayers);
             Controls.Add(webView);
@@ -1671,5 +1697,7 @@
         private Button btnMin;
         private Button btnSetToUs;
         private CheckBox cbLeagueDetailsForm;
+        private Label lblPlayerOnClockTeamPosition;
+        private Label label15;
     }
 }

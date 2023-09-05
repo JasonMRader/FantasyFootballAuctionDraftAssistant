@@ -164,7 +164,11 @@ namespace FantasyFootballAuctionDraftAssistant
                         //Draft.DisplayTeam = Draft.MyTeam;
                         Draft.RecordDraftPick(selectedTeam, inputCostForm.PlayerCost);
                         UpdateListView();
+                        //if (Draft.DisplayTeam == selectedTeam)
+                        //{
                         UpdateDisplayTeam();
+                        //}
+
                         UpdateSalaryCapLabels();
 
                         RemovePlayerOnClock();
@@ -217,7 +221,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
             }
 
-            UpdateListView();
+            //UpdateListView();
             UpdateDisplayTeam();
 
         }
@@ -411,6 +415,7 @@ namespace FantasyFootballAuctionDraftAssistant
             lblPlayerOnClock.Text = Draft.PlayerOnTheClock.Name.ToString();
             lblPlayerOnClockValue.Text = Draft.PlayerOnTheClock.EstimatedValue.ToString();
             txtPlayerNotes.Text = Draft.PlayerOnTheClock.Notes;
+            lblPlayerOnClockTeamPosition.Text = Draft.PlayerOnTheClock.NflTeam + " - " + Draft.PlayerOnTheClock.PositionString;
         }
         private void RemovePlayerOnClock()
         {
@@ -1070,15 +1075,19 @@ namespace FantasyFootballAuctionDraftAssistant
             if (cbLeagueDetailsForm.Checked)
             {
                 //frmDetailedLeagueOverview frmDetailedLeagueOverview = new frmDetailedLeagueOverview();
-                int offsetX = 919;
-                int offsetY = 101;
+                //int offsetX = 919;
+                //int offsetY = 101;
 
-                frmDetailedOverview.StartPosition = FormStartPosition.Manual;
-                frmDetailedOverview.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
+                //frmDetailedOverview.StartPosition = FormStartPosition.Manual;
+                //frmDetailedOverview.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
 
                 cbLeagueDetailsForm.Text = "Hide League Overview";
                 frmDetailedOverview.TeamSelected += DisplayTeam_TeamSelected;
                 //frmDetailedOverview.Draft = this.Draft;
+                frmDetailedOverview.TopLevel = false;
+                frmDetailedOverview.Dock = DockStyle.Fill;
+                pnlTeamsToView.Controls.Add(frmDetailedOverview);
+                frmDetailedOverview.BringToFront();
                 frmDetailedOverview.Show();
             }
             else
@@ -1093,6 +1102,11 @@ namespace FantasyFootballAuctionDraftAssistant
             Draft.DisplayTeam = e.Team;
             cbLeagueDetailsForm.Checked = false;
             UpdateDisplayTeam();
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
