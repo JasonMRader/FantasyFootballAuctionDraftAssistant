@@ -14,6 +14,10 @@ namespace FantasyFootballAuctionDraftAssistant
     public partial class frmDetailedLeagueOverview : Form
     {
         public DraftManager Draft;
+        //private Form1 form1Instance;
+        public event EventHandler<FantasyTeamEventArgs> TeamSelected;
+
+
         public frmDetailedLeagueOverview()
         {
             InitializeComponent();
@@ -24,16 +28,17 @@ namespace FantasyFootballAuctionDraftAssistant
             InitializeComponent();
             this.Draft = draft;
             this.Draft.DraftChanged += Draft_DraftChanged;
+            
         }
 
 
         private void frmDetailedLeagueOverview_Load(object sender, EventArgs e)
         {
-            //SetPanelsToFantasyTeams();
+            SetPanelsToFantasyTeams();
         }
         private void Draft_DraftChanged(object sender, EventArgs e)
         {
-            // Code to update the form when the draft changes...
+            SetPanelsToFantasyTeams();
         }
         private void InitializePanelWithTeamInfo(Panel panel, FantasyTeam team)
         {
@@ -65,6 +70,7 @@ namespace FantasyFootballAuctionDraftAssistant
             btnChooseTeam.Font = new Font("Arial", 10, FontStyle.Bold);
             btnChooseTeam.BackColor = Color.FromArgb(176, 209, 176);
             btnChooseTeam.Dock = DockStyle.Top;
+            btnChooseTeam.Tag = team;
             btnChooseTeam.Click += TeamButton_Click; // if you want an event
             panel.Controls.Add(btnChooseTeam);
 
@@ -171,7 +177,14 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void TeamButton_Click(object? sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam clickedTeam)
+            {
+                // Hide this form
+                this.Hide();
+                TeamSelected?.Invoke(this, new FantasyTeamEventArgs(clickedTeam));
+                // Assuming you have access to the Form1 instance (let's say it's a property or field called form1Instance)
+                //form1Instance.Draft.DisplayTeam = clickedTeam;
+            }
         }
 
         private void SetPanelsToFantasyTeams()
@@ -243,7 +256,7 @@ namespace FantasyFootballAuctionDraftAssistant
 
         private void frmDetailedLeagueOverview_Shown(object sender, EventArgs e)
         {
-            SetPanelsToFantasyTeams();
+            //SetPanelsToFantasyTeams();
         }
     }
 }

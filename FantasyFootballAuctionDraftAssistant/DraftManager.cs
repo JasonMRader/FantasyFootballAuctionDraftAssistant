@@ -82,6 +82,7 @@ namespace FantasyFootballAuctionDraftAssistant
                 Moves.Add(move);
                 currentPickNumber++;
                 SQLiteDataAccess.UpdatePlayer(PlayerOnTheClock);
+                ModifyDraft();
             }
             else
             {

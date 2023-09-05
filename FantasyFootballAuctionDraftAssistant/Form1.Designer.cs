@@ -640,9 +640,9 @@
             panel3.Controls.Add(panel4);
             panel3.Controls.Add(lvTeamRoster);
             panel3.Controls.Add(lblDisplayTeamName);
-            panel3.Location = new Point(919, 385);
+            panel3.Location = new Point(919, 230);
             panel3.Name = "panel3";
-            panel3.Size = new Size(531, 593);
+            panel3.Size = new Size(569, 748);
             panel3.TabIndex = 5;
             // 
             // lblDisplayKeeper
@@ -650,7 +650,7 @@
             lblDisplayKeeper.AutoSize = true;
             lblDisplayKeeper.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
             lblDisplayKeeper.ForeColor = Color.FromArgb(224, 224, 224);
-            lblDisplayKeeper.Location = new Point(256, 122);
+            lblDisplayKeeper.Location = new Point(280, 165);
             lblDisplayKeeper.Name = "lblDisplayKeeper";
             lblDisplayKeeper.Size = new Size(41, 20);
             lblDisplayKeeper.TabIndex = 17;
@@ -661,7 +661,7 @@
             label14.AutoSize = true;
             label14.Font = new Font("Arial Narrow", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label14.ForeColor = Color.FromArgb(224, 224, 224);
-            label14.Location = new Point(204, 122);
+            label14.Location = new Point(228, 165);
             label14.Name = "label14";
             label14.Size = new Size(56, 20);
             label14.TabIndex = 17;
@@ -670,9 +670,9 @@
             // btnSetKeeper
             // 
             btnSetKeeper.Enabled = false;
-            btnSetKeeper.Location = new Point(183, 530);
+            btnSetKeeper.Location = new Point(16, 690);
             btnSetKeeper.Name = "btnSetKeeper";
-            btnSetKeeper.Size = new Size(133, 23);
+            btnSetKeeper.Size = new Size(265, 23);
             btnSetKeeper.TabIndex = 16;
             btnSetKeeper.Text = "Set Keeper";
             btnSetKeeper.UseVisualStyleBackColor = true;
@@ -681,9 +681,9 @@
             // btnRemovePlayerFromTeam
             // 
             btnRemovePlayerFromTeam.Enabled = false;
-            btnRemovePlayerFromTeam.Location = new Point(322, 530);
+            btnRemovePlayerFromTeam.Location = new Point(297, 690);
             btnRemovePlayerFromTeam.Name = "btnRemovePlayerFromTeam";
-            btnRemovePlayerFromTeam.Size = new Size(205, 23);
+            btnRemovePlayerFromTeam.Size = new Size(245, 23);
             btnRemovePlayerFromTeam.TabIndex = 15;
             btnRemovePlayerFromTeam.Text = "Remove Player";
             btnRemovePlayerFromTeam.UseVisualStyleBackColor = true;
@@ -696,7 +696,7 @@
             panel7.Controls.Add(label11);
             panel7.Controls.Add(lblAvgCapPerSpotLeft);
             panel7.Controls.Add(label13);
-            panel7.Location = new Point(274, 38);
+            panel7.Location = new Point(294, 58);
             panel7.Name = "panel7";
             panel7.Size = new Size(230, 81);
             panel7.TabIndex = 14;
@@ -754,7 +754,7 @@
             panel6.Controls.Add(lblMaxBid);
             panel6.Controls.Add(label2);
             panel6.Controls.Add(label4);
-            panel6.Location = new Point(16, 39);
+            panel6.Location = new Point(35, 58);
             panel6.Name = "panel6";
             panel6.Size = new Size(232, 80);
             panel6.TabIndex = 13;
@@ -841,7 +841,7 @@
             panel4.Controls.Add(label6);
             panel4.Controls.Add(label7);
             panel4.ForeColor = Color.White;
-            panel4.Location = new Point(2, 145);
+            panel4.Location = new Point(19, 188);
             panel4.Name = "panel4";
             panel4.Size = new Size(525, 51);
             panel4.TabIndex = 10;
@@ -975,9 +975,9 @@
             // lvTeamRoster
             // 
             lvTeamRoster.BackColor = Color.Silver;
-            lvTeamRoster.Location = new Point(2, 200);
+            lvTeamRoster.Location = new Point(16, 266);
             lvTeamRoster.Name = "lvTeamRoster";
-            lvTeamRoster.Size = new Size(526, 324);
+            lvTeamRoster.Size = new Size(526, 418);
             lvTeamRoster.TabIndex = 8;
             lvTeamRoster.UseCompatibleStateImageBehavior = false;
             lvTeamRoster.SelectedIndexChanged += lvTeamRoster_SelectedIndexChanged;
@@ -986,7 +986,7 @@
             // 
             lblDisplayTeamName.Font = new Font("Rockwell Extra Bold", 18F, FontStyle.Bold, GraphicsUnit.Point);
             lblDisplayTeamName.ForeColor = Color.FromArgb(224, 224, 224);
-            lblDisplayTeamName.Location = new Point(3, 0);
+            lblDisplayTeamName.Location = new Point(35, 7);
             lblDisplayTeamName.Name = "lblDisplayTeamName";
             lblDisplayTeamName.Size = new Size(524, 38);
             lblDisplayTeamName.TabIndex = 6;
@@ -1048,7 +1048,7 @@
             pnlTeamsToView.Controls.Add(radioButton1);
             pnlTeamsToView.Location = new Point(919, 101);
             pnlTeamsToView.Name = "pnlTeamsToView";
-            pnlTeamsToView.Size = new Size(570, 278);
+            pnlTeamsToView.Size = new Size(570, 118);
             pnlTeamsToView.TabIndex = 11;
             // 
             // radioButton16
@@ -1057,10 +1057,11 @@
             radioButton16.BackColor = Color.FromArgb(176, 209, 176);
             radioButton16.FlatAppearance.BorderSize = 0;
             radioButton16.FlatStyle = FlatStyle.Flat;
-            radioButton16.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton16.Location = new Point(5, 210);
+            radioButton16.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton16.Location = new Point(6, 90);
+            radioButton16.Margin = new Padding(2);
             radioButton16.Name = "radioButton16";
-            radioButton16.Size = new Size(170, 30);
+            radioButton16.Size = new Size(137, 24);
             radioButton16.TabIndex = 0;
             radioButton16.TabStop = true;
             radioButton16.Text = "radioButton1";
@@ -1073,11 +1074,11 @@
             radioButton15.BackColor = Color.FromArgb(176, 209, 176);
             radioButton15.FlatAppearance.BorderSize = 0;
             radioButton15.FlatStyle = FlatStyle.Flat;
-            radioButton15.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton15.Location = new Point(5, 244);
-            radioButton15.Margin = new Padding(0, 0, 0, 2);
+            radioButton15.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton15.Location = new Point(287, 90);
+            radioButton15.Margin = new Padding(2);
             radioButton15.Name = "radioButton15";
-            radioButton15.Size = new Size(170, 30);
+            radioButton15.Size = new Size(137, 24);
             radioButton15.TabIndex = 0;
             radioButton15.TabStop = true;
             radioButton15.Text = "radioButton1";
@@ -1090,11 +1091,11 @@
             radioButton12.BackColor = Color.FromArgb(176, 209, 176);
             radioButton12.FlatAppearance.BorderSize = 0;
             radioButton12.FlatStyle = FlatStyle.Flat;
-            radioButton12.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton12.Location = new Point(5, 108);
-            radioButton12.Margin = new Padding(0, 0, 0, 2);
+            radioButton12.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton12.Location = new Point(287, 34);
+            radioButton12.Margin = new Padding(2);
             radioButton12.Name = "radioButton12";
-            radioButton12.Size = new Size(170, 30);
+            radioButton12.Size = new Size(137, 24);
             radioButton12.TabIndex = 0;
             radioButton12.TabStop = true;
             radioButton12.Text = "radioButton1";
@@ -1107,11 +1108,11 @@
             radioButton11.BackColor = Color.FromArgb(176, 209, 176);
             radioButton11.FlatAppearance.BorderSize = 0;
             radioButton11.FlatStyle = FlatStyle.Flat;
-            radioButton11.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton11.Location = new Point(285, 244);
-            radioButton11.Margin = new Padding(0, 0, 0, 2);
+            radioButton11.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton11.Location = new Point(428, 90);
+            radioButton11.Margin = new Padding(2);
             radioButton11.Name = "radioButton11";
-            radioButton11.Size = new Size(170, 30);
+            radioButton11.Size = new Size(137, 24);
             radioButton11.TabIndex = 0;
             radioButton11.TabStop = true;
             radioButton11.Text = "radioButton1";
@@ -1124,11 +1125,11 @@
             radioButton8.BackColor = Color.FromArgb(176, 209, 176);
             radioButton8.FlatAppearance.BorderSize = 0;
             radioButton8.FlatStyle = FlatStyle.Flat;
-            radioButton8.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton8.Location = new Point(285, 142);
-            radioButton8.Margin = new Padding(0, 0, 0, 2);
+            radioButton8.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton8.Location = new Point(147, 62);
+            radioButton8.Margin = new Padding(2);
             radioButton8.Name = "radioButton8";
-            radioButton8.Size = new Size(170, 30);
+            radioButton8.Size = new Size(137, 24);
             radioButton8.TabIndex = 0;
             radioButton8.TabStop = true;
             radioButton8.Text = "radioButton1";
@@ -1141,11 +1142,11 @@
             radioButton14.BackColor = Color.FromArgb(176, 209, 176);
             radioButton14.FlatAppearance.BorderSize = 0;
             radioButton14.FlatStyle = FlatStyle.Flat;
-            radioButton14.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton14.Location = new Point(285, 210);
-            radioButton14.Margin = new Padding(0, 0, 0, 2);
+            radioButton14.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton14.Location = new Point(147, 90);
+            radioButton14.Margin = new Padding(2);
             radioButton14.Name = "radioButton14";
-            radioButton14.Size = new Size(170, 30);
+            radioButton14.Size = new Size(137, 24);
             radioButton14.TabIndex = 0;
             radioButton14.TabStop = true;
             radioButton14.Text = "radioButton1";
@@ -1158,11 +1159,11 @@
             radioButton7.BackColor = Color.FromArgb(176, 209, 176);
             radioButton7.FlatAppearance.BorderSize = 0;
             radioButton7.FlatStyle = FlatStyle.Flat;
-            radioButton7.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton7.Location = new Point(285, 74);
-            radioButton7.Margin = new Padding(0, 0, 0, 2);
+            radioButton7.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton7.Location = new Point(146, 34);
+            radioButton7.Margin = new Padding(2);
             radioButton7.Name = "radioButton7";
-            radioButton7.Size = new Size(170, 30);
+            radioButton7.Size = new Size(137, 24);
             radioButton7.TabIndex = 0;
             radioButton7.TabStop = true;
             radioButton7.Text = "radioButton1";
@@ -1175,11 +1176,11 @@
             radioButton10.BackColor = Color.FromArgb(176, 209, 176);
             radioButton10.FlatAppearance.BorderSize = 0;
             radioButton10.FlatStyle = FlatStyle.Flat;
-            radioButton10.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton10.Location = new Point(285, 176);
-            radioButton10.Margin = new Padding(0, 0, 0, 2);
+            radioButton10.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton10.Location = new Point(428, 62);
+            radioButton10.Margin = new Padding(2);
             radioButton10.Name = "radioButton10";
-            radioButton10.Size = new Size(170, 30);
+            radioButton10.Size = new Size(137, 24);
             radioButton10.TabIndex = 0;
             radioButton10.TabStop = true;
             radioButton10.Text = "radioButton1";
@@ -1192,11 +1193,11 @@
             radioButton4.BackColor = Color.FromArgb(176, 209, 176);
             radioButton4.FlatAppearance.BorderSize = 0;
             radioButton4.FlatStyle = FlatStyle.Flat;
-            radioButton4.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton4.Location = new Point(285, 108);
-            radioButton4.Margin = new Padding(0, 0, 0, 2);
+            radioButton4.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton4.Location = new Point(428, 34);
+            radioButton4.Margin = new Padding(2);
             radioButton4.Name = "radioButton4";
-            radioButton4.Size = new Size(170, 30);
+            radioButton4.Size = new Size(137, 24);
             radioButton4.TabIndex = 0;
             radioButton4.TabStop = true;
             radioButton4.Text = "radioButton1";
@@ -1209,11 +1210,11 @@
             radioButton13.BackColor = Color.FromArgb(176, 209, 176);
             radioButton13.FlatAppearance.BorderSize = 0;
             radioButton13.FlatStyle = FlatStyle.Flat;
-            radioButton13.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton13.Location = new Point(5, 176);
-            radioButton13.Margin = new Padding(0, 0, 0, 2);
+            radioButton13.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton13.Location = new Point(287, 62);
+            radioButton13.Margin = new Padding(2);
             radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(170, 30);
+            radioButton13.Size = new Size(137, 24);
             radioButton13.TabIndex = 0;
             radioButton13.TabStop = true;
             radioButton13.Text = "radioButton1";
@@ -1226,11 +1227,11 @@
             radioButton6.BackColor = Color.FromArgb(176, 209, 176);
             radioButton6.FlatAppearance.BorderSize = 0;
             radioButton6.FlatStyle = FlatStyle.Flat;
-            radioButton6.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton6.Location = new Point(5, 74);
-            radioButton6.Margin = new Padding(0, 0, 0, 2);
+            radioButton6.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton6.Location = new Point(5, 34);
+            radioButton6.Margin = new Padding(2);
             radioButton6.Name = "radioButton6";
-            radioButton6.Size = new Size(170, 30);
+            radioButton6.Size = new Size(137, 24);
             radioButton6.TabIndex = 0;
             radioButton6.TabStop = true;
             radioButton6.Text = "radioButton1";
@@ -1243,11 +1244,11 @@
             radioButton9.BackColor = Color.FromArgb(176, 209, 176);
             radioButton9.FlatAppearance.BorderSize = 0;
             radioButton9.FlatStyle = FlatStyle.Flat;
-            radioButton9.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton9.Location = new Point(5, 142);
-            radioButton9.Margin = new Padding(0, 0, 0, 2);
+            radioButton9.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton9.Location = new Point(6, 62);
+            radioButton9.Margin = new Padding(2);
             radioButton9.Name = "radioButton9";
-            radioButton9.Size = new Size(170, 30);
+            radioButton9.Size = new Size(137, 24);
             radioButton9.TabIndex = 0;
             radioButton9.TabStop = true;
             radioButton9.Text = "radioButton1";
@@ -1260,11 +1261,11 @@
             radioButton3.BackColor = Color.FromArgb(176, 209, 176);
             radioButton3.FlatAppearance.BorderSize = 0;
             radioButton3.FlatStyle = FlatStyle.Flat;
-            radioButton3.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton3.Location = new Point(5, 40);
-            radioButton3.Margin = new Padding(0, 0, 0, 2);
+            radioButton3.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton3.Location = new Point(287, 6);
+            radioButton3.Margin = new Padding(2);
             radioButton3.Name = "radioButton3";
-            radioButton3.Size = new Size(170, 30);
+            radioButton3.Size = new Size(137, 24);
             radioButton3.TabIndex = 0;
             radioButton3.TabStop = true;
             radioButton3.Text = "radioButton1";
@@ -1277,11 +1278,11 @@
             radioButton5.BackColor = Color.FromArgb(176, 209, 176);
             radioButton5.FlatAppearance.BorderSize = 0;
             radioButton5.FlatStyle = FlatStyle.Flat;
-            radioButton5.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton5.Location = new Point(285, 40);
-            radioButton5.Margin = new Padding(0, 0, 0, 2);
+            radioButton5.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton5.Location = new Point(428, 6);
+            radioButton5.Margin = new Padding(2);
             radioButton5.Name = "radioButton5";
-            radioButton5.Size = new Size(170, 30);
+            radioButton5.Size = new Size(137, 24);
             radioButton5.TabIndex = 0;
             radioButton5.TabStop = true;
             radioButton5.Text = "radioButton1";
@@ -1294,11 +1295,11 @@
             radioButton2.BackColor = Color.FromArgb(176, 209, 176);
             radioButton2.FlatAppearance.BorderSize = 0;
             radioButton2.FlatStyle = FlatStyle.Flat;
-            radioButton2.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
-            radioButton2.Location = new Point(285, 6);
-            radioButton2.Margin = new Padding(0, 0, 0, 2);
+            radioButton2.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton2.Location = new Point(146, 6);
+            radioButton2.Margin = new Padding(2);
             radioButton2.Name = "radioButton2";
-            radioButton2.Size = new Size(170, 30);
+            radioButton2.Size = new Size(137, 24);
             radioButton2.TabIndex = 0;
             radioButton2.TabStop = true;
             radioButton2.Text = "radioButton1";
@@ -1311,11 +1312,11 @@
             radioButton1.BackColor = Color.FromArgb(176, 209, 176);
             radioButton1.FlatAppearance.BorderSize = 0;
             radioButton1.FlatStyle = FlatStyle.Flat;
-            radioButton1.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
+            radioButton1.Font = new Font("Arial Narrow", 9.75F, FontStyle.Bold, GraphicsUnit.Point);
             radioButton1.Location = new Point(5, 6);
-            radioButton1.Margin = new Padding(0, 0, 0, 2);
+            radioButton1.Margin = new Padding(2);
             radioButton1.Name = "radioButton1";
-            radioButton1.Size = new Size(170, 30);
+            radioButton1.Size = new Size(137, 24);
             radioButton1.TabIndex = 0;
             radioButton1.TabStop = true;
             radioButton1.Text = "radioButton1";

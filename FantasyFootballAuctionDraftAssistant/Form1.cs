@@ -56,7 +56,7 @@ namespace FantasyFootballAuctionDraftAssistant
             SetupTeamRosterListViewColumns();
             UpdateListView();
             UpdateDisplayTeam();
-            frmDetailedOverview = new frmDetailedLeagueOverview(Draft);
+            frmDetailedOverview = new frmDetailedLeagueOverview(this.Draft);
         }
         private void SetRadioButtonsToFantasyTeams()
         {
@@ -116,6 +116,7 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void UpdateSalaryCapLabels()
         {
+            frmDetailedOverview.Draft = Draft;
             foreach (Control control in pnlTeamsToView.Controls)
             {
                 if (control is Label && control.Tag is FantasyTeam)
@@ -1076,7 +1077,8 @@ namespace FantasyFootballAuctionDraftAssistant
                 frmDetailedOverview.Location = new Point(this.Location.X + offsetX, this.Location.Y + offsetY);
 
                 cbLeagueDetailsForm.Text = "Hide League Overview";
-                frmDetailedOverview.Draft = this.Draft;
+                frmDetailedOverview.TeamSelected += DisplayTeam_TeamSelected;
+                //frmDetailedOverview.Draft = this.Draft;
                 frmDetailedOverview.Show();
             }
             else
@@ -1084,6 +1086,13 @@ namespace FantasyFootballAuctionDraftAssistant
                 cbLeagueDetailsForm.Text = "Show League Overview";
                 frmDetailedOverview.Hide();
             }
+        }
+
+        private void DisplayTeam_TeamSelected(object? sender, FantasyTeamEventArgs e)
+        {
+            Draft.DisplayTeam = e.Team;
+            cbLeagueDetailsForm.Checked = false;
+            UpdateDisplayTeam();
         }
     }
 }
