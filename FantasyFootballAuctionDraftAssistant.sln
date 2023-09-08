@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballAuctionDraftAssistant", "FantasyFootballAuctionDraftAssistant\FantasyFootballAuctionDraftAssistant.csproj", "{A866919B-5CBC-4F7C-A310-8E703D13EB87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FantasyFootballAuctionDraftAssistant", "FantasyFootballAuctionDraftAssistant\FantasyFootballAuctionDraftAssistant.csproj", "{A866919B-5CBC-4F7C-A310-8E703D13EB87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FantasyFootballClassLibrary", "FantasyFootballClassLibrary\FantasyFootballClassLibrary.csproj", "{6D80B72B-5676-45D5-A89E-4BA44CCF9D6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{A866919B-5CBC-4F7C-A310-8E703D13EB87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A866919B-5CBC-4F7C-A310-8E703D13EB87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A866919B-5CBC-4F7C-A310-8E703D13EB87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D80B72B-5676-45D5-A89E-4BA44CCF9D6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D80B72B-5676-45D5-A89E-4BA44CCF9D6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D80B72B-5676-45D5-A89E-4BA44CCF9D6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D80B72B-5676-45D5-A89E-4BA44CCF9D6C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

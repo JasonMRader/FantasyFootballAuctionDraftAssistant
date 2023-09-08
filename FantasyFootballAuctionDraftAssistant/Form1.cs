@@ -39,7 +39,20 @@ namespace FantasyFootballAuctionDraftAssistant
             InitializeComponent();
 
         }
+        private void ExtractFirstName(string fullName, out string firstName, out string restOfName)
+        {
+            if (string.IsNullOrWhiteSpace(fullName))
+            {
+                firstName = string.Empty;
+                restOfName = string.Empty;
+                return;
+            }
 
+            string[] nameParts = fullName.Split(new[] { ' ' }, 2);
+            firstName = nameParts[0];
+
+            restOfName = nameParts.Length > 1 ? nameParts[1] : string.Empty;
+        }
         private async void Form1_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
@@ -50,7 +63,7 @@ namespace FantasyFootballAuctionDraftAssistant
             Draft.StartDraft();
 
             Draft.DisplayTeam = Draft.AllFantasyTeams.FirstOrDefault(team => team.Name == "Disappointing Monday");
-            SetDraftButtonsToFantasyTeams();
+            //SetDraftButtonsToFantasyTeams();
             SetRadioButtonsToFantasyTeams();
 
             SetupTeamRosterListViewColumns();
@@ -127,21 +140,21 @@ namespace FantasyFootballAuctionDraftAssistant
                 }
             }
         }
-        private void SetDraftButtonsToFantasyTeams()
-        {
-            var teamButtons = pnlOtherTeamsDraft.Controls.OfType<Button>().ToList();
+        //private void SetDraftButtonsToFantasyTeams()
+        //{
+        //    var teamButtons = pnlOtherTeamsDraft.Controls.OfType<Button>().ToList();
 
-            // Assuming Draft.AllFantasyTeams is ordered correctly, we'll first remove "Disappointing Monday"
-            var orderedTeams = Draft.AllFantasyTeams.Where(team => team.Name != "Disappointing Monday").ToList();
+        //    // Assuming Draft.AllFantasyTeams is ordered correctly, we'll first remove "Disappointing Monday"
+        //    var orderedTeams = Draft.AllFantasyTeams.Where(team => team.Name != "Disappointing Monday").ToList();
 
-            // Now loop through both the teamButtons and orderedTeams together using Zip
-            foreach (var (btn, team) in teamButtons.Zip(orderedTeams, (b, t) => (b, t)))
-            {
-                btn.Text = team.Name;
-                btn.Tag = team;
-                btn.Click += DraftButton_Click; // This might add multiple click events if called multiple times. Ensure you only do this once.
-            }
-        }
+        //    // Now loop through both the teamButtons and orderedTeams together using Zip
+        //    foreach (var (btn, team) in teamButtons.Zip(orderedTeams, (b, t) => (b, t)))
+        //    {
+        //        btn.Text = team.Name;
+        //        btn.Tag = team;
+        //        btn.Click += DraftButton_Click; // This might add multiple click events if called multiple times. Ensure you only do this once.
+        //    }
+        //}
 
 
         private void DraftButton_Click(object? sender, EventArgs e)
@@ -155,7 +168,7 @@ namespace FantasyFootballAuctionDraftAssistant
                     MessageBox.Show("No Player is Selected To Draft");
                     return;
                 }
-                using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, selectedTeam))
+                using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, Draft))
                 {
                     inputCostForm.TopMost = true;
                     if (inputCostForm.ShowDialog() == DialogResult.OK)
@@ -181,6 +194,43 @@ namespace FantasyFootballAuctionDraftAssistant
             }
 
         }
+        //private void DraftButton_Click(object? sender, EventArgs e)
+        //{
+        //    if (sender is Button clickedButton && clickedButton.Tag is FantasyTeam selectedTeam)
+        //    {
+        //        //string teamName = selectedTeam.Name;
+        //        //int maxBid = selectedTeam.Budget - selectedTeam.RosterSpots;
+        //        if (Draft.PlayerOnTheClock == null)
+        //        {
+        //            MessageBox.Show("No Player is Selected To Draft");
+        //            return;
+        //        }
+        //        using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, Draft))
+        //        {
+        //            inputCostForm.TopMost = true;
+        //            if (inputCostForm.ShowDialog() == DialogResult.OK)
+        //            {
+
+        //                //Draft.DisplayTeam = Draft.MyTeam;
+        //                Draft.RecordDraftPick(selectedTeam, inputCostForm.PlayerCost);
+        //                UpdateListView();
+        //                //if (Draft.DisplayTeam == selectedTeam)
+        //                //{
+        //                UpdateDisplayTeam();
+        //                //}
+
+        //                UpdateSalaryCapLabels();
+
+        //                RemovePlayerOnClock();
+
+        //                //lblPlayerOnClock.Text = "Select A Player";
+        //                //lblPlayerOnClockValue.Text = "";
+
+        //            }
+        //        }
+        //    }
+
+        //}
         private void btnWeDraftOnClock_Click(object sender, EventArgs e)
         {
             if (Draft.PlayerOnTheClock == null)
@@ -188,24 +238,31 @@ namespace FantasyFootballAuctionDraftAssistant
                 MessageBox.Show("No Player is Selected To Draft");
                 return;
             }
-            using (frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, Draft.MyTeam))
-            {
-                inputCostForm.TopMost = true;
-                if (inputCostForm.ShowDialog() == DialogResult.OK)
-                {
+            frmInputCost inputCostForm = new frmInputCost(Draft.PlayerOnTheClock.Name, Draft);
 
-                    Draft.DisplayTeam = Draft.MyTeam;
-                    Draft.RecordDraftPick(Draft.MyTeam, inputCostForm.PlayerCost);
+            inputCostForm.ActionCompleted += (sender, e) =>
+            {
+                if (e.Result == DialogResult.OK)
+                {
+                    Draft.RecordDraftPick(inputCostForm.team, inputCostForm.PlayerCost);
                     UpdateListView();
                     UpdateDisplayTeam();
                     UpdateSalaryCapLabels();
-
                     RemovePlayerOnClock();
-                    //lblPlayerOnClock.Text = "Select A Player";
-                    //lblPlayerOnClockValue.Text = "";
-
                 }
-            }
+
+                // Dispose the form when you're done with it
+                inputCostForm.Dispose();
+            };
+
+            inputCostForm.TopLevel = false;
+            inputCostForm.BringToFront();
+            pnlPlayerOnClockDisplay.Visible = false;
+            //inputCostForm.Dock = DockStyle.Fill;
+            inputCostForm.Location = pnlPlayerOnClockDisplay.Location;
+            pnlDraftSidePanel.Controls.Add(inputCostForm);
+            inputCostForm.Visible = true;
+
 
         }
         private void RadioButton_Click(object sender, EventArgs e)
@@ -406,13 +463,12 @@ namespace FantasyFootballAuctionDraftAssistant
         }
         private void SetPlayerOnClockUI()
         {
+            ExtractFirstName(Draft.PlayerOnTheClock.Name, out string firstName, out string LastName);
             pnlPlayerOnClockDisplay.Visible = true;
-            foreach (Control c in pnlOtherTeamsDraft.Controls)
-            {
-                c.Enabled = true;
-                btnWeDraftOnClock.Enabled = true;
-            }
-            lblPlayerOnClock.Text = Draft.PlayerOnTheClock.Name.ToString();
+            btnWeDraftOnClock.Enabled = true;
+            btnWeDraftOnClock.Visible = true;
+
+            lblPlayerOnClock.Text = firstName + "\n" + LastName;
             lblPlayerOnClockValue.Text = Draft.PlayerOnTheClock.EstimatedValue.ToString();
             txtPlayerNotes.Text = Draft.PlayerOnTheClock.Notes;
             lblPlayerOnClockTeamPosition.Text = Draft.PlayerOnTheClock.NflTeam + " - " + Draft.PlayerOnTheClock.PositionString;
@@ -420,12 +476,9 @@ namespace FantasyFootballAuctionDraftAssistant
         private void RemovePlayerOnClock()
         {
             pnlPlayerOnClockDisplay.Visible = false;
+            btnWeDraftOnClock.Enabled = false;
+            btnWeDraftOnClock.Visible = false;
 
-            foreach (Control c in pnlOtherTeamsDraft.Controls)
-            {
-                btnWeDraftOnClock.Enabled = false;
-                c.Enabled = false;
-            }
         }
         private void UpdateDisplayTeam()
         {
@@ -756,7 +809,7 @@ namespace FantasyFootballAuctionDraftAssistant
                     btnSetKeeper.Enabled = true;
                     btnSetKeeper.Text = "Remove Keeper";
                 }
-                else
+                if (Draft.SelectedPlayerOnRoster == null)
                 {
                     btnRemovePlayerFromTeam.Enabled = false;
                     btnSetKeeper.Enabled = false;
