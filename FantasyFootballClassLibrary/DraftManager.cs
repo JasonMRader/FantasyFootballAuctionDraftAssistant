@@ -86,7 +86,7 @@ namespace FantasyFootballAuctionDraftAssistant
             }
             else
             {
-                MessageBox.Show("There is no player selected!");
+                //MessageBox.Show("There is no player selected!");
             }
 
            

@@ -101,8 +101,9 @@
             cbDraftHistory = new CheckBox();
             cbKeepers = new CheckBox();
             pnlPlayerOnClockDisplay = new Panel();
-            label15 = new Label();
             lblPlayerOnClockTeamPosition = new Label();
+            pictureBox1 = new PictureBox();
+            label15 = new Label();
             btnFantasyStats = new Button();
             btnInjuryNews = new Button();
             label12 = new Label();
@@ -112,7 +113,6 @@
             btnMin = new Button();
             cbLeagueDetailsForm = new CheckBox();
             pnlDraftSidePanel = new Panel();
-            pictureBox1 = new PictureBox();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel7.SuspendLayout();
@@ -121,8 +121,8 @@
             ((System.ComponentModel.ISupportInitialize)webView).BeginInit();
             pnlTeamsToView.SuspendLayout();
             pnlPlayerOnClockDisplay.SuspendLayout();
-            pnlDraftSidePanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlDraftSidePanel.SuspendLayout();
             SuspendLayout();
             // 
             // lvUndraftedPlayers
@@ -722,6 +722,7 @@
             webView.TabIndex = 8;
             webView.Visible = false;
             webView.ZoomFactor = 1D;
+            webView.Click += webView_Click;
             // 
             // btnCloseBrowser
             // 
@@ -1117,6 +1118,27 @@
             pnlPlayerOnClockDisplay.TabIndex = 11;
             pnlPlayerOnClockDisplay.Visible = false;
             // 
+            // lblPlayerOnClockTeamPosition
+            // 
+            lblPlayerOnClockTeamPosition.AutoSize = true;
+            lblPlayerOnClockTeamPosition.BackColor = Color.FromArgb(41, 122, 38);
+            lblPlayerOnClockTeamPosition.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
+            lblPlayerOnClockTeamPosition.ForeColor = Color.White;
+            lblPlayerOnClockTeamPosition.Location = new Point(132, 268);
+            lblPlayerOnClockTeamPosition.Name = "lblPlayerOnClockTeamPosition";
+            lblPlayerOnClockTeamPosition.Size = new Size(91, 24);
+            lblPlayerOnClockTeamPosition.TabIndex = 12;
+            lblPlayerOnClockTeamPosition.Text = "PIT - RB";
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Resource1.playerSelection;
+            pictureBox1.Location = new Point(3, 82);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(264, 264);
+            pictureBox1.TabIndex = 13;
+            pictureBox1.TabStop = false;
+            // 
             // label15
             // 
             label15.AutoSize = true;
@@ -1127,18 +1149,6 @@
             label15.Size = new Size(136, 22);
             label15.TabIndex = 12;
             label15.Text = "On The Clock";
-            // 
-            // lblPlayerOnClockTeamPosition
-            // 
-            lblPlayerOnClockTeamPosition.AutoSize = true;
-            lblPlayerOnClockTeamPosition.BackColor = Color.FromArgb(41, 122, 38);
-            lblPlayerOnClockTeamPosition.Font = new Font("Arial", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
-            lblPlayerOnClockTeamPosition.ForeColor = Color.White;
-            lblPlayerOnClockTeamPosition.Location = new Point(148, 269);
-            lblPlayerOnClockTeamPosition.Name = "lblPlayerOnClockTeamPosition";
-            lblPlayerOnClockTeamPosition.Size = new Size(91, 24);
-            lblPlayerOnClockTeamPosition.TabIndex = 12;
-            lblPlayerOnClockTeamPosition.Text = "PIT - RB";
             // 
             // btnFantasyStats
             // 
@@ -1257,15 +1267,6 @@
             pnlDraftSidePanel.Size = new Size(289, 924);
             pnlDraftSidePanel.TabIndex = 22;
             // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Resource1.playerSelection;
-            pictureBox1.Location = new Point(3, 82);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(264, 264);
-            pictureBox1.TabIndex = 13;
-            pictureBox1.TabStop = false;
-            // 
             // Form1
             // 
             AcceptButton = btnSearch;
@@ -1313,8 +1314,8 @@
             pnlTeamsToView.ResumeLayout(false);
             pnlPlayerOnClockDisplay.ResumeLayout(false);
             pnlPlayerOnClockDisplay.PerformLayout();
-            pnlDraftSidePanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlDraftSidePanel.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
